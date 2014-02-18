@@ -1,0 +1,82 @@
+body,p,dl,dd,blockquote,h1,h2,h3,h4,h5,h6,pre,table,td,th,ul,ol,li,hr,legend,fieldset,input,textarea,img,form {
+    margin: 0;
+    padding: 0;
+}
+img,iframe {
+    border: none;
+}
+blockquote,q {
+    quotes: none;
+}
+body {
+    color: #222;
+    font: 16px/1.5 Optima, Segoe, "Segoe UI", Candara, Calibri, Georgia, Verdana, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+}
+legend {
+    color: #000;
+    font-size: 1em;
+}
+h1,h2,h3,h4,h5 {
+    color: #111;
+    font-family: Palatino, "Palatino Linotype", 'OFL Sorts Mill Goudy', 'OFL Sorts Mill Goudy TT', Georgia, serif;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+:link:focus,:visited:focus {
+    color: #C63;
+}
+:link {
+    color: #356aa0;
+    text-decoration: none;
+}
+:visited {
+    color: #67035a0;
+    text-decoration: none;
+}
+:link:hover,:visited:hover {
+    color: #AD7328;
+    text-decoration: underline;
+}
+:link:active,:visited:active {
+    color: #356a00;
+}
+sub,sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+    top: -0.5em;
+}
+sub {
+    bottom: -0.25em;
+}
+ul ul {
+    margin-left: 1em;
+}
+#wrap {
+    margin: 0 auto;
+}
+#header {
+    height: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+}
+#logo {
+    background: url(logo.png) top left;
+    height: 70px;
+    left: -10px;
+    position: absolute;
+    width: 183px;
+}
+#slogan {
+    color: #888;
+    font-size: 12px;
+    left: 185px;
+    position: absolute;
+    top: 22px;
+}

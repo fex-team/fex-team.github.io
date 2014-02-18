@@ -1,0 +1,105 @@
+h1, h2, h3, h4, h5, p, ul, ol, pre, #header, #comment {
+    margin: 0 auto;
+    width: 850px;
+}
+h1 {
+    color: #000;
+    text-align: center;
+    font-size: 3em;
+    margin-top: 1em;
+    text-shadow: #DDD 3px 3px 3px;
+}
+h2 {
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-size: 2em;
+    margin-top: 1.6em;
+}
+h3 {
+    border-bottom: 1px solid #111;
+    color: #111;
+    font-size: 1.5em;
+    margin-top: 1.3em;
+}
+h4 {
+    color: #222;
+    font-size: 1em;
+    font-style: italic;
+    line-height: 1.25;
+    margin-top: 1em;
+}
+h5 {
+    font-size: 1em;
+    font-weight: 700;
+    margin-top: 1em;
+}
+p {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+ul, ol {
+    list-style-position: inside;
+    margin-bottom: 1em;
+}
+ul ul,ul ol,ol ol,ol ul {
+    margin-bottom: 0;
+}
+ul {
+    list-style: disc;
+}
+ol {
+    list-style: decimal;
+}
+li {
+    color: #555;
+}
+dl dt {
+    font-weight: 700;
+}
+code,pre {
+    border-radius: 6px;
+    font-family: Menlo, Monaco, Andale Mono, Courier New, monospace;
+    moz-border-radius: 6px;
+    webkit-border-radius: 6px;
+}
+code {
+    background: #f7f7f7;
+    border-radius: 6px;
+    color: #606260;
+    moz-border-radius: 6px;
+    webkit-border-radius: 6px;
+}
+pre {
+    background-color: #f7f7f7;
+    display: block;
+    margin-top: 1em;
+    padding: 6px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+strong, b {
+    
+}
+.post-img img {
+    border: #fff 0.5em solid;
+    border-radius: 0.3em;
+    box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    moz-border-radius: 0.3em;
+    moz-box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    moz-box-sizing: border-box;
+    webkit-border-radius: 0.3em;
+    webkit-box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    webkit-box-sizing: border-box;
+}
+#markdown-toc {
+    background: #fff;
+    border: 1px solid #222;
+    border-radius: 6px;
+    float: right;
+    moz-border-radius: 6px;
+    padding: 1em 2em;
+    webkit-border-radius: 6px;
+}

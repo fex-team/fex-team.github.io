@@ -1,0 +1,15 @@
+source:      .
+destination: ./_site
+plugins:     ./_plugins
+lsi:      false
+safe:     false
+markdown: redcarpet
+pygments: true
+permalink: pretty
+paginate: 20
+
+post_defaults:
+  layout: post
+
+redcarpet:
+  extensions: ["tables", "autolink"]
