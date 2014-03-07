@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 .page-header {
-    width: 1100px;
+    width: 1200px;
     margin:0 auto;
     height:90px;
     position:relative;
@@ -50,6 +50,8 @@ body {
 
 .container {
     padding:40px 0 10px;
+    width:1200px;
+    margin: 0 auto;
 }
 .container::after {
     content: ".";
@@ -60,6 +62,10 @@ body {
     clear:both;
 }
 
+.page-sidebar {
+    float:right;
+}
+
 .post-list {
     margin:0;
     padding:0;
@@ -68,7 +74,7 @@ body {
 .post-list li {
     list-style:none;
     float:left;
-    margin: 0 0 40px 14px;
+    margin: -3px 0 40px 14px;
     width:280px;
     height:230px;
     border:3px solid #f8f8f8;
@@ -103,7 +109,7 @@ body {
 }
 
 .page-footer .foot-inner {
-    width:1110px;
+    width:1200px;
     margin:10px auto;
     padding:0 0 30px;
 }
@@ -146,4 +152,26 @@ body {
     font-size:12px;
     color:#4a4a4a;
     line-height:24px;
+}
+
+
+.github-projects {
+    margin:0;
+    padding:0;
+}
+
+.github-projects li {
+    margin:0;
+    padding:0;
+    list-style:none;
+    border:1px solid #dddddd;
+    background:#ffffff url(/public/images/github.png) no-repeat 0 -2px;
+    padding:10px 0 9px 50px;
+    margin:5px 0;
+}
+
+.github-projects li a {
+    display: block;
+    font-size:12px;
+    color:#5a5a5a;
 }
