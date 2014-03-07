@@ -205,13 +205,13 @@ article {
 }
 
 .github-projects li {
-    margin:0;
+    margin:0 0 5px 0;
     padding:0;
     list-style:none;
     border:1px solid #dddddd;
     background:#ffffff url(/public/images/github.png) no-repeat 0 -2px;
     padding:10px 0 9px 50px;
-    margin:5px 0;
+    
 }
 
 .github-projects li a {
