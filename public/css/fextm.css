@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.page-header {
+    width: 1100px;
+    margin:0 auto;
+    height:90px;
+    position:relative;
+}
+
+.page-header .logo  {
+    background:url(/public/images/logo.png) no-repeat center center;
+    width:236px;
+    height:80px;
+}
+
+.page-header .page-nav  {
+    position:absolute;
+    left:320px;
+    top:20px;
+}
+.page-nav {
+    margin:0;
+    padding: 0;
+}
+.page-nav li {
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.page-nav li a {
+    display:block;
+    padding:0 18px;
+    line-height:46px;
+    font-size:14px;
+    color: #5a5a5a;
+}
+
+.page-nav li.actived a {
+    border-bottom:1px solid #ff4200;
+}
+
+
+.banner {
+    background: #3b2953;
+    text-align:center;
+}
+
+.container {
+    padding:40px 0 10px;
+}
+.container::after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    height:0;
+    overflow: hidden;
+    clear:both;
+}
+
+.post-list {
+    margin:0;
+    padding:0;
+}
+
+.post-list li {
+    list-style:none;
+    float:left;
+    margin: 0 0 40px 14px;
+    width:280px;
+    height:230px;
+    border:3px solid #f8f8f8;
+    background:#ffffff;
+}
+
+
+.post-list li p {
+    line-height:30px;
+    color:#5a5a5a;
+    margin:5px 0;
+    padding:0 10px;
+}
+
+.post-list li .date {
+    font-size:10px;
+    color:#999999;
+    padding:0 10px;
+}
+
+.post-list li:hover {
+    border:3px solid #ff6136;
+}
+.post-list li:hover p {
+    color:#ff6136;
+}
+
+
+.page-footer {
+    border-top:1px solid #d9d8d8;
+    background:#f0f0f0;
+}
+
+.page-footer .foot-inner {
+    width:1110px;
+    margin:10px auto;
+    padding:0 0 30px;
+}
+.page-footer .foot-inner::after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    height:0;
+    overflow: hidden;
+    clear:both;
+}
+
+.page-footer dl {
+    float:left;
+    color:#4a4a4a;
+    width:30%;
+    margin:0;
+    font-size:12px;
+}
+
+.page-footer dl dt{
+    font-size:18px;
+    padding:10px 0;
+}
+.page-footer dl dd,
+.page-footer dl dd ul,
+.page-footer dl dd li {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.page-footer dl dd li {
+    float:left;
+    width:48%;
+}
+.page-footer dl dd p {
+    margin:0 0 10px;
+}
+.page-footer dl dd a{
+    font-size:12px;
+    color:#4a4a4a;
+    line-height:24px;
+}
