@@ -8,13 +8,14 @@
   {% for post in site.posts %}
     <li>
       <a href="{{ post.url }}">
-      <img src="{{ post.id }}.png" onerror="this.src='/public/images/tmp/250x180.png'" />
+      <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'" style="width:280px; height:150px;" />
       <p>{{ post.title }}</p>
       <span class="date">{{ post.date | date_to_string }}</span>
       </a>
     </li>
   {% endfor %}
 </ul>
+{% include sidebar.html %}
 <!-- 
 <div class="jumbotron">
   FEX 是百度...

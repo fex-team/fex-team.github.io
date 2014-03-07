@@ -1,0 +1,5 @@
+{% for project in site.data.projects %}
+    {% if project.banner %}
+    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:500px;"><a href="http://github.com/fex-team/{{project.github}}/" target="_blank"></a></div>
+    {% endif %}
+{% endfor %}

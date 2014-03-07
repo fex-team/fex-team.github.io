@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 .page-header {
-    width: 1100px;
+    width: 1200px;
     margin:0 auto;
     height:90px;
     position:relative;
@@ -35,21 +35,36 @@ body {
     padding:0 18px;
     line-height:46px;
     font-size:14px;
+}
+.page-nav li a,
+.page-nav li a:hover {
     color: #5a5a5a;
 }
+.page-nav li:hover {
+    border-bottom:1px solid #5a5a5a;
+}
 
-.page-nav li.actived a {
+.page-navi-index li:nth-child(1),
+.page-navi-articles li:nth-child(2),
+.page-navi-code li:nth-child(3) {
     border-bottom:1px solid #ff4200;
 }
 
 
 .banner {
-    background: #3b2953;
     text-align:center;
 }
 
+.banner a {
+    display: block;
+    height:100%;
+    width:100%;
+}
+
 .container {
-    padding:40px 0 10px;
+    padding:30px 0 10px;
+    width:1200px;
+    margin: 0 auto;
 }
 .container::after {
     content: ".";
@@ -60,6 +75,46 @@ body {
     clear:both;
 }
 
+.page-sidebar {
+    float:right;
+    width:280px;
+}
+
+
+.articles,
+article {
+    float:left;
+    width:900px;
+}
+
+.pagination {
+    font-size:12px;
+    text-align:center;
+    clear:both;
+}
+
+.pagination a {
+    display:inline-block;
+    border:1px solid #dddddd;
+    border-radius:2px;
+    min-width: 24px;
+    height:24px;
+    line-height:24px;
+}
+.pagination a:hover {
+    background: #dddddd;
+    color:#ff6136;
+}
+
+.pagination a.disabled {
+    color:#999999;
+    cursor:default;
+}
+.pagination a.disabled:hover {
+    background: none;
+    color:#999999;
+}
+
 .post-list {
     margin:0;
     padding:0;
@@ -68,7 +123,7 @@ body {
 .post-list li {
     list-style:none;
     float:left;
-    margin: 0 0 40px 14px;
+    margin: -3px 0 40px 14px;
     width:280px;
     height:230px;
     border:3px solid #f8f8f8;
@@ -103,7 +158,7 @@ body {
 }
 
 .page-footer .foot-inner {
-    width:1110px;
+    width:1200px;
     margin:10px auto;
     padding:0 0 30px;
 }
@@ -146,4 +201,72 @@ body {
     font-size:12px;
     color:#4a4a4a;
     line-height:24px;
+}
+
+
+.github-projects {
+    margin:0;
+    padding:0;
+}
+
+.github-projects li {
+    margin:0 0 5px 0;
+    padding:0;
+    list-style:none;
+    border:1px solid #dddddd;
+    background:#ffffff url(/public/images/github.png) no-repeat 0 -2px;
+    padding:10px 0 9px 50px;
+    
+}
+
+.github-projects li a {
+    display: block;
+    font-size:12px;
+    color:#5a5a5a;
+}
+
+
+article {
+    background:#ffffff;
+    width:860px;
+    padding:20px;
+    margin:0 0 30px 0;
+    box-shadow:0 0 3px rgba(0,0,0,0.3);
+}
+
+.title {
+    font-size:30px;
+    color: #333333;
+    line-height:40px;
+    margin:5px 0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.author {
+    color:#999999;
+    font-size:12px;
+    padding:0 2px;
+}
+
+.content {
+    padding:30px 0;
+    font-size: 14px;
+    line-height:22px;
+}
+
+.content p {
+    margin: 10px 0;
+}
+
+.highlight {
+    background:#fefefe;
+    border:1px solid #dadada;
+    padding:0 10px;
+    font-size:10px;
+}
+
+#comment {
+    margin:20px 5px;
+    border-top:1px solid #dadada;
 }

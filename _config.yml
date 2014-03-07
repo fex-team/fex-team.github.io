@@ -9,7 +9,8 @@ markdown: redcarpet
 pygments: true
 #permalink: pretty
 permalink: /blog/:year/:month/:day/:title
-paginate: 20
+paginate: 15
+paginate_path: "articles/page:num"
 
 post_defaults:
   layout: post
