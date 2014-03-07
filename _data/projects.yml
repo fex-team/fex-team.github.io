@@ -1,0 +1,14 @@
+- name: KityMinder
+  github: kityminder
+  banner: 384042
+  recommend: true
+
+- name: UFinder
+  github: ufinder
+
+- name: KityFormula
+  github: kityformula
+  banner: 3b2953
+
+- name: UEditor
+  github: ueditor

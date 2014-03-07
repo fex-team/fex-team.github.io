@@ -2,33 +2,47 @@
 {% include head.html %}
 
 <div class="container">
+  <div class="articles">
+    <ul class="post-list">
+    {% for post in paginator.posts %}
+      <li>
+        <a href="{{ post.url }}">
+        <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'" style="width:280px; height:150px;" />
+        <p>{{ post.title }}</p>
+        <span class="date">{{ post.date | date_to_string }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <!-- Pagination links -->
+    <div class="pagination">
+      {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+        <a href="/articles/" class="previous">&lt;</a>
+        {% else %}
+        <a href="/articles/page{{ paginator.previous_page }}" class="previous">&lt;</a>
+        {% endif %}
+      {% else %}
+        <a href="/articles/page{{ paginator.previous_page }}" class="previous disabled">&lt;</a>
+      {% endif %}
 
-<ul class="post-list">
-  {% for post in paginator.posts %}
-    <li>
-      <a href="{{ post.url }}">
-      <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'" style="width:280px; height:150px;" />
-      <p>{{ post.title }}</p>
-      <span class="date">{{ post.date | date_to_string }}</span>
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+      
+
+      {% if paginator.next_page %}
+        <a href="/articles/page{{ paginator.next_page }}" class="next">&gt;</a>
+      {% else %}
+        <a href="/articles/page{{ paginator.next_page }}" class="next disabled">&gt;</a>
+      {% endif %}
+
+      <!-- <span class="page_number "> {{ paginator.page }} / {{ paginator.total_pages }}</span> -->
+    </div>
+  </div>
+
+
 {% include sidebar.html %}
-<!-- Pagination links -->
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="/articles/page{{ paginator.previous_page }}" class="previous">Previous</a>
-  {% else %}
-    <span class="previous">Previous</span>
-  {% endif %}
-  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-    <a href="/articles/page{{ paginator.next_page }}" class="next">Next</a>
-  {% else %}
-    <span class="next ">Next</span>
-  {% endif %}
-</div>
+
+
+  
 </div>
 
 

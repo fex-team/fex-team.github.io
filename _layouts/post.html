@@ -1,26 +1,40 @@
+---
+page_id: articles
+---
 {% include head.html %}
 
-
 <link rel="stylesheet" href="/public/css/synatx.css">
-<link rel="stylesheet" href="/public/css/post.css">
 
-<article>
-  <h1 id="title">{{ page.title }}</h1>
+<div class="container">
+  <article>
+      <h1 class="title">{{ page.title }}</h1>
+      <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
+      <div class="content">
+          {{ content }}
+      </div>
 
-  {{ content }}
+  
 
-  <div id="author">{{ page.author }}</div>
-
-
-  {% for author in site.data.authors %}
-    {% if author.author == page.author %}
-      {{ author.intro }}
-    {% endif %}
-  {% endfor %}
+    <div class="author">
+        {% for author in site.data.authors %}
+        {% if author.author == page.author %}
+          本文作者: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br />
+          
+        {% endif %}
+      {% endfor %}
+    </div>
+      
 
 
   {% include disqus.html %}
 </article>
+
+
+{% include sidebar.html %}
+
+
+  
+</div>
 
 
 {% include foot.html %}

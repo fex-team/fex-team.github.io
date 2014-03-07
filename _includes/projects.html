@@ -1,4 +1,5 @@
-<div class="banner" style="background:#3b2953 url(/public/images/banner/formula.png) no-repeat center center;height:500px;">
-</div>
-<div class="banner" style="background:#384042 url(/public/images/banner/minder.png) no-repeat center center;height:500px;">
-</div>
+{% for project in site.data.projects %}
+    {% if project.banner %}
+    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:500px;"></div>
+    {% endif %}
+{% endfor %}

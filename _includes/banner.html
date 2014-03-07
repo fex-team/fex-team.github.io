@@ -1,3 +1,5 @@
-<div class="banner">
-    <img src="/public/images/banner/formula.png" />
-</div>
+{% for project in site.data.projects %}
+    {% if project.banner and project.recommend == true %}
+    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:320px;"></div>
+    {% endif %}
+{% endfor %}

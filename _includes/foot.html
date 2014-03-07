@@ -21,9 +21,9 @@
         <dt>我们的项目</dt>
         <dd>
             <ul>
-                <li><a href="http://kitygraph.github.io/kityminder/dist/">KityMinder</a></li>
-                <li><a href="http://fex-team.github.io/kityformula/">KityFormula</a></li>
-                <li><a href="http://ueditor.baidu.com">UEditor</a></li>
+                {% for project in site.data.projects %}
+                    <li><a href="http://fex-team.github.io/{{project.github}}/">{{project.name}}</a></li>
+                {% endfor %}
             <ul>
         </dd>
     </dl>
