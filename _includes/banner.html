@@ -1,5 +1,5 @@
 {% for project in site.data.projects %}
     {% if project.banner and project.recommend == true %}
-    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:320px;"></div>
+    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:320px;"><a href="http://github.com/fex-team/{{project.github}}/"></a></div>
     {% endif %}
 {% endfor %}

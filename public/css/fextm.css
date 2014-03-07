@@ -52,8 +52,13 @@ body {
 
 
 .banner {
-    background: #3b2953;
     text-align:center;
+}
+
+.banner a {
+    display: block;
+    height:100%;
+    width:100%;
 }
 
 .container {

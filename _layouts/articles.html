@@ -23,7 +23,7 @@
         <a href="/articles/page{{ paginator.previous_page }}" class="previous">&lt;</a>
         {% endif %}
       {% else %}
-        <a href="/articles/page{{ paginator.previous_page }}" class="previous disabled">&lt;</a>
+        <a href="#" class="previous disabled">&lt;</a>
       {% endif %}
 
       
@@ -31,7 +31,7 @@
       {% if paginator.next_page %}
         <a href="/articles/page{{ paginator.next_page }}" class="next">&gt;</a>
       {% else %}
-        <a href="/articles/page{{ paginator.next_page }}" class="next disabled">&gt;</a>
+        <a href="#" class="next disabled">&gt;</a>
       {% endif %}
 
       <!-- <span class="page_number "> {{ paginator.page }} / {{ paginator.total_pages }}</span> -->
