@@ -1,31 +1,21 @@
 
 {% include head.html %}
-
-<link rel="stylesheet" href="/public/css/index.css">
-
-<div class="navbar">
-  <div class="container">
-    <div class="navbar-header">
-      <span class="navbar-brand">FEX Team</span>
-    </div>
-    <div class="navbar-main">
-      <ul class="navbar-nav">
-        <li>
-          <a href="#news">新鲜事</a>
-        </li>
-        <li>
-          <a href="#opensource">开源项目</a>
-        </li>
-        <li>
-          <a href="#join">加入我们</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+{% include banner.html %}
 
 <div class="container">
 
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">
+      <img src="/public/images/tmp/250x180.png" />
+      <p>{{ post.title }}</p>
+      <span class="date">{{ post.date | date_to_string }}</span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+<!-- 
 <div class="jumbotron">
   FEX 是百度...
 </div>
@@ -78,7 +68,7 @@
 <h2 class="title"><span>加入我们</span></h2>
 
 <p>TODO: 招聘链接</p>
-
+ -->
 </div>
 
 
