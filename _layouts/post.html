@@ -7,7 +7,19 @@
 
 <article>
   <h1 id="title">{{ page.title }}</h1>
+
   {{ content }}
+
+  <div id="author">{{ page.author }}</div>
+
+
+  {% for author in site.data.authors %}
+    {% if author.author == page.author %}
+      {{ author.intro }}
+    {% endif %}
+  {% endfor %}
+
+
   {% include disqus.html %}
 </article>
 

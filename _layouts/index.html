@@ -35,8 +35,10 @@
 
 <div class="news">
   <div class="artile">
-    <h3>开源 Web Uploader</h3>
-    <p></p>
+    {% for post in site.posts %}
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      <div class="content">{{ post.excerpt }}</div>
+    {% endfor %}
   </div>
   <p>关注我们的微信：BaiduFE</p>
 </div>
