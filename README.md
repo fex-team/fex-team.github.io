@@ -5,15 +5,43 @@
 
 ## 如何写？
 
+
 ### 环境搭建
 
-这个 Blog 系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，首先需要在本机安装 jekyll 环境，请使用如下命令（其中 gem 是 [Ruby](https://www.ruby-lang.org/)  的包管理工具）：
+
+
+这个 Blog 系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，需要讲本项目 clone 至本地环境，并在本机安装 jekyll 环境。
+
+#### Mac用户
+
+请使用如下命令（其中 gem 是 [Ruby](https://www.ruby-lang.org/)  的包管理工具）完成 jekyll 的安装：
 
     gem install jekyll
 
-按照好后通过如下命令就能在本机查看效果了:
+#### Windows 用户
 
-    jekyll serve --watch
+jekyll 官方对 winodws 的支持程度很低，但有高手解决了这个问题：[Building portable Jekyll for Windows](http://www.madhur.co.in/blog/2013/07/20/buildportablejekyll.html)，并给出了一个解压即可运行的版本，下载地址： [PortableJekyll 1.3.0[百度网盘]](http://pan.baidu.com/s/1dDqtzUT)
+
+解压文件并配置环境变量，即可完成 jekyll 的安装。
+
+下边以 jekyll 的解压目录为 e:\jekyll 介绍环境变量的配置：
+
+1. 给环境变量中新建变量：
+
+	JEKYLL_HOME 取值为 e:\jekyll
+
+2. 给 path 变量增加
+	%JEKYLL_HOME%\ruby\bin;%JEKYLL_HOME%\devkit\bin;%JEKYLL_HOME%\git\bin;%JEKYLL_HOME%\Python\App;%JEKYLL_HOME%\devkit\mingw\bin;%JEKYLL_HOME%\curl\bin
+
+完成 jekyll 配置后，通过如下命令检查是否配置成功：
+	
+	jekyll -h 
+
+#### 在本地启动 blog
+	
+完成 jekyll 的安装后，在blog源码目录，通过如下命令就能在本地查看效果了:
+
+    jekyll serve --watch	
 
 ### 新建草稿
 
