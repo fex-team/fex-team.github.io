@@ -1,3 +1,7 @@
+- name: FIS
+  github: fis
+  banner: 3d7823
+
 - name: KityFormula
   github: kityformula
   banner: 3b2953
