@@ -23,7 +23,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 	JEKYLL_HOME 取值为 e:\jekyll
 
 2. 为 PATH 变量添加如下内容：
-	%JEKYLL_HOME%\ruby\bin;%JEKYLL_HOME%\devkit\bin;%JEKYLL_HOME%\git\bin;%JEKYLL_HOME%\Python\App;%JEKYLL_HOME%\devkit\mingw\bin;%JEKYLL_HOME%\curl\bin
+	`%JEKYLL_HOME%\ruby\bin;%JEKYLL_HOME%\devkit\bin;%JEKYLL_HOME%\git\bin;%JEKYLL_HOME%\Python\App;%JEKYLL_HOME%\devkit\mingw\bin;%JEKYLL_HOME%\curl\bin`
 
 完成 jekyll 配置后，通过如下命令检查是否配置成功：
 	
