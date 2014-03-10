@@ -65,6 +65,7 @@ body {
     padding:30px 0 10px;
     width:1200px;
     margin: 0 auto;
+    zoom:1;
 }
 .container::after {
     content: ".";
@@ -73,7 +74,7 @@ body {
     height:0;
     overflow: hidden;
     clear:both;
-    zoom:1;
+    
 }
 
 .page-sidebar {
@@ -162,6 +163,7 @@ article {
     width:1200px;
     margin:10px auto;
     padding:0 0 30px;
+    zoom:1;
 }
 .page-footer .foot-inner::after {
     content: ".";
