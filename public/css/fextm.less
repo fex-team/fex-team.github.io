@@ -1,0 +1,291 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.page-header {
+    width: 1200px;
+    margin:0 auto;
+    height:90px;
+    position:relative;
+
+    .logo  {
+        background:url(/public/images/logo.png) no-repeat center center;
+        width:236px;
+        height:80px;
+    }
+    
+    .page-nav  {
+        position:absolute;
+        left:320px;
+        top:20px;
+        margin:0;
+        padding: 0;
+
+        li {
+            float:left;
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+
+        li a {
+            display:block;
+            padding:0 18px;
+            line-height:46px;
+            font-size:14px;
+        }
+        li a,
+        li a:hover {
+            color: #5a5a5a;
+        }
+        li:hover {
+            border-bottom:1px solid #5a5a5a;
+        }
+
+        .page-navi-index li:nth-child(1),
+        .page-navi-articles li:nth-child(2),
+        .page-navi-code li:nth-child(3) {
+            border-bottom:1px solid #ff4200;
+        }
+
+    }
+}
+
+.banner {
+    text-align:center;
+
+    a {
+        display: block;
+        height:100%;
+        width:100%;
+    }
+}
+
+
+.container {
+    padding:30px 0 10px;
+    width:1200px;
+    margin: 0 auto;
+    zoom:1;
+
+
+    &:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        height:0;
+        overflow: hidden;
+        clear:both;
+    }
+}
+
+.page-sidebar {
+    float:right;
+    width:280px;
+
+
+    .github-projects {
+        margin:0;
+        padding:0;
+
+        li {
+            margin:0 0 5px 0;
+            padding:0;
+            list-style:none;
+            border:1px solid #dddddd;
+            background:#ffffff url(/public/images/github.png) no-repeat 0 -2px;
+            padding:10px 0 9px 50px;
+            
+        }
+
+        li a {
+            display: block;
+            font-size:12px;
+            color:#5a5a5a;
+        }
+
+    }
+
+}
+
+
+.articles,
+article {
+    float:left;
+    width:900px;
+}
+
+article {
+    background:#ffffff;
+    width:860px;
+    padding:20px;
+    margin:0 0 30px 0;
+    box-shadow:0 0 3px rgba(0,0,0,0.3);
+
+
+
+    .title {
+        font-size:30px;
+        color: #333333;
+        line-height:40px;
+        margin:5px 0;
+        padding:0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .author {
+        color:#999999;
+        font-size:12px;
+        padding:0 2px;
+    }
+
+    .content {
+        padding:30px 0;
+        font-size: 14px;
+        line-height:22px;
+    }
+
+    .content p {
+        margin: 10px 0;
+    }
+
+    .highlight {
+        background:#fefefe;
+        border:1px solid #dadada;
+        padding:0 10px;
+        font-size:10px;
+    }
+
+    #comment {
+        margin:20px 5px;
+        border-top:1px solid #dadada;
+    }
+}
+
+.pagination {
+    font-size:12px;
+    text-align:center;
+    clear:both;
+
+     a {
+        display:inline-block;
+        border:1px solid #dddddd;
+        border-radius:2px;
+        min-width: 24px;
+        height:24px;
+        line-height:24px;
+    }
+    a:hover {
+        background: #dddddd;
+        color:#ff6136;
+    }
+
+    a.disabled {
+        color:#999999;
+        cursor:default;
+    }
+    a.disabled:hover {
+        background: none;
+        color:#999999;
+    }
+
+}
+
+
+
+.post-list {
+    margin:0;
+    padding:0;
+
+    li {
+        list-style:none;
+        float:left;
+        margin: -3px 0 40px 14px;
+        width:280px;
+        height:230px;
+        border:3px solid #f8f8f8;
+        background:#ffffff;
+    }
+
+
+    li p {
+        line-height:30px;
+        color:#5a5a5a;
+        margin:5px 0;
+        padding:0 10px;
+    }
+
+    li .date {
+        font-size:10px;
+        color:#999999;
+        padding:0 10px;
+    }
+
+    li:hover {
+        border:3px solid #ff6136;
+    }
+    li:hover p {
+        color:#ff6136;
+    }
+}
+
+
+
+
+.page-footer {
+    border-top:1px solid #d9d8d8;
+    background:#f0f0f0;
+
+
+    .foot-inner {
+        width:1200px;
+        margin:10px auto;
+        padding:0 0 30px;
+        zoom:1;
+    }
+    .foot-inner:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        height:0;
+        overflow: hidden;
+        clear:both;
+    }
+
+    dl {
+        float:left;
+        color:#4a4a4a;
+        width:30%;
+        margin:0;
+        font-size:12px;
+    }
+
+    dl dt{
+        font-size:18px;
+        padding:10px 0;
+    }
+    dl dd,
+    dl dd ul,
+    dl dd li {
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+    dl dd li {
+        float:left;
+        width:48%;
+    }
+    dl dd p {
+        margin:0 0 10px;
+    }
+    dl dd a{
+        font-size:12px;
+        color:#4a4a4a;
+        line-height:24px;
+    }
+
+}
+
+
+
+
+
