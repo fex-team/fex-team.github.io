@@ -67,14 +67,13 @@ body {
     margin: 0 auto;
     zoom:1;
 }
-.container::after {
+.container:after {
     content: ".";
     display: block;
     visibility: hidden;
     height:0;
     overflow: hidden;
     clear:both;
-    
 }
 
 .page-sidebar {
@@ -165,7 +164,7 @@ article {
     padding:0 0 30px;
     zoom:1;
 }
-.page-footer .foot-inner::after {
+.page-footer .foot-inner:after {
     content: ".";
     display: block;
     visibility: hidden;
