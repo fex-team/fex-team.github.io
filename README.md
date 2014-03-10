@@ -7,13 +7,13 @@
 
 这个 Blog 系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，需要讲本项目 clone 至本地环境，并在本机安装 jekyll 环境。
 
-### Mac/Linux 用户
+### Mac/Linux 下
 
 请使用如下命令（其中 gem 是 [Ruby](https://www.ruby-lang.org/)  的包管理工具）安装 jekyll（如果遇到权限问题请在前面加 sudo）：
 
     gem install jekyll
 
-### Windows 用户
+### Windows 下
 
 jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable Jekyll for Windows](http://www.madhur.co.in/blog/2013/07/20/buildportablejekyll.html)，另外这里附上网盘地址方便大家下载：[PortableJekyll 1.3.0[百度网盘]](http://pan.baidu.com/s/1dDqtzUT)
 
@@ -29,9 +29,9 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 	
 	jekyll -h 
 
-### 在本地启动 blog
+### 本地预览
 
-完成 jekyll 的安装后，在blog源码目录，通过如下命令就能在本地查看效果了:
+完成 jekyll 的安装后，在 blog 源码目录运行如下命令，就能在 localhost:4000 中预览了：
 
     jekyll serve --watch	
 
@@ -87,7 +87,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 
 ### 对于写作风格的约定
 
-请参考[FEX 写作风格](https://github.com/fex-team/styleguide/blob/master/writing.md)
+请参考 [FEX 写作风格](https://github.com/fex-team/styleguide/blob/master/writing.md)
 
 ## 其它问题
 
