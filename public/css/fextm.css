@@ -73,6 +73,7 @@ body {
     height:0;
     overflow: hidden;
     clear:both;
+    zoom:1;
 }
 
 .page-sidebar {
