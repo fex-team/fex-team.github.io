@@ -6,34 +6,28 @@ page_id: articles
 <link rel="stylesheet" href="/public/css/synatx.css">
 
 <div class="container">
-  <article>
-      <h1 class="title">{{ page.title }}</h1>
-      <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
-      <div class="content">
-          {{ content }}
-      </div>
+    <article>
+        <h1 class="title">{{ page.title }}</h1>
 
-  
+        <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
+        <div class="content">
+            {{ content }}
+        </div>
 
-    <div class="author">
-        {% for author in site.data.authors %}
-        {% if author.author == page.author %}
-          本文作者: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br />
-          
-        {% endif %}
-      {% endfor %}
-    </div>
-      
+        <div class="author">
+            {% for author in site.data.authors %}
+            {% if author.author == page.author %}
+            本文作者: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br/>
 
+            {% endif %}
+            {% endfor %}
+        </div>
 
-  {% include disqus.html %}
-</article>
+        {% include disqus.html %}
+    </article>
 
+    {% include sidebar.html %}
 
-{% include sidebar.html %}
-
-
-  
 </div>
 
 
