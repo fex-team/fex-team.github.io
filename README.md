@@ -17,10 +17,10 @@
 
 jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable Jekyll for Windows](http://www.madhur.co.in/blog/2013/07/20/buildportablejekyll.html)，另外这里附上网盘地址方便大家下载：[PortableJekyll 1.3.0[百度网盘]](http://pan.baidu.com/s/1dDqtzUT)
 
-下边以 PortableJekyll 的解压目录为 e:\jekyll 介绍环境变量的配置：
+下边以 PortableJekyll 的解压目录为 `e:\jekyll` 介绍环境变量的配置：
 
 1. 在环境变量中新建变量：
-	JEKYLL_HOME 取值为 e:\jekyll
+	JEKYLL_HOME 取值为 `e:\jekyll`
 
 2. 为 PATH 变量添加如下内容：
 	`%JEKYLL_HOME%\ruby\bin;%JEKYLL_HOME%\devkit\bin;%JEKYLL_HOME%\git\bin;%JEKYLL_HOME%\Python\App;%JEKYLL_HOME%\devkit\mingw\bin;%JEKYLL_HOME%\curl\bin`
