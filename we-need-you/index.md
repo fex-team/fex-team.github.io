@@ -7,42 +7,44 @@ author: FEX
 
 ## 我们是谁？
 
-FEX 是百度「Web 前端研发部」的别名
+FEX 是百度「Web 前端研发部」的内部名称，其中 FE 是 Front End 的缩写，X 代表我们不仅关注前端技术，还更重视全端及全栈的能力：
 
-* 我们致力于帮助百度的各个产品线提升开发效率及页面体验
-* 我们是百度内部最具影响力的前端团队，我们的工具及平台遍及全公司
+* 我们致力于提升百度各个产品线的研发效率及页面体验
+* 我们是百度内部最具影响力的前端团队，我们的工具及平台推广到了绝大多数产品线
 * 我们喜欢开发通用的解决方案，然后同多个产品线合作来创造出成倍的收益
-* 我们是百度最早的开源实践者，并先后推出了 Tangram、UEditor、FIS、GMU 等库和工具
+* 我们是百度最早的开源实践者，并先后推出了 Tangram、UEditor、FIS、GMU、webuploader、kityminder 等库和工具
 
 ## 这里的工作环境
 
-* 你所参与的大部分项目都会开源
+* 你将不仅仅是「工程师」，你是我们的「合伙人」
+    * 不会有人事无巨细地告诉你具体工作该怎么做，你需要自己去思考，而不仅仅是「执行」
+    * 我们没有 PM，你需要主动去发现并解决问题
+    * 你可以成为我们任意项目的 PM，提出你的改进意见，并推动相关人员解决
+* 你所参与的所有项目都会开源
     * 内部平台项目会在内部开源
-    * 其它项目则直接 [GitHub](https://github.com/fex-team) 上开发并讨论
+    * 其它项目则在 [GitHub](https://github.com/fex-team) 上开发
 * 团队之间没有秘密
-    * 你可以查看到所有内部代码和文档，关注进展情况
+    * 你可以查看到所有项目的代码和文档及进展情况
     * 你可以参加所有项目的例会
-* 你不仅仅是「工程师」，你是我们的「合伙人」
-    * 很少会有人详细地告诉你具体工作怎么做
-    * 我们没有 PM，你需要自己去发现问题并解决
-    * 只要你愿意，你可以是 FEX 任意项目的 PM，推动别人或自己去解决
-* 你用到的将不仅仅是前端技术，为了达到目标，需要什么方面的技术就去现学，我们的团队成员：
-    * 为了更好地分析前端数据，自己写 Hadoop 脚本分析日志，并自己搭 MySQL 分表存储
-    * 为了更好地支持本地预览，自行开发 PHP/JSP 调试服务器
-    * 为了更好地利用 Native 和 Web 的优点，自行开发 Android 应用 SDK
-    * 为了更细致地分析页面性能，修改浏览器内核开发分析工具
+    * 你可以查看到其他人的季度目标和计划
+* 你用到的将不仅是前端技术，为了达到目标，需要什么方面的技术就去学习，我们的团队成员：
+    * 为了更好地分析前端数据，自己写 Hadoop 脚本分析日志，并自己搭建内部主从 MySQL 来分表存储
+    * 为了更好地支持本地开发效率，自行开发 PHP/JSP 调试服务器，使得前端开发可以不依赖后端
+    * 为了更好地结合 Native 和 Web 的优点，自行开发 Android 应用 SDK，让 Web 应用也能有 Native 的性能
+    * 为了更细致地分析页面性能，修改浏览器内核，开发细节分析工具
+    * 为了提升整体效率，我们和后端合作，寻求前后端一体化的解决方案
     * ……
-    * 在这里技术不是问题，我们有顶尖的技术大牛帮你排除障碍
+    * 在这里技术不是问题，我们有顶尖的大牛帮你排除技术障碍
 * 你将有机会使用各种最新的技术来解决问题，比如：
     * 用 SVG 绘制公式及图表，目前已开源 kityminder
     * 用 HTML5 File API 编写上传组件 webuploader
-    * 用 nodejs 开发内部服务
-    * 未来我们还将尝试更多新技术
+    * 用 nodejs、mongodb 开发内部服务
+    * 我们鼓励使用新技术，后续还将进行更多的尝试
 
-## 如何联系我们？
+## 如何应聘？
 
-你可以通过以下两种方式联系：
+可以通过以下两种方式联系我们：
 
-* [直接在百度招聘网站应聘](http://talent.baidu.com/baidu/web/templet1000/index/corpwebPosition1000baidu!getOnePosition?postIdEnc=FEFBE3C2FE274733&brandCode=1&recruitType=2&lanType=1&operational=6637AA56FA08745E71A74EA6AC68D5FFF28F462DA4C19FB3FABC8882DE74DA1C0FDB6AEAC9F8C487108CCBE39D45983B54F375AA1CAE83E6A21F36A7DBB429FDA1AA45697C458F4E577A7AF5A80647D430DB27A0DC2CE8501A5F2C918BB8EF941C8FE41D11E20AFFA9511543837DA597ADA993F4A79495C679D35888897C39FD21D98BCC2FE67575CAED499E9C86325CC3D44DA1C73F4DA945C7FA90CE9460F2)
-* 将简历发到 fex-hr@baidu.com 上
+* [直接在百度招聘网站应聘](http://talent.baidu.com/baidu/web/templet1000/index/corpwebPosition1000baidu!getOnePosition?postIdEnc=FEFBE3C2FE274733&brandCode=1&recruitType=2&lanType=1)
+* 将简历发往 fex-hr@baidu.com
 
