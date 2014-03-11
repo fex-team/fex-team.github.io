@@ -7,8 +7,17 @@ page_id: articles
 
 <div class="container">
   <article>
-      <h1 class="title">{{ page.title }}</h1>
-      <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
+      <div class="article-info">
+        {% for author in site.data.authors %}
+          {% if author.author == page.author %}
+            <img src="{{ author.avatar }}" onerror="/img/avatar/fex.png" />
+          {% endif %}
+        {% endfor %}
+        
+        <h1 class="title">{{ page.title }}</h1>
+        <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
+      </div>
+      
       <div class="content">
           {{ content }}
       </div>
