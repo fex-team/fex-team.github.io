@@ -6,39 +6,27 @@ page_id: articles
 <link rel="stylesheet" href="/public/css/synatx.css">
 
 <div class="container">
-<<<<<<< HEAD
-  <article>
-      <div class="article-info">
-        {% for author in site.data.authors %}
-          {% if author.author == page.author %}
-            <img src="{{ author.avatar }}" onerror="/img/avatar/fex.png" />
-          {% endif %}
-        {% endfor %}
-        
-        <h1 class="title">{{ page.title }}</h1>
-        <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
-      </div>
-      
-      <div class="content">
-          {{ content }}
-      </div>
-=======
     <article>
-        <h1 class="title">{{ page.title }}</h1>
->>>>>>> FETCH_HEAD
+        <div class="article-info">
+        {% for author in site.data.authors %}
+            {% if author.author == page.author %}
+                <img src="{{ author.avatar }}" onerror="/img/avatar/fex.png" />
+            {% endif %}
+        {% endfor %}
+            <h1 class="title">{{ page.title }}</h1>
+            <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
+        </div>
 
-        <div class="author">{{ page.author }} | {{ page.date | date_to_string }}</div>
         <div class="content">
-            {{ content }}
+        {{ content }}
         </div>
 
         <div class="author">
-            {% for author in site.data.authors %}
+        {% for author in site.data.authors %}
             {% if author.author == page.author %}
-            本文作者: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br/>
-
+                本文作者: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br/>
             {% endif %}
-            {% endfor %}
+        {% endfor %}
         </div>
 
         {% include disqus.html %}

@@ -3,7 +3,6 @@
 
 <div class="container">
 
-<<<<<<< HEAD
 <ul class="post-list">
   {% for post in site.posts %}
     <li>
@@ -16,37 +15,6 @@
   {% endfor %}
 </ul>
 {% include sidebar.html %}
-<!-- 
-<div class="jumbotron">
-  FEX 是百度...
-</div>
-
-<a name="news"> </a>
-<h2 class="title"><span>新鲜事</span></h2>
-
-<div class="news">
-  <div class="artile">
-    {% for post in site.posts %}
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-      <div class="content">{{ post.excerpt }}</div>
-    {% endfor %}
-  </div>
-  <p>关注我们的微信：BaiduFE</p>
-=======
-    <ul class="post-list">
-        {% for post in site.posts %}
-        <li>
-            <a href="{{ post.url }}">
-                <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'"
-                     style="width:280px; height:150px;"/>
-                <p>{{ post.title }}</p>
-                <span class="date">{{ post.date | date_to_string }}</span>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% include sidebar.html %}
->>>>>>> FETCH_HEAD
 </div>
 
 {% include foot.html %}
