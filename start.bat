@@ -25,7 +25,7 @@ echo 'start fex blog...'
 :: echo jekyll home : %JEKYLL_HOME%
 :: echo path : %PATH%
 @echo on
-jekyll serve -w
+jekyll serve --watch --drafts
 pause
 
 

@@ -5,11 +5,15 @@
 
 <div class="container">
 
+    <article>
+    
+    {{ content }}
 
-{% include sidebar.html %}
-
-{{ content }}
-
+    {% include disqus.html %}
+    
+    </article>
+    
+    {% include sidebar.html %}
 
 </div>
 
