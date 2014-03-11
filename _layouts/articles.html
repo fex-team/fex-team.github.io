@@ -6,7 +6,7 @@
             {% for post in paginator.posts %}
             <li>
                 <a href="{{ post.url }}">
-                    <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'"
+                    <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'"
                          style="width:280px; height:150px;"/>
 
                     <p>{{ post.title }}</p>

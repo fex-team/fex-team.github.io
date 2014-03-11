@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font: 14px/1.5 Arial, Helvetica, sans-serif;
 }
 .page-header {
     width: 1200px;
@@ -121,6 +121,27 @@ article {
     margin:0 0 30px 0;
     box-shadow:0 0 3px rgba(0,0,0,0.3);
 
+    p,h1,h2,h3,h4,h5,a {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    a:link,
+    a:visited,
+    a:link:hover,
+    a:visited:hover,
+    a:hover {
+        color:#ea3e0a;
+        margin:0 2px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
     .article-info {
         img {
             float: left;
@@ -153,10 +174,6 @@ article {
         line-height:22px;
     }
 
-    .content p {
-        margin: 10px 0;
-    }
-
     .highlight {
         background:#fefefe;
         border:1px solid #dadada;
@@ -167,6 +184,7 @@ article {
     #comment {
         margin:20px 5px;
         border-top:1px solid #dadada;
+        padding:10px 0;
     }
 }
 
@@ -204,6 +222,8 @@ article {
 .post-list {
     margin:0;
     padding:0;
+    width:900px;
+    float:left;
 
     li {
         list-style:none;

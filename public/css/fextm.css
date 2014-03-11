@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font: 14px/1.5 Arial, Helvetica, sans-serif;
 }
 .page-header {
   width: 1200px;
@@ -98,6 +98,29 @@ article {
   margin: 0 0 30px 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
+article p,
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article a {
+  font-family: Arial, Helvetica, sans-serif;
+}
+article p {
+  margin: 10px 0;
+}
+article a:link,
+article a:visited,
+article a:link:hover,
+article a:visited:hover,
+article a:hover {
+  color: #ea3e0a;
+  margin: 0 2px;
+}
+article a:hover {
+  text-decoration: underline;
+}
 article .article-info img {
   float: left;
   width: 60px;
@@ -124,9 +147,6 @@ article .content {
   font-size: 14px;
   line-height: 22px;
 }
-article .content p {
-  margin: 10px 0;
-}
 article .highlight {
   background: #fefefe;
   border: 1px solid #dadada;
@@ -136,6 +156,7 @@ article .highlight {
 article #comment {
   margin: 20px 5px;
   border-top: 1px solid #dadada;
+  padding: 10px 0;
 }
 .pagination {
   font-size: 12px;
@@ -165,6 +186,8 @@ article #comment {
 .post-list {
   margin: 0;
   padding: 0;
+  width: 900px;
+  float: left;
 }
 .post-list li {
   list-style: none;

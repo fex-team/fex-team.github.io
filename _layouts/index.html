@@ -7,7 +7,7 @@
   {% for post in site.posts %}
     <li>
       <a href="{{ post.url }}">
-      <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/250x180.png'" style="width:280px; height:150px;" />
+      <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'" style="width:280px; height:150px;" />
       <p>{{ post.title }}</p>
       <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
       </a>
