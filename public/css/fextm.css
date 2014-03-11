@@ -38,9 +38,9 @@ body {
 .page-header .page-nav li:hover {
   border-bottom: 1px solid #5a5a5a;
 }
-.page-header .page-nav .page-navi-index li:nth-child(1),
-.page-header .page-nav .page-navi-articles li:nth-child(2),
-.page-header .page-nav .page-navi-code li:nth-child(3) {
+.page-header .page-navi-index li:nth-child(1),
+.page-header .page-navi-articles li:nth-child(2),
+.page-header .page-navi-code li:nth-child(3) {
   border-bottom: 1px solid #ff4200;
 }
 .banner {
