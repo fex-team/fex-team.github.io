@@ -8,7 +8,7 @@ safe:     false
 markdown: redcarpet
 pygments: true
 #permalink: pretty
-permalink: /blog/:year/:month/:day/:title
+permalink: /blog/:year/:month/:title
 paginate: 15
 paginate_path: "articles/page:num"
 
