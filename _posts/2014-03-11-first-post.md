@@ -2,6 +2,7 @@
 layout: post
 title: FEX, the best or nothing
 author: rank
+shortname: first-post
 ---
 
 ## 我们是谁
