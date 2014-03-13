@@ -2,12 +2,11 @@
 layout: post
 title: FEX, the best or nothing
 author: rank
-shortname: first-post
 ---
 
 ## 我们是谁
 
-FEX 是百度「Web 前端研发部」的别名。
+FEX 是百度「Web 前端研发部」的别名。其中 FE 是 Front End 的缩写，X 代表我们不仅关注前端技术，还更重视全端及全栈能力。
 
  * 我们致力于帮助百度的各个产品线提升开发效率及页面体验
  * 我们是百度内部最具影响力的前端团队，我们的工具及平台遍及全公司
