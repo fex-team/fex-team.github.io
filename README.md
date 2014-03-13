@@ -33,7 +33,13 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 
 完成 jekyll 的安装后，在源码目录运行如下命令，就能在 localhost:4000 中预览了：
 
-    jekyll serve --watch	
+    jekyll serve --watch
+
+### 启动报错
+
+如果启动 jekyll 时出现invalid byte sequence in GBK错误，请在命令行中先输入：
+    
+    chcp 65001
 
 ## 如何编辑？
 
