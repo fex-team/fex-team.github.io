@@ -40,7 +40,8 @@ body {
 }
 .page-header .page-navi-index li:nth-child(1),
 .page-header .page-navi-articles li:nth-child(2),
-.page-header .page-navi-code li:nth-child(3) {
+.page-header .page-navi-code li:nth-child(3),
+.page-header .page-navi-needyou li:nth-child(4) {
   border-bottom: 1px solid #ff4200;
 }
 .banner {
