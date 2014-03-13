@@ -20,9 +20,11 @@ FEX 是百度「Web 前端研发部」的内部名称，其中 FE 是 Front End 
     * 不会有人事无巨细地告诉你具体工作该怎么做，你需要自己去思考，而不仅仅是「执行」
     * 我们没有 PM，你需要主动去发现并解决问题
     * 你可以成为我们任意项目的 PM，提出你的改进意见，并推动相关人员解决
+    * 你也可以参与部门规范及制度的建设，而不仅仅只是遵守
 * 你所参与的所有项目都会开源
     * 内部平台项目会在内部开源
     * 其它项目则在 [GitHub](https://github.com/fex-team) 上开发
+    * 我们连[面试题都是开源的](https://github.com/fex-team/interview-questions)
 * 团队之间没有秘密
     * 你可以查看到所有项目的代码和文档及进展情况
     * 你可以参加所有项目的例会
@@ -43,7 +45,7 @@ FEX 是百度「Web 前端研发部」的内部名称，其中 FE 是 Front End 
 
 ## 如何应聘？
 
-可以通过以下两种方式联系我们：
+首先推荐看看[我们面试题](https://github.com/fex-team/interview-questions)，提前做好准备，然后通过以下两种方式联系我们：
 
 * [直接在百度招聘网站应聘](http://talent.baidu.com/baidu/web/templet1000/index/corpwebPosition1000baidu!getOnePosition?postIdEnc=FEFBE3C2FE274733&brandCode=1&recruitType=2&lanType=1)
 * 将简历发往 fex-hr@baidu.com
