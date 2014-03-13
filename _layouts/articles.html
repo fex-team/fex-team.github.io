@@ -6,7 +6,8 @@
             {% for post in paginator.posts %}
             <li>
                 <a href="{{ post.url }}">
-                    <img src="/img/{{ post.shortname}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'"
+                    {% assign paths = post.id | split: '/' %}
+                    <img src="/img/{{ paths[4]}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'"
                          style="width:280px; height:150px;"/>
 
                     <p>{{ post.title }}</p>
