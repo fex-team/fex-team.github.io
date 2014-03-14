@@ -208,13 +208,61 @@ article {
             box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
             max-width:840px;
         }
+
+        table {
+            cell-spacing:0;
+            border:1px solid #dadada;
+            margin:20px 0;
+            width:100%;
+
+            th,td {
+                padding:6px 10px;
+                border-bottom:1px solid #eaeaea;
+                border-right:1px solid #dadada;
+                color:#333;
+                line-height:18px;
+            }
+
+            &.border-less {
+                th,td {
+                    border-right:none;
+                    border-left:none;
+                }
+            }
+
+            
+
+            th {
+                font-size:16px;
+                line-height:28px;
+                font-weight:bold;
+                color:#333;
+            }
+
+            tbody {
+                tr:nth-child(even) {
+                    background:#fafafa;
+                }
+            }
+        }
     }
 
     .highlight {
         background:#fefefe;
         border:1px solid #dadada;
         padding:0 10px;
-        font-size:10px;
+
+        &:hover {
+            border-color:#ff6136;
+        }
+        
+
+        code {
+            font-size:12px;
+            line-height:14px;
+            font-family:Consolas, "Liberation Mono", Courier, monospace;
+        }
+        
     }
 
     #comment {
