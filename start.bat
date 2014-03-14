@@ -1,13 +1,13 @@
 :: by niuyao, start fex bolg, you can use : start.bat your_jekyll_home
 
 @echo off
-IF "%1"=="" (
-	echo 'please use as : start.bat your_jekyll_home !'
-	goto:eof
-)
 
 IF "%JEKYLL_HOME%" equ "" (
 	:: add jelly to env path and start fex blog...'
+	IF "%1"=="" (
+		echo 'please use as : start.bat your_jekyll_home !'
+		goto:eof
+	)
 	goto:set_path_and_start_blog
 ) ELSE (
 	:: 'try to start fex blog...'
