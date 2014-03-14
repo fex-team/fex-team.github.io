@@ -178,11 +178,46 @@ article .content img {
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
   max-width: 840px;
 }
+article .content table {
+  cell-spacing: 0;
+  border: 1px solid #dadada;
+  margin: 20px 0;
+  width: 100%;
+}
+article .content table th,
+article .content table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #eaeaea;
+  border-right: 1px solid #dadada;
+  color: #333;
+  line-height: 18px;
+}
+article .content table.border-less th,
+article .content table.border-less td {
+  border-right: none;
+  border-left: none;
+}
+article .content table th {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: bold;
+  color: #333;
+}
+article .content table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
 article .highlight {
   background: #fefefe;
   border: 1px solid #dadada;
   padding: 0 10px;
-  font-size: 10px;
+}
+article .highlight:hover {
+  border-color: #ff6136;
+}
+article .highlight code {
+  font-size: 12px;
+  line-height: 14px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
 }
 article #comment {
   margin: 20px 5px;
