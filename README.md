@@ -38,7 +38,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 ### 启动报错
 
 如果启动 jekyll 时出现 invalid byte sequence in GBK 错误，请在命令行中先输入：
-    
+
     chcp 65001
 
 ## 如何编辑？

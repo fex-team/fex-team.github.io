@@ -11,6 +11,7 @@ pygments: true
 permalink: /blog/:year/:month/:title
 paginate: 15
 paginate_path: "articles/page:num"
+encoding: utf-8
 
 post_defaults:
   layout: post
