@@ -12,6 +12,14 @@ body {
   width: 236px;
   height: 80px;
 }
+.page-header .rss {
+  position: absolute;
+  right: 0;
+  top: 54px;
+  background: url(/public/images/rss.png) no-repeat 0 0;
+  width: 60px;
+  height: 60px;
+}
 .page-header .page-nav {
   position: absolute;
   left: 320px;
