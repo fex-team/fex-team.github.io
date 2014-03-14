@@ -1,13 +1,12 @@
 ---
 layout: post
-title: 本文介绍FIS与Grunt的一些区别和一些相同之处
+title: FIS与Grunt的区别
 author: fis
 ---
 
-与FIS一样，目前市面上也有很多解决前端问题的工具，比如Grunt。相对而言Grunt只是一个构建工具，依赖众多的插件进行配置组织，可以解决不少前端问题。而Fis代表了与规范、框架、开发流程配套的工具体系，不但拥有各类工具插件，同时还针对不同业务、场景总结了不少最佳实践等。下面将对FIS与Grunt进行对比分析,让大家更好的了解FIS。
+Grunt是一个基于task的构建工具，依赖众多的插件进行配置组织，可以解决基本的前端自动化问题。FIS是基于工具、开发框架、本地开发环境为一体的前端解决方案，不但拥有各类工具插件，同时还针对PC、Mobile、I18n等业务、场景总结了很多最佳实践。下面将对FIS与Grunt进行对比分析,让大家更好的了解FIS。
 
-<img src="/static/images/what.png">
-![waht is fis](/img/<文章名>/xx.png)
+![waht is fis](/img/fis/what.png)
 
 | Feature | Fis | Grunt | Comment |
 | ------------ | ------------- | ------------ | ------------ |
