@@ -59,8 +59,8 @@ author: FIS
     <ul>
         <%foreach $data as $doc%>
         <li class="active">
-            <a href="#section-{%$doc@index%}">
-                <i class="icon-{%$doc.icon%} icon-white"></i><span>{%$doc.title%}</span>
+            <a href="#section-{$doc@index}">
+                <i class="icon-{$doc.icon} icon-white"></i><span>{$doc.title}</span>
             </a>
         </li>
         <%/foreach%>
@@ -72,7 +72,7 @@ author: FIS
 
 ```html
 // 调用模块的路径为 子系统名称:模板在widget目录下的路劲
-{%widget name="common:widget/nav/nav.tpl" %}
+{widget name="common:widget/nav/nav.tpl" }
 ```
 
 这个模板模块(nav)目录下有与模板同名的JS、CSS文件，在模板被执行渲染时这些资源会被自动加载。如上所示，定义template模块的时候，只需要将template所依赖的JS模块、CSS模块存放在同一目录(默认JavaScript模块、CSS模块与Template模块同名)下即可，调用者调用Template模块只需要写一行代码即可，不需要关注所调用的template模块所依赖的静态资源，模板模块会帮助我们自动处理依赖关系以及资源加载。
@@ -117,7 +117,7 @@ require.async(["common:widget/menu/menu.js"], function( menu ) {
 在实际开发过程中可能存在一些不适合做模块化的静态资源，那么我们依然可以通过声明依赖关系来托管给静态资源管理系统来统一管理和加载，
 
 ```html
-{%require name="home:static/index/index.css" %}
+{require name="home:static/index/index.css" }
 ```
 
 如果通过如上语法可以在页面声明对一个非模块化资源的依赖，在页面运行时可以自动加载相关资源。
@@ -145,13 +145,13 @@ require.async(["common:widget/menu/menu.js"], function( menu ) {
 我们有两个子系统，一个common子系统(用作通用)，一个业务子系统，page目录用来存放页面，widget目录用来存放各种类型的模块，static用于存放非模块化的静态资源，首先我们来看一下photo/page/index.tpl 页面的源码，
 
 ```html
-{%extends file="common/page/layout/layout.tpl"%}
-{%block name="main"%}
-    {%require name="photo:static/index/index.css"%}
-    {%require name="photo:static/index/index.js"%}
+{extends file="common/page/layout/layout.tpl"}
+{block name="main"}
+    {require name="photo:static/index/index.css"}
+    {require name="photo:static/index/index.js"}
     <h3>demo 1</h3>
     <button id="btn">Button</button>
-    {%script type="text/javascript"%}
+    {script type="text/javascript"}
         // 同步调用jquery
         var $ = require('common:widget/jquery/jquery.js');
 
@@ -161,11 +161,11 @@ require.async(["common:widget/menu/menu.js"], function( menu ) {
                 respClick.hello();
             });
         });
-    {%/script%}
+    {/script}
 
     // 调用renderBox模块
-    {%widget name="photo:widget/renderBox/renderBox.tpl"%}
-{%/block%}
+    {widget name="photo:widget/renderBox/renderBox.tpl"}
+{/block}
 ```
 
 第一处代码是对非模块化资源的调用方式；第二处是用require的方式调用一个JavaScript模块；第三处是通过require.async通过异步的方式来调用一个JavaScript模块;最后一处是通过widget语法来调用一个模板模块。
@@ -380,13 +380,13 @@ sidebar.tpl中的内容如下，
     <span class="icon-bar"></span>
 </a>
 
-{%script%}
+{script}
     $('a.btn-navbar').click(function() {
         require.async('./sidebar.async.js', function( sidebar ) {
             sidebar.run();
         });
     });
-{%/script%}
+{/script}
 ```
 
 对项目编译后，自动化工具会分析模块的依赖关系，并生成map.json，如下
@@ -422,7 +422,7 @@ sidebar.tpl中的内容如下，
 <script type="text/javascript" src="/static/common/widget/sidebar/sidebar_$12cd4.js"></script>
 ```
 
-如上可见，后端模块化框架将同步模块的script url统一生成到页面底部，将css url统一生成在head中，对于异步模块(require.async)注册resourceMap代码，框架会通过{%script%}标签收集到页面所有script，统一管理并按顺序输出script到相应位置。
+如上可见，后端模块化框架将同步模块的script url统一生成到页面底部，将css url统一生成在head中，对于异步模块(require.async)注册resourceMap代码，框架会通过{script}标签收集到页面所有script，统一管理并按顺序输出script到相应位置。
 
 ## 自适应的性能优化
 现在，当我们想对模块进行打包，该如何处理呢，我们首先使用一个pack配置项(下面是fis的打包配置项)，对网站的静态资源进行打包，配置文件大致为,
