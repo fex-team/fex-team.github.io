@@ -41,6 +41,7 @@ body {
             padding:0 18px;
             line-height:46px;
             font-size:14px;
+            text-align:center;
         }
         li a,
         li a:hover {
@@ -400,5 +401,59 @@ article {
 
 
 
+@media (max-width: 640px) {
+    .page-header,
+    .page-footer,
+    .container {
+        width:100%;
+    }
 
+    .page-header {
+        height:60px;
+
+        .logo {
+            display: none;
+        }
+
+        .rss {
+            display: none;
+        }
+        .page-nav  {
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+
+            li {
+                width:20%;
+            }
+        }
+    }
+
+    .container {
+        padding:10px 0;
+        .post-list {
+            float:none;
+            width:100%;
+
+            li {
+                box-sizing:border-box;
+                float:none;
+                width:auto;
+                display:block;
+                margin:0 14px 20px;
+            }
+        }
+
+        .page-sidebar {
+            display:none;
+        }
+    }
+
+    .page-footer {
+        .foot-inner {
+            width:100%;
+        }
+    }
+}
 

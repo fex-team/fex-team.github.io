@@ -38,6 +38,7 @@ body {
   padding: 0 18px;
   line-height: 46px;
   font-size: 14px;
+  text-align: center;
 }
 .page-header .page-nav li a,
 .page-header .page-nav li a:hover {
@@ -328,4 +329,49 @@ article #comment {
   font-size: 12px;
   color: #4a4a4a;
   line-height: 24px;
+}
+@media (max-width: 640px) {
+  .page-header,
+  .page-footer,
+  .container {
+    width: 100%;
+  }
+  .page-header {
+    height: 60px;
+  }
+  .page-header .logo {
+    display: none;
+  }
+  .page-header .rss {
+    display: none;
+  }
+  .page-header .page-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
+  .page-header .page-nav li {
+    width: 20%;
+  }
+  .container {
+    padding: 10px 0;
+  }
+  .container .post-list {
+    float: none;
+    width: 100%;
+  }
+  .container .post-list li {
+    box-sizing: border-box;
+    float: none;
+    width: auto;
+    display: block;
+    margin: 0 14px 20px;
+  }
+  .container .page-sidebar {
+    display: none;
+  }
+  .page-footer .foot-inner {
+    width: 100%;
+  }
 }
