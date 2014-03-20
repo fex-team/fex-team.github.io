@@ -1,11 +1,10 @@
-
 ## 这什么？
 
 这是 FEX 团队对外首页的源码，将文章提交到这里后就会在 <http://fex.baidu.com> 上展现。
 
 ## 环境搭建
 
-这个系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，需要讲本项目 clone 至本地环境，并在本机安装 jekyll 环境。
+这个系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，需要将本项目 clone 至本地环境，并在本机安装 jekyll 环境。
 
 ### Mac/Linux 下
 
