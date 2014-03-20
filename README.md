@@ -12,6 +12,10 @@
 
     gem install jekyll
 
+如果在 Mac 下安装遇到编译报错，可以试试用 [Brew](http://brew.sh/) 安装新版 ruby
+
+    brew install ruby
+
 ### Windows 下
 
 jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable Jekyll for Windows](http://www.madhur.co.in/blog/2013/07/20/buildportablejekyll.html)，另外这里附上网盘地址方便大家下载：[PortableJekyll 1.3.0[百度网盘]](http://pan.baidu.com/s/1dDqtzUT)
