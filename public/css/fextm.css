@@ -330,6 +330,14 @@ article #comment {
   color: #4a4a4a;
   line-height: 24px;
 }
+.page-footer dl dd:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
 @media (max-width: 640px) {
   .page-header,
   .page-footer,
@@ -373,5 +381,22 @@ article #comment {
   }
   .page-footer .foot-inner {
     width: 100%;
+  }
+  .page-footer .foot-inner dl {
+    float: none;
+    display: block;
+    width: auto;
+    margin: 0 20px 30px;
+    clear: both;
+  }
+  .page-footer .foot-inner dl dd li {
+    width: 33.3%;
+  }
+  .page-footer .foot-inner dl dd li a {
+    display: block;
+    border: 1px solid #dcdcdc;
+    margin: 5px 0 5px 5px;
+    padding: 5px;
+    background: #fafafa;
   }
 }

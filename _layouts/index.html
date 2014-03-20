@@ -11,7 +11,7 @@ title: 首页
     <li>
       <a href="{{ post.url }}">
       {% assign paths = post.id | split: '/' %}
-      <img src="/img/{{paths[4]}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'" style="width:280px; height:150px;" />
+      <img src="/img/{{paths[4]}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'" style="width:100%; height:150px;" />
       <p>{{ post.title }}</p>
       <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
       </a>

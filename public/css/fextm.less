@@ -396,7 +396,15 @@ article {
         color:#4a4a4a;
         line-height:24px;
     }
-
+    
+    dl dd:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        height:0;
+        overflow: hidden;
+        clear:both;
+    }
 }
 
 
@@ -453,6 +461,29 @@ article {
     .page-footer {
         .foot-inner {
             width:100%;
+
+
+            dl {
+                float:none;
+                display:block;
+                width:auto;
+                margin:0 20px 30px;
+                clear:both;
+
+                dd {
+                    li {
+                        width:33.3%;
+
+                        a {
+                            display:block;
+                            border:1px solid #dcdcdc;
+                            margin:5px 0 5px 5px;
+                            padding:5px;
+                            background:#fafafa;
+                        }
+                    }
+                }
+            }
         }
     }
 }
