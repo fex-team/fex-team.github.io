@@ -366,6 +366,7 @@ article #comment {
   }
   .page-header .page-nav li a {
     white-space: nowrap;
+    padding: 0;
   }
   .page-header .page-nav li:nth-child(5) {
     display: none;
