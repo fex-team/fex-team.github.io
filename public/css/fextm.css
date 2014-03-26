@@ -339,7 +339,7 @@ article #comment {
   clear: both;
 }
 @media (max-width: 640px) {
-  body {
+  html {
     overflow-x: hidden;
   }
   .page-header,
@@ -396,7 +396,9 @@ article #comment {
     display: none;
   }
   .container article {
+    width: auto;
     box-sizing: border-box;
+    box-shadow: none;
   }
   .container article ul {
     margin: 0;
