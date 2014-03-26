@@ -399,6 +399,10 @@ article #comment {
     width: auto;
     box-sizing: border-box;
     box-shadow: none;
+    float: none;
+  }
+  .container article .title {
+    font-size: 18px;
   }
   .container article ul {
     margin: 0;
