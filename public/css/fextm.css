@@ -341,7 +341,9 @@ article #comment {
 @media (max-width: 640px) {
   .page-header,
   .page-footer,
-  .container {
+  .container,
+  .articles,
+  article {
     width: 100%;
   }
   .page-header {
@@ -360,7 +362,17 @@ article #comment {
     right: 0;
   }
   .page-header .page-nav li {
-    width: 20%;
+    width: 25%;
+  }
+  .page-header .page-nav li a {
+    white-space: nowrap;
+  }
+  .page-header .page-nav li:nth-child(5) {
+    display: none;
+  }
+  .banner {
+    background-size: contain !important;
+    height: 200px !important;
   }
   .container {
     padding: 10px 0;
@@ -378,6 +390,16 @@ article #comment {
   }
   .container .page-sidebar {
     display: none;
+  }
+  .container article {
+    box-sizing: border-box;
+  }
+  .container article ul {
+    margin: 0;
+    padding: 0 0 0 15px;
+  }
+  .container article img {
+    max-width: 100% !important;
   }
   .page-footer .foot-inner {
     width: 100%;

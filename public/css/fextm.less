@@ -412,7 +412,9 @@ article {
 @media (max-width: 640px) {
     .page-header,
     .page-footer,
-    .container {
+    .container,
+    .articles,
+    article {
         width:100%;
     }
 
@@ -433,9 +435,22 @@ article {
             right:0;
 
             li {
-                width:20%;
+                width:25%;
+
+                a {
+                    white-space: nowrap;
+                }
+            }
+
+            li:nth-child(5) {
+                display:none;
             }
         }
+    }
+
+    .banner {
+        background-size: contain !important;
+        height:200px !important;
     }
 
     .container {
@@ -455,6 +470,19 @@ article {
 
         .page-sidebar {
             display:none;
+        }
+
+        article {
+            box-sizing:border-box;
+
+            ul {
+                margin:0;
+                padding:0 0 0 15px;
+            }
+
+            img {
+                max-width: 100% !important;
+            }
         }
     }
 
