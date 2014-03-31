@@ -1,0 +1,1 @@
+{"status":0,"data":[{% for post in site.posts %}{% assign paths = post.id | split: '/' %}{"title":"{{ post.title }}","author":"{{ post.author }}","url":"{{ post.url }}","date":"{{ post.date | date_to_string }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]}
