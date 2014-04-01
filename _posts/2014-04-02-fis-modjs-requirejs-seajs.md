@@ -34,6 +34,7 @@ factory提供了3个参数：require, exports, module ，用于模块的引用�
 **在平常开发中，我们无需关注模块定义，工具会自动对JS进行define包装处理**:
 
 JS源码
+
 ```
 //common/widget/menu/menu.js
 var $ = require('common:widget/jquery/jquery.js');
@@ -48,7 +49,7 @@ exports.init = function() {
 };
 ```
 
-编译后代码：
+编译后代码
 
 ```
 define('common:widget/menu/menu.js', function(require, exports, module){
@@ -93,7 +94,7 @@ RequireJS/SeaJS通过过JavaScript运行时来支持“匿名闭包”、“依�
 
 整个modJS模块化流程如下：
 
-![framework](/img/fis-modjs-requirejs-seajs)
+![framework](/img/fis-modjs-requirejs-seajs/framework.png)
 
 通过自动化工具对模块进行编译处理，包括对对JavaScript模块添加闭包、记录每个静态资源的部署路径以及依赖关系并生成资源表(resource map),如下所示，
 
