@@ -12,7 +12,7 @@ author: walter
 
 JavaScript并没有为开发者们提供以一种简洁、有条理地的方式来管理模块的方法。从出发点来看，[Mod](https://github.com/fex-team/mod)和RequireJS/SeaJS是一致的，为开发者提供一套JavaScript模块化开发方案，让JavaScript的模块化开发变得更简单自然。但是在实现的过程中却存在巨大着的差异。
 
-[Mod](https://github.com/fex-team/mod)严格上来讲并不是一个独立的模块化框架，它是被设计用做[前端工程化](http://www.fis.baidu.com)模块化方案的JavaScript支持，需要和自动化工具、后端框架配合来使用，目的在于希望给工程师提供一个类似nodeJS一样的开发体验，同时具备很好的线上性能。
+[Mod](https://github.com/fex-team/mod)严格上来讲并不是一个独立的模块化框架，它是被设计用做[前端工程化](http://fis.baidu.com)模块化方案的JavaScript支持，需要和自动化工具、后端框架配合来使用，目的在于希望给工程师提供一个类似nodeJS一样的开发体验，同时具备很好的线上性能。
 
 RequireJS和SeaJS的定位主要是Web 浏览器端的模块加载器，依靠JavaScript运行时来支持模块定义、依赖分析和加载等功能。
 
