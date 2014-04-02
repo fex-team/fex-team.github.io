@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ModJS与RequireJS/SeaJS的那些事
+title: Mod与RequireJS/SeaJS的那些事
 author: walter
 ---
 
