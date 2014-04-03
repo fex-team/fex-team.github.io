@@ -22,7 +22,7 @@
         <dd>
             <ul>
                 {% for project in site.data.projects %}
-                    <li><a href="http://github.com/fex-team/{{project.github}}/" target="_blank">{{project.name}}</a></li>
+                    <li><a {% if project.url %}href="{{project.url}}"{% else %}href="http://github.com/fex-team/{{project.github}}/"{% endif %} target="_blank">{{project.name}}</a></li>
                 {% endfor %}
             <ul>
         </dd>
@@ -52,7 +52,7 @@ var _hmt = _hmt || [];
     if(domain === "fex.baidu.com") {
         var hm = document.createElement("script");
         hm.src = "//hm.baidu.com/hm.js?5cfaa6810a02b4f45dc2c55614d98f57";
-        var s = document.getElementsByTagName("script")[0]; 
+        var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     }
 })();
