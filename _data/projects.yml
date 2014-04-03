@@ -1,5 +1,6 @@
 - name: FIS
   github: fis-plus
+  recommend: true
   banner: 3d7823
 
 - name: KityFormula
@@ -9,7 +10,6 @@
 - name: KityMinder
   github: kityminder
   banner: 384042
-  recommend: true
   url: http://naotu.baidu.com/
 
 - name: UFinder
