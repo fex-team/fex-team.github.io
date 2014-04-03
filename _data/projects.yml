@@ -18,3 +18,7 @@
 - name: UEditor
   github: ueditor
   banner: 5e9e3b
+
+- name: WebUploader
+  github: webuploader
+  url: http://fex.baidu.com/webuploader
