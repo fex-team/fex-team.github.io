@@ -73,8 +73,8 @@ fmt._walk = function(dir, cb) {
 
 fmt._format = function(fp) {
 
-	var leftExp   = /([a-z0-9\[\]\)\()]+)([^\x00-\xff，「」！。【】]+)/ig, //匹配英文+非ASCII码/标点情况
-		rightExp  = /([^\x00-\xff，「」！。【】]+)([a-z0-9\[\]\)\(]+)/ig,  //匹配非ASCII码/标点+英文情况
+	var leftExp   = /([a-z0-9\+\-]+)([^\x00-\xff，「」！。、【】『』《》？：（）]+)/ig, //匹配英文+非ASCII码/标点情况
+		rightExp  = /([^\x00-\xff，「」！。、【】『』《》？：（）]+)([a-z0-9\+\-]+)/ig,  //匹配非ASCII码/标点+英文情况
 		stream    = fs.readFileSync(fp).toString(), 
 		newstream = '';
 
