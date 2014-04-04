@@ -7,7 +7,7 @@ shortname: hvvm-and-php
 
 ## 背景
 
-HHVM 是 Facebook 开发的高性能 PHP 虚拟机，宣称比官方的快 9 倍，我很好奇，于是抽空简单了解了一下，并整理出这篇文章，希望能回答清楚两方面的问题：
+HHVM 是 Facebook 开发的高性能 PHP 虚拟机，宣称比官方的快9倍，我很好奇，于是抽空简单了解了一下，并整理出这篇文章，希望能回答清楚两方面的问题：
 
 * HHVM 到底靠谱么？是否可以用到产品中？
 * 它为什么比官方的 PHP 快很多？到底是如何优化的？
@@ -18,38 +18,38 @@ HHVM 是 Facebook 开发的高性能 PHP 虚拟机，宣称比官方的快 9 倍
 
 比如可以有以下几种方式：
 
-* 方案 1，迁移到性能更好的语言上，如 Java、C++、Go。
-* 方案 2，通过 RPC 将功能分离出来用其它语言实现，让 PHP 做更少的事情，比如 Twitter 就将大量业务逻辑放到了 Scala 中，前端的 Rails 只负责展现。
-* 方案 3，写 PHP 扩展，在性能瓶颈地方换 C/C++。
-* 方案 4，优化 PHP 的性能。
+* 方案1，迁移到性能更好的语言上，如 Java、C++、Go。
+* 方案2，通过 RPC 将功能分离出来用其它语言实现，让 PHP 做更少的事情，比如 Twitter 就将大量业务逻辑放到了 Scala 中，前端的 Rails 只负责展现。
+* 方案3，写 PHP 扩展，在性能瓶颈地方换 C/C++。
+* 方案4，优化 PHP 的性能。
 
-*方案 1*几乎不可行，十年前 Joel 就[拿 Netscape 的例子警告过](http://www.joelonsoftware.com/articles/fog0000000069.html)，你将放弃是多年的经验积累，尤其是像 Facebook 这种业务逻辑复杂的产品，PHP 代码实在太多了，据称有 2 千万行（引用自 [PHP on the Metal with HHVM]），修改起来的成本恐怕比写个虚拟机还大，而且对于一个上千人的团队，从头开始学习也是不可接受的。
+*方案1*几乎不可行，十年前 Joel 就[拿 Netscape 的例子警告过](http://www.joelonsoftware.com/articles/fog0000000069.html)，你将放弃是多年的经验积累，尤其是像 Facebook 这种业务逻辑复杂的产品，PHP 代码实在太多了，据称有2千万行（引用自 [PHP on the Metal with HHVM]），修改起来的成本恐怕比写个虚拟机还大，而且对于一个上千人的团队，从头开始学习也是不可接受的。
 
-*方案 2*是最保险的方案，可以逐步迁移，事实上 Facebook 也在朝这方面努力了，而且还开发了 Thrift 这样的 RPC 解决方案，Facebook 内部主要使用的另一个语言是 C++，从早期的 Thrift 代码就能看出来，因为其它语言的实现都很简陋，没法在生产环境下使用。
+*方案2*是最保险的方案，可以逐步迁移，事实上 Facebook 也在朝这方面努力了，而且还开发了 Thrift 这样的 RPC 解决方案，Facebook 内部主要使用的另一个语言是 C++，从早期的 Thrift 代码就能看出来，因为其它语言的实现都很简陋，没法在生产环境下使用。
 
 目前在 Facebook 中据称 PHP:C++ 已经从 9:1 [增加到 7:3 了](http://zh.reddit.com/r/IAmA/comments/1nl9at/i_am_a_member_of_facebooks_hhvm_team_a_c_and_d/ccjlvoq)，加上有 Andrei Alexandrescu 的存在，C++ 在 Facebook 中越来越流行，但这只能解决部分问题，毕竟 C++ 开发成本比 PHP 高得多，不适合用在经常修改的地方，而且太多 RPC 的调用也会严重影响性能。
 
-*方案 3*看起来美好，实际执行起来却很难，一般来说性能瓶颈并不会很显著，大多是不断累加的结果，加上 PHP 扩展开发成本高，这种方案一般只用在公共且变化不大的基础库上，所以这种方案解决不了多少问题。
+*方案3*看起来美好，实际执行起来却很难，一般来说性能瓶颈并不会很显著，大多是不断累加的结果，加上 PHP 扩展开发成本高，这种方案一般只用在公共且变化不大的基础库上，所以这种方案解决不了多少问题。
 
-可以看到，前面 3 个方案并不能很好地解决问题，所以 Facebook 其实没有选择的余地，只能去考虑 PHP 本身的优化了。
+可以看到，前面3个方案并不能很好地解决问题，所以 Facebook 其实没有选择的余地，只能去考虑 PHP 本身的优化了。
 
 ## 更快的 PHP
 
 既然要优化 PHP，那如何去优化呢？在我看来可以有以下几种方法：
 
-* 方案 1，PHP 语言层面的优化。
-* 方案 2，优化 PHP 的官方实现（也就是 Zend ）。
-* 方案 3，将 PHP 编译成其它语言的 bytecode （字节码），借助其它语言的虚拟机（如 JVM ）来运行。
-* 方案 4，将 PHP 转成 C/C++，然后编译成本地代码。
-* 方案 5，开发更快的 PHP 虚拟机。
+* 方案1，PHP 语言层面的优化。
+* 方案2，优化 PHP 的官方实现（也就是 Zend）。
+* 方案3，将 PHP 编译成其它语言的 bytecode（字节码），借助其它语言的虚拟机（如 JVM）来运行。
+* 方案4，将 PHP 转成 C/C++，然后编译成本地代码。
+* 方案5，开发更快的 PHP 虚拟机。
 
 PHP 语言层面的优化是最简单可行的，Facebook 当然想到了，而且还开发了 [XHProf](http://pecl.php.net/package/xhprof) 这样的性能分析工具，对于定位性能瓶颈是很有帮助的。
 
-不过 XHProf 还是没能很好解决 Facebook 的问题，所以我们继续看，接下来是方案 2，简单来看，Zend 的执行过程可以分为两部分：将 PHP 编译为 opcode、执行 opcode，所以优化 Zend 可以从这两方面来考虑。
+不过 XHProf 还是没能很好解决 Facebook 的问题，所以我们继续看，接下来是方案2，简单来看，Zend 的执行过程可以分为两部分：将 PHP 编译为 opcode、执行 opcode，所以优化 Zend 可以从这两方面来考虑。
 
-优化 opcode 是一种常见的做法，可以避免重复解析 PHP，而且还能做一些静态的编译优化，比如 [Zend Optimizer Plus](https://github.com/zendtech/ZendOptimizerPlus)，但由于 PHP 语言的动态性，这种优化方法是有局限性的，乐观估计也只能提升 20%的性能。另一种考虑是优化 opcode 架构本身，如基于寄存器的方式，但这种做法修改起来工作量太大，性能提升也不会特别明显（可能 30%？），所以投入产出比不高。
+优化 opcode 是一种常见的做法，可以避免重复解析 PHP，而且还能做一些静态的编译优化，比如 [Zend Optimizer Plus](https://github.com/zendtech/ZendOptimizerPlus)，但由于 PHP 语言的动态性，这种优化方法是有局限性的，乐观估计也只能提升20%的性能。另一种考虑是优化 opcode 架构本身，如基于寄存器的方式，但这种做法修改起来工作量太大，性能提升也不会特别明显（可能30%？），所以投入产出比不高。
 
-另一个方法是优化 opcode 的执行，首先简单提一下 Zend 是如何执行的，Zend 的 interpreter （也叫解释器）在读到 opcode 后，会根据不同的 opcode 调用不同函数（其实有些是 switch，不过为了描述方便我简化了），然后在这个函数中执行各种语言相关的操作（感兴趣的话可看看[深入理解 PHP 内核](http://www.php-internals.com/book/?p=chapt02/02-03-02-opcode)这本书），所以 Zend 中并没有什么复杂封装和间接调用，作为一个解释器来说已经做得很好了。
+另一个方法是优化 opcode 的执行，首先简单提一下 Zend 是如何执行的，Zend 的 interpreter（也叫解释器）在读到 opcode 后，会根据不同的 opcode 调用不同函数（其实有些是 switch，不过为了描述方便我简化了），然后在这个函数中执行各种语言相关的操作（感兴趣的话可看看[深入理解 PHP 内核](http://www.php-internals.com/book/?p=chapt02/02-03-02-opcode)这本书），所以 Zend 中并没有什么复杂封装和间接调用，作为一个解释器来说已经做得很好了。
 
 想要提升 Zend 的执行性能，就需要对程序的底层执行有所解，比如函数调用其实是有开销的，所以能通过 [Inline threading](http://dl.acm.org/citation.cfm?id=277743) 来优化掉，它的原理就像 C 语言中的 inline 关键字那样，但它是在运行时将相关的函数展开，然后依次执行（只是打个比方，实际实现不太一样），同时还避免了 CPU 流水线预测失败导致的浪费。
 
@@ -57,15 +57,15 @@ PHP 语言层面的优化是最简单可行的，Facebook 当然想到了，而�
 
 但这两种做法修改代价太大，甚至比重写一个还难，尤其是要保证向下兼容，后面提到 PHP 的特点时你就知道了。
 
-开发一个高性能的虚拟机不是件简单的事情，JVM 花了 10 多年才达到现在的性能，那是否能直接利用这些高性能的虚拟机来优化 PHP 的性能呢？这就是方案 3 的思路。
+开发一个高性能的虚拟机不是件简单的事情，JVM 花了10多年才达到现在的性能，那是否能直接利用这些高性能的虚拟机来优化 PHP 的性能呢？这就是方案3的思路。
 
-其实这种方案早就有人尝试过了，比如 [Quercus](http://quercus.caucho.com/) 和 IBM 的 P8，Quercus 几乎没见有人使用，而 P8 [也已经死掉了](https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-0000-0000-000014910522&ps=25)。Facebook 也曾经调研过这种方式，甚至还出现过不靠谱的[传闻](http://nerds-central.blogspot.ie/2012/08/facebook-moving-to-jvm.html) ，但其实 Facebook 在 2011 年就放弃了。
+其实这种方案早就有人尝试过了，比如 [Quercus](http://quercus.caucho.com/) 和 IBM 的 P8，Quercus 几乎没见有人使用，而 P8 [也已经死掉了](https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-0000-0000-000014910522&ps=25)。Facebook 也曾经调研过这种方式，甚至还出现过不靠谱的[传闻](http://nerds-central.blogspot.ie/2012/08/facebook-moving-to-jvm.html) ，但其实 Facebook 在2011年就放弃了。
 
-因为方案 3 看起来美好，但实际效果却不理想，按照很多大牛的说法（比如 [Mike](http://lambda-the-ultimate.org/node/3851#comment-57805)），VM 总是为某个语言优化的，其它语言在上面实现会遇到很多瓶颈，比如动态的方法调用，关于这点在 [Dart 的文档中有过介绍](https://www.dartlang.org/articles/why-not-bytecode/)，而且据说 Quercus 的性能与 Zend+APC 比差不了太多（[来自 The HipHop Compiler for PHP]），所以没太大意义。
+因为方案3看起来美好，但实际效果却不理想，按照很多大牛的说法（比如 [Mike](http://lambda-the-ultimate.org/node/3851#comment-57805)），VM 总是为某个语言优化的，其它语言在上面实现会遇到很多瓶颈，比如动态的方法调用，关于这点在 [Dart 的文档中有过介绍](https://www.dartlang.org/articles/why-not-bytecode/)，而且据说 Quercus 的性能与 Zend+APC 比差不了太多（[来自The HipHop Compiler for PHP]），所以没太大意义。
 
 不过 OpenJDK 这几年也在努力，最近的 [Grall](http://openjdk.java.net/projects/graal/) 项目看起来还不错，也有语言在上面取得了[显著的效果](http://mail.openjdk.java.net/pipermail/graal-dev/2013-December/001250.html)，但我还没空研究 Grall，所以这里无法判断。
 
-接下来是方案 4，它正是 HPHPc （ HHVM 的前身）的做法，原理是将 PHP 代码转成 C++，然后编译为本地文件，可以认为是一种 AOT （ ahead of time ）的方式，关于其中代码转换的技术细节可以参考 [The HipHop Compiler for PHP](http://dl.acm.org/citation.cfm?id=2384658) 这篇论文，以下是该论文中的一个截图，可以通过它来大概了解：
+接下来是方案4，它正是 HPHPc（HHVM 的前身）的做法，原理是将 PHP 代码转成 C++，然后编译为本地文件，可以认为是一种 AOT（ahead of time）的方式，关于其中代码转换的技术细节可以参考 [The HipHop Compiler for PHP](http://dl.acm.org/citation.cfm?id=2384658) 这篇论文，以下是该论文中的一个截图，可以通过它来大概了解：
 
 <div class="post-img"><img src="/img/articles/hiphop-vm.png" style="max-width:840px;" /></div>
 
@@ -80,7 +80,7 @@ php_hash_find (LOCAL_ST, "f", 5863275, &fgc_info.params);
 php_call_function (&fgc_info);
 ```
 
-话说 [phc 作者曾经在博客上哭诉](http://blog.paulbiggar.com/archive/a-rant-about-php-compilers-in-general-and-hiphop-in-particular/#bottom)，说他两年前就去 Facebook 演示过 phc 了，还和那里的工程师交流过，结果人家一发布就火了，而自己忙活了 4 年却默默无闻，现在前途渺茫。。。
+话说 [phc 作者曾经在博客上哭诉](http://blog.paulbiggar.com/archive/a-rant-about-php-compilers-in-general-and-hiphop-in-particular/#bottom)，说他两年前就去 Facebook 演示过 phc 了，还和那里的工程师交流过，结果人家一发布就火了，而自己忙活了4年却默默无闻，现在前途渺茫。。。
 
 Roadsend 也已经不维护了，对于 PHP 这样的动态语言来说，这种做法有很多的局限性，由于无法动态 include，Facebook 将所有文件都编译到了一起，上线时的文件部署居然达到了 1G，越来越不可接受了。
 
@@ -96,7 +96,7 @@ HHVM 为什么更快？在各种新闻报道中都提到了 JIT 这个关键技�
 
 值得一提的是在 Android 4.4 中新的虚拟机 ART 就采用的是 AOT 方案（还记得么？前面提到的 HPHPc 就是这种），结果比之前使用 JIT 的 Dalvik 快了一倍，所以说 JIT 也不一定比 AOT 快。
 
-因此这个项目是有很大风险的，如果没有强大的内心和毅力，极有可能半途而废，[Google 就曾经想用 JIT 提升 Python 的性能](https://code.google.com/p/unladen-swallow/)，但[最终失败了](http://qinsb.blogspot.jp/2011/03/unladen-swallow-retrospective.html)，对于 Google 来说用到 Python 的地方其实并没什么性能问题（好吧，以前 Google 是用 Python 写过 crawl [参考 In The Plex]，但那都是 1996 年的事情了）。
+因此这个项目是有很大风险的，如果没有强大的内心和毅力，极有可能半途而废，[Google 就曾经想用 JIT 提升 Python 的性能](https://code.google.com/p/unladen-swallow/)，但[最终失败了](http://qinsb.blogspot.jp/2011/03/unladen-swallow-retrospective.html)，对于 Google 来说用到 Python 的地方其实并没什么性能问题（好吧，以前 Google 是用 Python 写过 crawl [参考 In The Plex]，但那都是1996年的事情了）。
 
 比起 Google，Facebook 显然有更大的动力和决心，PHP 是 Facebook 最重要的语言，我们来看看 Facebook 都投入了哪些大牛到这个项目中（不全）： 
 
@@ -110,23 +110,23 @@ HHVM 为什么更快？在各种新闻报道中都提到了 JIT 这个关键技�
 
 ### 规范是什么？
 
-自己写 PHP 虚拟机要面临的第一个问题就是 PHP 没有语言规范，很多版本间的语法还会不兼容（甚至是小版本号，比如 5.2.1 和 5.2.3 ），PHP 语言规范究竟如何定义呢？来看一篇来自 [IEEE](http://grouper.ieee.org/groups/plv/DocLog/000-099/060-thru-079/22-OWGV-N-0060/n0060.pdf) 的说法：
+自己写 PHP 虚拟机要面临的第一个问题就是 PHP 没有语言规范，很多版本间的语法还会不兼容（甚至是小版本号，比如 5.2.1 和 5.2.3），PHP 语言规范究竟如何定义呢？来看一篇来自 [IEEE](http://grouper.ieee.org/groups/plv/DocLog/000-099/060-thru-079/22-OWGV-N-0060/n0060.pdf) 的说法：
 
-> The PHP group claim that they have the ﬁ nal say in the speci ﬁ cation of (the language) PHP. This groups speci ﬁ cation is an implementation, and there is no prose speci ﬁ cation or agreed validation suite.
+> The PHP group claim that they have the ﬁnal say in the speciﬁcation of (the language) PHP. This groups speciﬁcation is an implementation, and there is no prose speciﬁcation or agreed validation suite.
 
 所以唯一的途径就是老老实实去看 Zend 的实现，好在 HPHPc 中已经痛苦过一次了，所以 HHVM 能直接利用现成，因此这个问题并不算太大。
 
 ### 语言还是扩展？
 
-实现 PHP 语言不仅仅只是实现一个虚拟机那么简单，PHP 语言本身还包括了各种扩展，这些扩展和语言是一体的，Zend 不辞辛劳地实现了各种你可能会用到的功能。如果分析过 PHP 的代码，就会发现它的 C 代码除去空行注释后居然还有 80+ 万行，而你猜其中 Zend 引擎部分有多少？只有不到 10 万行。
+实现 PHP 语言不仅仅只是实现一个虚拟机那么简单，PHP 语言本身还包括了各种扩展，这些扩展和语言是一体的，Zend 不辞辛劳地实现了各种你可能会用到的功能。如果分析过 PHP 的代码，就会发现它的 C 代码除去空行注释后居然还有80+万行，而你猜其中 Zend 引擎部分有多少？只有不到10万行。
 
-对于开发者来说这不是什么坏事，但对于引擎实现者来说就很悲剧了，我们可以拿 Java 来进行对比，写个 Java 的虚拟机只需实现字节码解释及一些基础的 JNI 调用，Java 绝大部分内置库都是用 Java 实现的，所以如果不考虑性能优化，单从工作量看，实现 PHP 虚拟机比 JVM 要难得多，比如就有人用 8 千行的 TypeScript 实现了一个 [JVM Doppio](https://github.com/int3/doppio)。
+对于开发者来说这不是什么坏事，但对于引擎实现者来说就很悲剧了，我们可以拿 Java 来进行对比，写个 Java 的虚拟机只需实现字节码解释及一些基础的 JNI 调用，Java 绝大部分内置库都是用 Java 实现的，所以如果不考虑性能优化，单从工作量看，实现 PHP 虚拟机比 JVM 要难得多，比如就有人用8千行的 TypeScript 实现了一个 [JVM Doppio](https://github.com/int3/doppio)。
 
 而对于这个问题，HHVM 的解决办法很简单，那就是只实现 Facebook 中用到的，而且同样可以先用 HPHPc 中之前写过的，所以问题也不大。
 
 ### 实现 Interpreter
 
-接下来是 Interpreter 的实现，在解析完 PHP 后会生成 HHVM 自己设计的一种 Bytecode，存储在 `~/.hhvm.hhbc`（ SQLite 文件） 中以便重用，在执行 Bytecode 时和 Zend 类似，也是将不同的字节码放到不同的函数中去实现（这种方式在虚拟机中有个专门的称呼：[Subroutine threading](http://en.wikipedia.org/wiki/Threaded_code#Subroutine_threading)）
+接下来是 Interpreter 的实现，在解析完 PHP 后会生成 HHVM 自己设计的一种 Bytecode，存储在 `~/.hhvm.hhbc`（SQLite 文件） 中以便重用，在执行 Bytecode 时和 Zend 类似，也是将不同的字节码放到不同的函数中去实现（这种方式在虚拟机中有个专门的称呼：[Subroutine threading](http://en.wikipedia.org/wiki/Threaded_code#Subroutine_threading)）
 
 Interpreter 的主体实现在 [bytecode.cpp](https://github.com/facebook/hhvm/blob/master/hphp/runtime/vm/bytecode.cpp) 中，比如 `VMExecutionContext::iopAdd` 这样的方法，最终执行会根据不同类型来区分，比如 add 操作的实现是在 [tv-arith.cpp](https://github.com/facebook/hhvm/blob/master/hphp/runtime/base/tv-arith.cpp) 中，下面摘抄其中的一小段
 
@@ -168,10 +168,10 @@ memcpy(m, code, sizeof(code));
 
 HHVM 首先通过 interpeter 来执行，那它会在时候使用 JIT 呢？常见的 JIT 触发条件有 2 种：
 
-* trace ：记录循环执行次数，如果超过一定数量就对这段代码进行 JIT
-* method ：记录函数执行次数，如果超过一定数量就对整个函数进行 JIT，甚至直接 inline
+* trace：记录循环执行次数，如果超过一定数量就对这段代码进行 JIT
+* method：记录函数执行次数，如果超过一定数量就对整个函数进行 JIT，甚至直接 inline
 
-关于这两种方法哪种更好在 Lambada 上[有个帖子](http://lambda-the-ultimate.org/node/3851)引来了各路大神的讨论，尤其是 Mike Pall （ LuaJIT 作者） 、Andreas Gal （ Mozilla VP ） 和 Brendan Eich （ Mozilla CTO ）都发表了很多自己的观点，推荐大家围观，我这里就不献丑了。
+关于这两种方法哪种更好在 Lambada 上[有个帖子](http://lambda-the-ultimate.org/node/3851)引来了各路大神的讨论，尤其是 Mike Pall（LuaJIT 作者） 、Andreas Gal（Mozilla VP） 和 Brendan Eich（Mozilla CTO）都发表了很多自己的观点，推荐大家围观，我这里就不献丑了。
 
 它们之间的区别不仅仅是编译范围，还有很多细节问题，比如对局部变量的处理，在这里就不展开了
 
@@ -183,7 +183,7 @@ HHVM 首先通过 interpeter 来执行，那它会在时候使用 JIT 呢？常�
 
 当然，要实现高性能的 JIT 还需进行各种尝试和优化，比如最初 HHVM 新增的 tracelet 会放到前面，也就是将上图的 A 和 C 调换位置，后来尝试了一下放到后面，结果性能提示了 14%，因为测试发现这样更容易提前命中响应的类型
 
-JIT 的执行过程是首先将 HHBC 转成 SSA (hhbc-translator.cpp)，然后对 SSA 上做优化（比如 Copy propagation ），再生成本地机器码，比如在 X64 下是由 [translator-x64.cpp](https://github.com/facebook/hhvm/blob/master/hphp/runtime/vm/jit/translator-x64.cpp) 实现的。
+JIT 的执行过程是首先将 HHBC 转成 SSA (hhbc-translator.cpp)，然后对 SSA 上做优化（比如 Copy propagation），再生成本地机器码，比如在 X64 下是由 [translator-x64.cpp](https://github.com/facebook/hhvm/blob/master/hphp/runtime/vm/jit/translator-x64.cpp) 实现的。
 
 我们用一个简单的例子来看看 HHVM 最终生成的机器码是怎样的，比如下面这个 PHP 函数：
 
@@ -206,10 +206,10 @@ cmp BYTE PTR [rbp-0x8],0xa
 jne 0xae00306
 ; 前面是检查参数是否有效
 
-mov rcx,QWORD PTR [rbp-0x10]           ; 这里将 %rcx 被赋值为 1 了
-mov edi,0x2                            ; 将 %edi （也就是 %rdi 的低 32 位）赋值为 2
+mov rcx,QWORD PTR [rbp-0x10]           ; 这里将 %rcx 被赋值为1了
+mov edi,0x2                            ; 将 %edi（也就是 %rdi 的低32位）赋值为2
 add rdi,rcx                            ; 加上 %rcx
-call 0x2131f1b <HPHP::print_int(long)> ; 调用 print_int 函数，这时第一个参数 %rdi 的值已经是 3 了
+call 0x2131f1b <HPHP::print_int(long)> ; 调用 print_int 函数，这时第一个参数 %rdi 的值已经是3了
 
 ; 后面暂不讨论
 mov BYTE PTR [rbp+0x28],0x8
@@ -238,7 +238,7 @@ void print_int(int64_t i) {
 
 可以看到 HHVM 编译出来的代码直接使用了 `int64_t`，避免了 interpreter 中需要判断参数和间接取数据的问题，从而明显提升了性能，最终甚至做到了和 C 编译出来的代码区别不大。
 
-需要注意： HHVM 在 server mode 下，只有超过 12 个请求就才会触发 JIT，启动过 HHVM 时可以通过加上如下参数来让它首次请求就使用 JIT ：
+需要注意：HHVM 在 server mode 下，只有超过12个请求就才会触发 JIT，启动过 HHVM 时可以通过加上如下参数来让它首次请求就使用 JIT：
 
     -v Eval.JitWarmupRequests=0
 
@@ -246,7 +246,7 @@ void print_int(int64_t i) {
 
 ### 类型推导很麻烦，还是逼迫程序员写清楚吧
 
-JIT 的关键是猜测类型，因此某个变量的类型要是老变就很难优化，于是 HHVM 的工程师开始考虑在 PHP 语法上做手脚，加上类型的支持，推出了一个新语言 - Hack （吐槽一下这名字真不利于 SEO ），它的样子如下：
+JIT 的关键是猜测类型，因此某个变量的类型要是老变就很难优化，于是 HHVM 的工程师开始考虑在 PHP 语法上做手脚，加上类型的支持，推出了一个新语言 - Hack（吐槽一下这名字真不利于 SEO），它的样子如下：
 
 ``` php
 <?hh
@@ -257,7 +257,7 @@ class Point2 {
     $this->y = $y;
   }
 }
-//来自： https://raw.github.com/strangeloop/StrangeLoop2013/master/slides/sessions/Adams-TakingPHPSeriously.pdf
+//来自：https://raw.github.com/strangeloop/StrangeLoop2013/master/slides/sessions/Adams-TakingPHPSeriously.pdf
 ```
 
 注意到 `float` 关键字了么？有了静态类型可以让 HHVM 更好地优化性能，但这也意味着和 PHP 语法不兼容，只能使用 HHVM。
@@ -274,11 +274,11 @@ class Point2 {
 
 * 扩展问题：如果用到了 PHP 扩展，肯定是要重写的，不过 HHVM 扩展写起来比 Zend 要简单的多，具体细节可以看 [wiki 上的例子](https://github.com/facebook/hhvm/wiki/Extension-API)。
 * HHVM Server 的稳定性问题：这种多线程的架构运行一段时间可能会出现内存泄露问题，或者某个没写好的 PHP 直接导致整个进程挂掉，所以需要注意这方面的测试和容灾措施。
-* 问题修复困难： HHVM 在出现问题时将比 Zend 难修复，尤其是 JIT 的代码，只能期望它比较稳定了。
+* 问题修复困难：HHVM 在出现问题时将比 Zend 难修复，尤其是 JIT 的代码，只能期望它比较稳定了。
 
 P.S. 其实我只了解基本的虚拟机知识，也没写过几行 PHP 代码，很多东西都是写这篇文章时临时去找资料的，由于时间仓促水平有限，必然会有不正确的地方，欢迎大家评论赐教 :)
 
-2014 年 1 月补充：目前 HHVM 在鄙厂的推广势头很不错，推荐大家在 2014 年尝试一下，尤其是现在兼容性测试已经达到 98.58%了，修改成本进一步减小。
+2014年1月补充：目前 HHVM 在鄙厂的推广势头很不错，推荐大家在2014年尝试一下，尤其是现在兼容性测试已经达到98.58%了，修改成本进一步减小。
 
 <!--
 http://lambda-the-ultimate.org/node/3851#comment-57760

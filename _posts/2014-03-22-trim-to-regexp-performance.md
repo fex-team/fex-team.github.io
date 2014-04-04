@@ -28,7 +28,7 @@ author: rank
  <meta http-equiv="pragma" content="no-cache"> 
  </head>
   <body>
-  <textarea>请在这里写足够多的空格或者 tab 字符。</textarea>
+  <textarea>请在这里写足够多的空格或者tab字符。</textarea>
   <script type="text/javascript">//<![CDATA[
   String.prototype.trim = function () {
     return this.replace(/^[\s\t ]+|[\s\t ]+$/g, '');
@@ -48,20 +48,20 @@ author: rank
 
 >NFA 和 DFA 引擎是有区别的。
 
->DFA 与 NFA 机制上的不同带来 5 个影响：
+>DFA 与 NFA 机制上的不同带来5个影响：
 
 >1. DFA 对于文本串里的每一个字符只需扫描一次，比较快，但特性较少；
 	* NFA 要翻来覆去吃字符、吐字符，速度慢，但是特性丰富，所以反而应用广泛。
 	* 当今主要的正则表达式引擎，如 Perl、Ruby、Python 的 re 模块、Java 和 .NET 的 regex 库，都是 NFA 的。
-2. 只有 NFA 才支持 lazy 和 backreference （后向引用）等特性；
+2. 只有 NFA 才支持 lazy 和 backreference（后向引用）等特性；
 3. NFA 急于邀功请赏，所以最左子正则式优先匹配成功，因此偶尔会错过最佳匹配结果；
 	* DFA 则是“最长的左子正则式优先匹配成功”。
-4. NFA 缺省采用 greedy 量词(就是对于/.*/、/\w+/这样的“重复 n ”次的模式，以贪婪方式进行，尽可能匹配更多字符，直到不得以罢手为止)，NFA 会优先匹配量词。
-5. NFA 可能会陷入递归调用的陷阱而表现得性能极差。
+4. NFA 缺省采用 greedy 量词(就是对于/.*/、/\w+/这样的“重复n”次的模式，以贪婪方式进行，尽可能匹配更多字符，直到不得以罢手为止)，NFA 会优先匹配量词。
+5. NFA可能会陷入递归调用的陷阱而表现得性能极差。
 
 从上面的结论容易看出，JS 是 NFA 引擎。
 
-## NFA backtracking （回朔）
+## NFA backtracking（回朔）
 
 > 当 NFA 发现自己吃多了，一个一个往回吐，边吐边找匹配，这个过程叫做 backtracking。
 
@@ -108,7 +108,7 @@ String.prototype.trim = function () {
 {% highlight js %}
   String.prototype.trim = function () {
     var s = this.replace(/^[\s\t ]+/g, '');
-    从 s 后端开始查找，并回循环到最后一个非空字符串，代码略。
+    从s后端开始查找，并回循环到最后一个非空字符串，代码略。
   }
 {% endhighlight %}
 
