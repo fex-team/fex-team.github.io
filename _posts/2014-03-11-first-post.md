@@ -12,10 +12,10 @@ FEX 是百度「Web 前端研发部」的别名。
  * 我们致力于帮助百度的各个产品线提升开发效率及页面体验
  * 我们是百度内部最具影响力的前端团队，我们的工具及平台遍及全公司
  * 我们开发通用解决方案，与产品线合作创造出成倍的收益
- * 我们是百度最早的开源实践者，先后推出了 Tangram、UEditor、FIS、GMU、Chassis、KityMinder 等库和工具
+ * 我们是百度最早的开源实践者，先后推出了 Tangram 、 UEditor 、 FIS 、 GMU 、 Chassis 、 KityMinder 等库和工具
 
-我们的网址：[http://fex.baidu.com](http://fex.baidu.com)   
-我们的微信公众帐号：BaiduFE 
+我们的网址： [http://fex.baidu.com](http://fex.baidu.com)   
+我们的微信公众帐号： BaiduFE 
 
 ## 我们的目标愿景
 
@@ -41,4 +41,4 @@ FEX 是百度「Web 前端研发部」的别名。
  * 我们将每个技术项目务实的应用于产品实践当中。  
  * 我们拥有「极客」精神，有「好奇心」与「改变之力」。
   
-如果你也是这样的同学，欢迎 [加入我们](/we-need-you/)。
+如果你也是这样的同学，欢迎 [ 加入我们 ](/we-need-you/)。
