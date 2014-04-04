@@ -37,9 +37,9 @@ fmt.format =  function(root) {
 		console.log('"' +root+ '" is a [Directory].');
 
 		var counter = 0;
-		this._walk(root, function(p) {
+		this._walk(root, function(fp) {
 			counter++;
-			return fmt._format(p);
+			return fmt._format(fp);
 		});
 		console.log('[COUNTER] totally files counter: '+counter );
 
@@ -73,8 +73,8 @@ fmt._walk = function(dir, cb) {
 
 fmt._format = function(fp) {
 
-	var leftExp   = /([a-z0-9\[\]\)\()]+)([^\x00-\xff]+)/ig,
-		rightExp  = /([^\x00-\xff]+)([a-z0-9\[\]\)\(]+)/ig,
+	var leftExp   = /([a-z0-9\[\]\)\()]+)([^\x00-\xff，。【】]+)/ig, //匹配英文+非ASCII码情况
+		rightExp  = /([^\x00-\xff，。【】]+)([a-z0-9\[\]\)\(]+)/ig,  //匹配非ASCII码+英文情况
 		stream    = fs.readFileSync(fp).toString(), 
 		newstream = '';
 
