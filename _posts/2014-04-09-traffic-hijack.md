@@ -113,7 +113,7 @@ author: zjcqoo
 
 <div class="post-img"><img src="/img/traffic-hijack/arp-spoofing.png" style="max-width:840px;" /></div>
 
-事实上，Windows 下曾经还有个更严重的BUG，给用户直接发送一个 ARP 回复包，即使他从没请求过，系统也会接受这个回复。这种基于缓存的投毒，让劫持成功率更上一层楼。
+事实上，早期的系统还有个更严重的BUG：直接给用户发送一个 ARP 回复包，即使对方从没请求过，系统也会接受这个回复，并提前保存里面的记录。这种基于缓存的投毒，让劫持成功率更上一层楼。
 
 <div class="post-img"><img src="/img/traffic-hijack/arp-poisoning.png" style="max-width:840px;" /></div>
 
