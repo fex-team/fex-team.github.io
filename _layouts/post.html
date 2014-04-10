@@ -24,7 +24,8 @@ page_id: articles
         <div class="author">
         {% for author in site.data.authors %}
             {% if author.author == page.author %}
-                Author: <a href="{{ author.url }}">{{ author.author }}</a> - {{ author.intro }} <br/>
+                作者：<a href="{{ author.url }}" target="_blank">{{ author.author }} ({{ author.url }})</a> - {{ author.intro }} <br/>
+                <a href="{{ author.url }}" target="_blank"></a> <br/>
                 <!-- <a href="/posts/#{{ author.author }}">查看他|她写的全部文章</a>  |   -->
             {% endif %}
         {% endfor %}
