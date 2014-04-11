@@ -16,11 +16,19 @@ author: Rayi
 
 最后，祝愿为 w3ctech 的2014走进名企活动能办的越来越好，也希望大家能听到更多有意思有帮助的内容！
 
-![会议室人好多](/img/fex-w3ctech-happyend/img01.jpg)
 
-![会议室人好多](/img/fex-w3ctech-happyend/img03.jpg)
+![会议室人好多](/img/fex-w3ctech-happyend/img01.jpg)
+<p style="text-align:center">大家都很认真听！</p>
+
+![会议室人好多](/img/fex-w3ctech-happyend/img05.jpg)
+<p style="text-align:center">没座位了，地上也可以坐下，还有认真做笔记的,么么哒！</p>
+
+![会议室人好多](/img/fex-w3ctech-happyend/img04.jpg)
+<p style="text-align:center">后面也好多站着的同学！</p>
 
 ![全体合影](/img/fex-w3ctech-happyend/img02.jpg)
+<p style="text-align:center">传说中的高清合影！</p>
+
 
 ## 活动主题及相关资料：
 
