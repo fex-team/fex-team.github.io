@@ -44,6 +44,19 @@
     var page = "{{page.url}}";
 </script>
 <script type="text/javascript" src="/public/js/fex.alog.monk.js"></script>
+
+
+<script type="text/javascript">
+    //设置站外链接新页面打开
+    var a_list= document.getElementsByTagName("a"); 
+    for(var i=0;i<a_list.length;i++){  
+        var href = a_list[i].href;
+        if( href && String(href).indexOf("fex.baidu.com") < 0 ){  
+            a_list[i].target = "_blank";
+        }  
+    } 
+</script>
+
 <script>
 var _hmt = _hmt || [];
 (function() {
