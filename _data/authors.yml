@@ -38,6 +38,7 @@
   intro: <b>Hello</b>
   avatar: /img/avatar/zjcqoo.png
 
+<<<<<<< HEAD
 - author: techird
   url: http://techird.com
   intro: 别人笑我太扯淡，我笑他们不扯淡
@@ -47,3 +48,9 @@
   url: https://github.com/hefangshi
   intro: Onwards and up wards
   avatar: /img/avatar/fangshi.png
+=======
+- author: zswang
+  url: http://weibo/zswang
+  intro: 站在巨人的肩上也要成为巨人的一部分
+  avatar: https://avatars0.githubusercontent.com/u/536587?s=120
+>>>>>>> FETCH_HEAD
