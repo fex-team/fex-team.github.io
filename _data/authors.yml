@@ -51,4 +51,13 @@
 - author: zswang
   url: http://weibo/zswang
   intro: 站在巨人的肩上也要成为巨人的一部分
+<<<<<<< HEAD
   avatar: /img/avatar/zswang.png
+=======
+  avatar: https://avatars0.githubusercontent.com/u/536587?s=120
+
+- author: jianling
+  url: http://weibo.com/chengyoung
+  intro: Hello World
+  avatar: /img/avatar/jianling.png
+>>>>>>> FETCH_HEAD
