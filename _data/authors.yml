@@ -37,3 +37,13 @@
   url: http://cnblogs.com/index-html
   intro: <b>Hello</b>
   avatar: /img/avatar/zjcqoo.png
+
+- author: techird
+  url: http://techird.com
+  intro: 别人笑我太扯淡，我笑他们不扯淡
+  avatar: /img/avatar/techird.png
+
+- author: fangshi
+  url: https://github.com/hefangshi
+  intro: Onwards and up wards
+  avatar: /img/avatar/fangshi.png
