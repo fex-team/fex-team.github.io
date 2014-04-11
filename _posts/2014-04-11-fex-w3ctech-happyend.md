@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 第一期w3ctech+FEX专场交流活动总结
+title: 妹纸+基友技术交流会，有图有真相哦！
 author: Rayi
 ---
 
@@ -16,6 +16,11 @@ author: Rayi
 
 最后，祝愿为 w3ctech 的2014走进名企活动能办的越来越好，也希望大家能听到更多有意思有帮助的内容！
 
+![会议室人好多](/img/fex-w3ctech-happyend/img01.jpg)
+
+![会议室人好多](/img/fex-w3ctech-happyend/img03.jpg)
+
+![全体合影](/img/fex-w3ctech-happyend/img02.jpg)
 
 ## 活动主题及相关资料：
 
