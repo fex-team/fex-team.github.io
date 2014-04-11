@@ -45,7 +45,7 @@ author: walter
 
 在项目的 index.html 里使用注释声明依赖关系：
 
-```
+```html
 <!--
     @require demo.js
     @require "demo.css"
@@ -54,7 +54,7 @@ author: walter
 
 在 SourceMap 中则可看到：
 
-```
+```json
 {
     "res" : {
         "demo.css" : {
@@ -80,7 +80,7 @@ author: walter
 
 支持识别 js 文件中的 require 函数，或者 注释中的 @require 字段 标记的依赖关系，这些分析处理对 html 的 script 标签内容 同样有效。
 
-```
+```js
 //demo.js
 /**
  * @require demo.css
@@ -91,7 +91,7 @@ var $ = require('jquery');
 
 在SourceMap中则可看到：
 
-```
+```json
 {
     "res" : {
         ...
@@ -110,7 +110,7 @@ var $ = require('jquery');
 
 支持识别 css 文件 注释中的 @require 字段 标记的依赖关系，这些分析处理对 html 的 style 标签内容 同样有效。
 
-```
+```js
 //demo.js
 /**
  * @require demo.css
@@ -121,7 +121,7 @@ var $ = require('jquery');
 
 在SourceMap中则可看到：
 
-```
+```json
 {
     "res" : {
         ...
@@ -142,7 +142,7 @@ var $ = require('jquery');
 
 sidebar.tpl 中的内容如下，
 
-```
+```html
 <!--
     @require "common:ui/dialog/dialog.css"
 -->
@@ -169,7 +169,7 @@ sidebar.tpl 中的内容如下，
 
 对项目编译后，自动化工具会分析依赖关系，并生成 sourcemap，如下
 
-```
+```json
 "common:widget/sidebar/sidebar.tpl": {
     "uri": "common/widget/sidebsr/sidebar.tpl",
     "type": "tpl",
@@ -187,7 +187,7 @@ sidebar.tpl 中的内容如下，
 
 在 sidebar 模块被调用后，静态资源管理系统通过查询 sourcemap 可以得知，当前 sidebar 模块同步依赖 sidebar.js、sidebar.css，异步依赖 sdebar.async.js，在要输出的 html 前面，生成静态资源外链，我们得到最终的 html
 
-```
+```html
 <link rel="stylesheet" href="/static/ui/dialog/dialog_7defa41.css">
 
 <a id="btn-navbar" class="btn-navbar">
@@ -233,7 +233,7 @@ sidebar.tpl 中的内容如下，
 
 静态资源管理系统采用基于文件内容的 hash 值来控制静态资源的版本更新，如下所示：
 
-```
+```html
 <script type="text/javascript" src="a_8244e91.js"></script>
 ```
 
