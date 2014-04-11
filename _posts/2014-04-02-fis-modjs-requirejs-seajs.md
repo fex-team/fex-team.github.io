@@ -25,7 +25,7 @@ RequireJS 遵守的是 AMD 规范，SeaJS 遵守的是 CMD 的规范。AMD/CMD �
 
 Mod 使用 define 来定义一个模块：
 
-```
+```js
 define (id, factory)
 ```
 
@@ -35,7 +35,7 @@ factory 提供了 3 个参数：require, exports, module ，用于模块的引�
 
 JS 源码
 
-```
+```js
 //common/widget/menu/menu.js
 var $ = require('common:widget/jquery/jquery.js');
 
@@ -51,7 +51,7 @@ exports.init = function() {
 
 编译后代码
 
-```
+```js
 define('common:widget/menu/menu.js', function(require, exports, module){
     var $ = require('common:widget/jquery/jquery.js');
     exports.init = function() {
@@ -69,7 +69,7 @@ define('common:widget/menu/menu.js', function(require, exports, module){
 
 [Mod](https://github.com/fex-team/mod)会在模块初始化之前自动加载相关依赖。因此当我们需要一个模块时，只需提供一个模块名即可获取：
 
-```
+```js
 require (id)
 ```
 
@@ -98,7 +98,7 @@ RequireJS/SeaJS 通过过 JavaScript 运行时来支持“匿名闭包”、“�
 
 通过自动化工具对模块进行编译处理，包括对对 JavaScript 模块添加闭包、记录每个静态资源的部署路径以及依赖关系并生成资源表(resource map),如下所示，
 
-```
+```json
 {
         "res": {
             "demo.js": {
