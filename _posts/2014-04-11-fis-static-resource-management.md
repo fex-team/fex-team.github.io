@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如何高效的管理网站静态资源
+title: 如何高效地管理网站静态资源
 author: walter
 ---
 
