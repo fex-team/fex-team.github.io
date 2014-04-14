@@ -184,7 +184,7 @@ FireFox 浏览器存储离线文件时，会有用户交互提示，提醒用户
 
 ### 过滤 HTTPS 跳转
 
-事实上，在 PC 端上网很少有直接进入 HTTPS 网站的。例如支付宝网站，大多是从淘宝跳转过来，而淘宝使用的仍是不安全的 HTTP 协议。如果在淘宝网的页面里注入 XSS，屏蔽 HTTPS 的页面访问，用 HTTP 取而代之，那么用户就永远无法进入 HTTPS 站点了。
+事实上，在 PC 端上网很少有直接进入 HTTPS 网站的。例如支付宝网站，大多是从淘宝跳转过来，而淘宝使用的仍是不安全的 HTTP 协议。如果在淘宝网的页面里注入 XSS，屏蔽对 HTTPS 的页面访问，用 HTTP 取而代之，那么用户也就永远无法进入安全站点了。
 
 <div class="post-img"><img src="/img/traffic-hijack-2/from-http.png" style="max-width:840px;" /></div>
 
