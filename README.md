@@ -73,6 +73,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 
 * jekyll 最终生成的文件会放在 `_site` 目录下，可以通过浏览这个目录来确认效果
 * img 目录的主要用途是放图片，但也可以放其它文件静态，如 zip 等
+* 不常见的语法高亮缩写可以[参考这里](http://tinker.kotaweaver.com/blog/?p=152)
 
 ## 写什么？
 
