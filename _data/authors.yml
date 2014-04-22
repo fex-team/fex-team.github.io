@@ -6,7 +6,7 @@
 - author: nwind
   url: http://wuduoyi.com/
   intro: 求内幕、求八卦、求甚解
-  avatar: /img/avatar/nwind.jpg
+  avatar: /img/avatar/nwind.png
 
 - author: Rayi
   url: http://weibo.com/measy/
@@ -16,19 +16,79 @@
 - author: rank
   url: http://rank.im/
   intro: Border is just for crossing
-  avatar: /img/avatar/rank.jpg
+  avatar: /img/avatar/rank.png
 
 - author: miller
   url: http://milleris.me/
   intro: The best preparation for tomorrow is doing your best today.
-  avatar: /img/avatar/miller.jpeg
+  avatar: /img/avatar/miller.png
 
 - author: walter
   url: http://weibo.com/u/1916384703
   intro: F.I.S
-  avatar: /img/avatar/walter.jpg
+  avatar: /img/avatar/walter.png
+
+- author: fansekey
+  url: http://weibo.com/fansekey
+  intro: F.I.S
+  avatar: /img/avatar/fansekey.png
+
+- author: zjcqoo
+  url: http://cnblogs.com/index-html
+  intro: <b>Hello</b>
+  avatar: /img/avatar/zjcqoo.png
 
 - author: techird
   url: http://techird.com
   intro: 别人笑我太扯淡，我笑他们不扯淡
-  avatar: http://techird.com/logo.png
+  avatar: /img/avatar/techird.png
+
+- author: fangshi
+  url: https://github.com/hefangshi
+  intro: Onwards and up wards
+  avatar: /img/avatar/fangshi.png
+
+- author: zswang
+  url: http://weibo/zswang
+  intro: 站在巨人的肩上也要成为巨人的一部分
+  avatar: /img/avatar/zswang.png
+
+- author: jianling
+  url: http://weibo.com/chengyoung
+  intro: Hello World
+  avatar: /img/avatar/jianling.png
+
+- author: the1sky
+  url: http://rialive.com/
+  intro: 温故知新
+  avatar: /img/avatar/the1sky.png
+
+- author: xiaozhan
+  url: http://www.jsmix.com
+  intro: lalalala…
+  avatar: /img/avatar/xiaozhan.png
+
+- author: John.YY
+  url: http://weibo.com/u/1790395525
+  intro: 非主流前端，偶尔搞搞Hadoop、ML &DM
+  avatar: /img/avatar/John.YY.png
+
+- author: zhangjunah
+  url: http://weibo.com/zhangjunah
+  intro: Just a man
+  avatar: /img/avatar/zhangjunah.png
+
+- author: Singularity
+  url: https://github.com/Singularity-zju
+  intro: 前端爱好者，平时喜爱阅读翻译技术文章
+  avatar: /img/avatar/Singularity.png
+
+- author: zhangtao
+  url: http://weibo.com/u/1733215473
+  intro: 学无止境
+  avatar: /img/avatar/zhangtao.png
+
+- author: 2betop
+  url: https://github.com/2betop
+  intro: 请别以中文数字发音去读我的用户名，谢谢！
+  avatar: /img/avatar/2betop.png

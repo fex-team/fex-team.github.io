@@ -1,19 +1,30 @@
 - name: FIS
+  desc: 前端集成解决方案
   github: fis-plus
+  recommend: true
   banner: 3d7823
 
 - name: KityFormula
+  desc: 公式展现和编辑
   github: kityformula
   banner: 3b2953
 
 - name: KityMinder
+  desc: 思维导图编辑器
   github: kityminder
   banner: 384042
-  recommend: true
+  url: http://naotu.baidu.com/
 
 - name: UFinder
+  desc: 文件管理工具
   github: ufinder
 
 - name: UEditor
+  desc: 富文本编辑器
   github: ueditor
   banner: 5e9e3b
+
+- name: WebUploader
+  desc: 文件上传组件
+  github: webuploader
+  url: http://fex.baidu.com/webuploader

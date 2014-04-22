@@ -271,6 +271,27 @@ article {
         border-top:1px solid #dadada;
         padding:10px 0;
     }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+
+    blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 2em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+
+    blockquote p {
+        display: inline;
+    }
 }
 
 .pagination {
@@ -396,15 +417,28 @@ article {
         color:#4a4a4a;
         line-height:24px;
     }
-
+    
+    dl dd:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        height:0;
+        overflow: hidden;
+        clear:both;
+    }
 }
 
 
 
 @media (max-width: 640px) {
+    html {
+        overflow-x:hidden;
+    }
     .page-header,
     .page-footer,
-    .container {
+    .container,
+    .articles,
+    article {
         width:100%;
     }
 
@@ -425,9 +459,23 @@ article {
             right:0;
 
             li {
-                width:20%;
+                width:23%;
+
+                a {
+                    white-space: nowrap;
+                    padding:0;
+                }
+            }
+
+            li:nth-child(5) {
+                display:none;
             }
         }
+    }
+
+    .banner {
+        background-size: contain !important;
+        height:200px !important;
     }
 
     .container {
@@ -448,11 +496,54 @@ article {
         .page-sidebar {
             display:none;
         }
+
+        article {
+            width:auto;
+            box-sizing:border-box;
+            box-shadow: none;
+            float:none;
+            
+
+            .title {
+                font-size:18px;
+            }
+            ul {
+                margin:0;
+                padding:0 0 0 15px;
+            }
+
+            img {
+                max-width: 100% !important;
+            }
+        }
     }
 
     .page-footer {
         .foot-inner {
             width:100%;
+
+
+            dl {
+                float:none;
+                display:block;
+                width:auto;
+                margin:0 20px 30px;
+                clear:both;
+
+                dd {
+                    li {
+                        width:33.3%;
+
+                        a {
+                            display:block;
+                            border:1px solid #dcdcdc;
+                            margin:5px 0 5px 5px;
+                            padding:5px;
+                            background:#fafafa;
+                        }
+                    }
+                }
+            }
         }
     }
 }

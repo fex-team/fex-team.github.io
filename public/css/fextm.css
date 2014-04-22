@@ -225,6 +225,24 @@ article #comment {
   border-top: 1px solid #dadada;
   padding: 10px 0;
 }
+article blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+article blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 2em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+article blockquote p {
+  display: inline;
+}
 .pagination {
   font-size: 12px;
   text-align: center;
@@ -330,10 +348,23 @@ article #comment {
   color: #4a4a4a;
   line-height: 24px;
 }
+.page-footer dl dd:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
 @media (max-width: 640px) {
+  html {
+    overflow-x: hidden;
+  }
   .page-header,
   .page-footer,
-  .container {
+  .container,
+  .articles,
+  article {
     width: 100%;
   }
   .page-header {
@@ -352,7 +383,18 @@ article #comment {
     right: 0;
   }
   .page-header .page-nav li {
-    width: 20%;
+    width: 23%;
+  }
+  .page-header .page-nav li a {
+    white-space: nowrap;
+    padding: 0;
+  }
+  .page-header .page-nav li:nth-child(5) {
+    display: none;
+  }
+  .banner {
+    background-size: contain !important;
+    height: 200px !important;
   }
   .container {
     padding: 10px 0;
@@ -371,7 +413,40 @@ article #comment {
   .container .page-sidebar {
     display: none;
   }
+  .container article {
+    width: auto;
+    box-sizing: border-box;
+    box-shadow: none;
+    float: none;
+  }
+  .container article .title {
+    font-size: 18px;
+  }
+  .container article ul {
+    margin: 0;
+    padding: 0 0 0 15px;
+  }
+  .container article img {
+    max-width: 100% !important;
+  }
   .page-footer .foot-inner {
     width: 100%;
+  }
+  .page-footer .foot-inner dl {
+    float: none;
+    display: block;
+    width: auto;
+    margin: 0 20px 30px;
+    clear: both;
+  }
+  .page-footer .foot-inner dl dd li {
+    width: 33.3%;
+  }
+  .page-footer .foot-inner dl dd li a {
+    display: block;
+    border: 1px solid #dcdcdc;
+    margin: 5px 0 5px 5px;
+    padding: 5px;
+    background: #fafafa;
   }
 }
