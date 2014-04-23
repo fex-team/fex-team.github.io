@@ -1,6 +1,6 @@
 ---
 layout: post
-title: WebUploader 文件上传优化总结
+title: HTML5文件上传组件的深度剖析
 author: 2betop
 ---
 
