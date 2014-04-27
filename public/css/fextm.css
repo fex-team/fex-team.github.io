@@ -243,6 +243,23 @@ article blockquote:before {
 article blockquote p {
   display: inline;
 }
+.getmore {
+  margin: 0 0 0 14px;
+}
+.getmore a {
+  display: block;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  height: 30px;
+  line-height: 30px;
+  color: #666666;
+  background: #f3f3f3;
+  text-align: center;
+}
+.getmore a:hover {
+  background: #dddddd;
+  color: #ff6136;
+}
 .pagination {
   font-size: 12px;
   text-align: center;
@@ -268,11 +285,21 @@ article blockquote p {
   background: none;
   color: #999999;
 }
+.post-lists {
+  width: 900px;
+  float: left;
+}
 .post-list {
   margin: 0;
   padding: 0;
-  width: 900px;
-  float: left;
+}
+.post-list::after {
+  content: "";
+  display: table;
+  clear: both;
+  height: 0;
+  overflow: hidden;
+  font-size: 0;
 }
 .post-list li {
   list-style: none;

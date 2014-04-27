@@ -5,19 +5,32 @@ title:
 {% include banner.html %}
 
 <div class="container">
+<div class="post-lists">
+  
 
 <ul class="post-list">
   {% for post in site.posts %}
+    {% if forloop.index <=12 %}
     <li>
       <a href="{{ post.url }}">
       {% assign paths = post.id | split: '/' %}
-      <img src="/img/{{paths[4]}}/cover.png" onerror="this.src='/public/images/tmp/cover.png'" style="width:100%; height:150px;" />
+      <img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:100%; height:150px;" />
       <p>{{ post.title }}</p>
       <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
       </a>
     </li>
+    {% endif %}
   {% endfor %}
 </ul>
+{% for post in site.posts %}
+    {% if forloop.index == 12 && forloop.length > 12 %}
+    <!-- Pagination links -->
+        <div class="getmore">
+            <a href="/articles/page2">查看更多</a>
+        </div>
+      {% endif %}
+  {% endfor %}
+</div>
 {% include sidebar.html %}
 </div>
 
