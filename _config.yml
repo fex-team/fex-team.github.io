@@ -9,7 +9,7 @@ markdown: redcarpet
 pygments: true
 #permalink: pretty
 permalink: /blog/:year/:month/:title
-paginate: 15
+paginate: 12
 paginate_path: "articles/page:num"
 encoding: utf-8
 
