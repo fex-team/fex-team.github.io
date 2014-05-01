@@ -83,7 +83,7 @@ author: zswang
 
 HTML5 / CSS3 技术在移动端受限
 
-What stops developers from using HTML5？[【查看来源】](www.visionmobile.com/blog/2013/12/html5-performance-is-fine-what-we-are-missing-is-tools/)
+What stops developers from using HTML5？[【查看来源】](http://www.visionmobile.com/blog/2013/12/html5-performance-is-fine-what-we-are-missing-is-tools/)
 
 ![性能测试](/img/light-component/webapp-issue.png)
 
@@ -258,7 +258,7 @@ HTML5能力增强
 * 降低学习成本，保留原生 Web 组件的使用方式
 * 降低业务代码维护工作
 
-> 目前移动端原生还不支持这个标准，还得选用框架适配，如：[Polymer](www.polymer-project.org)
+> 目前移动端原生还不支持这个标准，还得选用框架适配，如：[Polymer](http://www.polymer-project.org)
 
 跨端组件 HTML5 示例代码：
 
@@ -622,4 +622,17 @@ void function() {
 
 ### 参考资料
 
+[本期分享 QCon 链接](http://www.qconbeijing.com/node/535)
+[艾瑞：2013中国移动互联网市场规模1059亿](http://www.techweb.com.cn/data/2014-01-20/1383076.shtml)
+[HTML5 performance is fine, what we are missing is tools](http://www.visionmobile.com/blog/2013/12/html5-performance-is-fine-what-we-are-missing-is-tools/)
+[Adobe 将停止开发移动版 Flash](http://www.cnbeta.com/articles/161452.htm)
+[Google将于2014年1月开始屏蔽NPAPI插件](http://techcrunch.cn/2013/09/24/say-goodbye-to-npapi/)
+[When iOS loves JS](http://www.imooc.com/view/92)
+[Chrome apps on Android and iOS](https://github.com/MobileChromeApps/mobile-chrome-apps)
+[响应式网页设计](http://baike.baidu.com/view/9876268.htm)
+[Web Components](http://www.w3.org/TR/components-intro/)
+[Polymer](http://www.polymer-project.org)
+[Ripple](http://ripple.incubator.apache.org/)
+[Weinre](http://people.apache.org/~pmuellr/weinre/)
+[Remote Debug](https://developers.google.com/chrome-developer-tools/docs/remote-debugging)
 [How to use Ripple Emulator for Windows to test PhoneGap application?](http://stackoverflow.com/questions/17695875/how-to-use-ripple-emulator-for-windows-to-test-phonegap-application)
