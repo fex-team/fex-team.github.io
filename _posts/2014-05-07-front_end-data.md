@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 前端，有什么数据？
+title: 前端数据之美--基础篇
 author: zhangjunah
 ---
 
@@ -73,7 +73,7 @@ author: zhangjunah
 
 在实践的过程中我们抽离了一套用于前端统计的框架[alog](https://github.com/fex-team/alog)，方便开发者书写自己的统计脚本，具体的使用方法和API见[github](https://github.com/fex-team/alog)。下面就使用alog来简单说明如何进行前端数据的采集：
 
-例如：你需要统计页面的PV，顺便加上页面来源（refer）
+例如：**你需要统计页面的PV，顺便加上页面来源（refer）**
 
 ```javascript
 // 加载alog，alog是支持异步的
@@ -102,7 +102,7 @@ alog('pv.send', "pageview"); // 指明是pageview
     http://localhost/u.gif?t=pageview&ref=yourRefer
 ```
 
-再例如：需要监听浏览器事件的js异常统计
+再例如：**js异常的采集，需要进行事件监听**
 
 ```javascript
 // 加载alog
