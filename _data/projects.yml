@@ -28,3 +28,10 @@
   desc: 文件上传组件
   github: webuploader
   url: http://fex.baidu.com/webuploader
+  banner: ff9800
+
+- name: GMU
+  desc: 轻量级的移动端UI组件库
+  github: gmu
+  url: http://gmu.baidu.com
+  banner: 468966
