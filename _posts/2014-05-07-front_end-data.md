@@ -12,7 +12,7 @@ author: zhangjunah
 
 ## 有哪些？
 
-前端的数据其实有很多，从大众普遍关注的[PV](http://baike.baidu.com/subview/40888/5000818.htm)、[UV](http://baike.baidu.com/subview/595240/9307972.htm)、广告点击量，到客户端的网络环境、登陆状态，再到浏览器、操作系统信息，最后到页面性能、js 异常，这些数据都可以在前端收集到。数据很多、很杂，不进行很好的分类肯定会导致统计混乱，也不利于统计代码的组织，下面就对几种普遍的数据需求进行了分类：
+前端的数据其实有很多，从大众普遍关注的 [PV](http://baike.baidu.com/subview/40888/5000818.htm)、[UV](http://baike.baidu.com/subview/595240/9307972.htm)、广告点击量，到客户端的网络环境、登陆状态，再到浏览器、操作系统信息，最后到页面性能、JS 异常，这些数据都可以在前端收集到。数据很多、很杂，不进行很好的分类肯定会导致统计混乱，也不利于统计代码的组织，下面就对几种普遍的数据需求进行了分类：
 
 ### 1、访问
 
@@ -55,10 +55,10 @@ author: zhangjunah
 
 ### 4、异常
 
-这里的异常是指 js 的异常，用户的浏览器上报 js 的 bug，这会极大地降低用户体验，对于浏览器型号、版本满天飞的今天，再 NB 的程序员也难免会有擦枪走火的时候，当然 QA 能够覆盖到大部分的 bug，但肯定也会有一些 bug 在线上出现。js 的异常捕获只有两种方式：**window.onerror**、**try/catch**，关于我们是如何做的将在后续的文章中有详细的描述，这里只列出捕获到异常时，一般需要采集哪些信息（主要用来 debug 异常）：
+这里的异常是指 JS 的异常，用户的浏览器上报 JS 的 bug，这会极大地降低用户体验，对于浏览器型号、版本满天飞的今天，再 NB 的程序员也难免会有擦枪走火的时候，当然 QA 能够覆盖到大部分的 bug，但肯定也会有一些 bug 在线上出现。JS 的异常捕获只有两种方式：**window.onerror**、**try/catch**，关于我们是如何做的将在后续的文章中有详细的描述，这里只列出捕获到异常时，一般需要采集哪些信息（主要用来 debug 异常）：
 
 + **异常的提示信息**：这是识别一个异常的最重要依据，如：'e.src' 为空或不是对象
-+ **js 文件名**
++ **JS 文件名**
 + **异常所在行**
 + **发生异常的浏览器**
 + **堆栈信息**：必要的时候需要函数调用的堆栈信息，但是注意堆栈信息可能会比较大，需要截取
@@ -69,7 +69,7 @@ author: zhangjunah
 
 ## 如何采集？
 
-在前端，通过注入 js 脚本，使用一些 js API（如：!!window.localStorage 就可以检验浏览器是否支持 localStorage）或者监听一些事件（如：click、window.onerror、onload 等）就可以得到数据。捕获到这些数据之后，需要将数据发送回服务器端，一般都是采用访问一个固定的 url，把数据作为该 url 的 query string，如：http://www.baidu.com/u.gif?data1=hello&data2=hi。 
+在前端，通过注入 JS 脚本，使用一些 JS API（如：!!window.localStorage 就可以检验浏览器是否支持 localStorage）或者监听一些事件（如：click、window.onerror、onload 等）就可以得到数据。捕获到这些数据之后，需要将数据发送回服务器端，一般都是采用访问一个固定的 url，把数据作为该 url 的 query string，如：http://www.baidu.com/u.gif?data1=hello&data2=hi。 
 
 在实践的过程中我们抽离了一套用于前端统计的框架[alog](https://github.com/fex-team/alog)，方便开发者书写自己的统计脚本，具体的使用方法和 API 见[github](https://github.com/fex-team/alog)。下面就使用 alog 来简单说明如何进行前端数据的采集：
 
@@ -102,7 +102,7 @@ alog('pv.send', "pageview"); // 指明是 pageview
     http://localhost/u.gif?t=pageview&ref=yourRefer
 ```
 
-再例如：**js 异常的采集，需要进行事件监听**
+再例如：**JS 异常的采集，需要进行事件监听**
 
 ```javascript
 // 加载 alog
@@ -124,7 +124,7 @@ alog('err.create', {
     postUrl: 'http://localhost/u.gif'
 });
 ```
-这时，只要页面中 js 发生异常，就会发送如下面的 http 请求
+这时，只要页面中 JS 发生异常，就会发送如下面的 HTTP 请求
 
 ```javascript
     http://localhost/u.gif?t=err&msg=errMessage&js=jsFileName&ln=errLine
