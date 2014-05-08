@@ -91,7 +91,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 
 ### 对于写作风格的约定
 
-请参考 [FEX 写作风格](https://github.com/fex-team/styleguide/blob/master/writing.md)
+请参考 [Markdown 编写规范](https://github.com/fex-team/styleguide/blob/master/markdown.md)，另外在根目录下个脚本 format.js，可以通过它来自动加空格。
 
 ## 其它问题
 
