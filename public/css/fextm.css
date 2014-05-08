@@ -394,6 +394,10 @@ article blockquote p {
   article {
     width: 100%;
   }
+  .post-lists {
+    width: auto;
+    
+  }
   .page-header {
     height: 60px;
   }
@@ -410,7 +414,7 @@ article blockquote p {
     right: 0;
   }
   .page-header .page-nav li {
-    width: 23%;
+    width: 19%;
   }
   .page-header .page-nav li a {
     white-space: nowrap;
