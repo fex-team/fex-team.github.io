@@ -6,7 +6,7 @@ plugins:     ./_plugins
 lsi:      false
 safe:     false
 markdown: redcarpet
-pygments: true
+#pygments: true
 #permalink: pretty
 permalink: /blog/:year/:month/:title
 paginate: 12
