@@ -172,7 +172,7 @@ WebPageTest是一款非常优秀的网页前端性能测试工具,已[开源](ht
 ```
 http://xxx.baidu.com/tj.gif?dns=100&ct=210&st=300&tt=703&c_dnslookup=0&c_connecting=0&c_waiting=296&c_receiving=403&c_fetch_dns=0&c_nav_dns=75&c_nav_fetch=75&drt=1423&drt_end=1436&lt=3410&c_nfpt=619&nav_type=0&redirect_count=0&_screen=1366*768|1366*728&product_id=10&page_id=200&_t=1399822334414
 ```
-### Day 6 如何分析性能数据？
+### Day 5 如何分析性能数据？
 
 > 让数据会说话
 
@@ -203,7 +203,7 @@ http://xxx.baidu.com/tj.gif?dns=100&ct=210&st=300&tt=703&c_dnslookup=0&c_connect
 **小插曲** ：之前从微博中看到有人评价说想做监控但是公司**没有日志服务器**。并不需要单独的日志服务器,只要能把统计的这个请求访问日志保存下来即可。如果网站自己的独立服务器都没有还有解决办法，在[百度开发者中心](http://developer.baidu.com/)新建一个应用，写一个简单的Web服务将接收到的统计数据解析存到百度云免费的数据库中，然后每天再用Mysql处理下当天的数据即可，对于普通站点的抽样性能数据应该没问题。请叫我雷锋。
 
 
-### Day 7 如何利用监控数据解决问题？
+### Day 6 如何利用监控数据解决问题？
 
 > 发现瓶颈，对症下药
 
@@ -220,7 +220,7 @@ http://xxx.baidu.com/tj.gif?dns=100&ct=210&st=300&tt=703&c_dnslookup=0&c_connect
 
 ![gtmetrix](/img/build-performance-monitor-in-7-days/solution.png)
 
-**总结**
+### Day 7 总结
 
 通过以上“几天”的努力，我们可以搭建一个小而美的前端性能监控系统。但这仅仅是开始，前端数据有很多挖掘的价值。性能优化也是一门需要认真学习的课程，为了打造流畅的使用体验，为了让用户更加满意，赶紧搭建起自己的前端数据平台吧!
 
