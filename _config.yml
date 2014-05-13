@@ -6,8 +6,6 @@ plugins:     ./_plugins
 lsi:      false
 safe:     false
 markdown: redcarpet
-#pygments: true
-#permalink: pretty
 permalink: /blog/:year/:month/:title
 paginate: 12
 paginate_path: "articles/page:num"
