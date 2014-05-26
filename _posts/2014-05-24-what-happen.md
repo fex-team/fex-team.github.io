@@ -83,7 +83,7 @@ shell@flo:/ $ cat /proc/interrupts
 
 前面提到 Linux 内核已经完成了对硬件的抽象，其它程序只需要通过监听 `/dev/input/event0` 文件的变化就能知道用户进行了哪些触摸操作，不过如果每个程序都这么做实在太麻烦了，所以在图像操作系统中都会包含 GUI 框架来方便应用程序开发，比如 Linux 下著名的 [X](http://www.x.org/)。
 
-但 Android 并没有使用 X，而是自己实现了一套 GUI 框架，其中有个 [EventHub](http://androidxref.com/4.4.2_r1/xref/frameworks/base/services/input/EventHub.cpp) 的服务会通过 [epoll](http://man7.org/linux/man-pages/man7/epoll.7.html) 方式监听 `/dev/input/` 目录下的文件，然后将这些信息传递到 Android 的窗口管理服务([WindowManagerService](https://github.com/android/platform_frameworks_base/blob/kitkat-mr1.1-release/services/java/com/android/server/wm/WindowManagerService.java))中，它会根据位置来查找到对应的应用，最后向调用相关的监听函数（如 onTouch 等）。
+但 Android 并没有使用 X，而是自己实现了一套 GUI 框架，其中有个 [EventHub](http://androidxref.com/4.4.2_r1/xref/frameworks/base/services/input/EventHub.cpp) 的服务会通过 [epoll](http://man7.org/linux/man-pages/man7/epoll.7.html) 方式监听 `/dev/input/` 目录下的文件，然后将这些信息传递到 Android 的窗口管理服务([WindowManagerService](https://github.com/android/platform_frameworks_base/blob/kitkat-mr1.1-release/services/java/com/android/server/wm/WindowManagerService.java))中，它会根据位置信息来查找相应的 app，然后调用其中的监听函数（如 onTouch 等）。
 
 就这样，我们解答了第一个问题，不过由于时间有限，这里省略了很多细节，想进一步学习的读者推荐阅读以下书籍。
 
