@@ -69,7 +69,7 @@ author: Rayi
 [githubpages]: http://pages.github.com/
 [github]: https://github.com/
 [Jekyll]: http://jekyllrb.com/
-[downloadpsd]: http://pan.baidu.com/s/1qWFaF5i
+[downloadpsd]: /psds/fex_design.psd
 [markdown]: http://daringfireball.net/projects/markdown/
 [fexgit]: http://github.com/fex-team/fex-team.github.io/
 [rankpage]: http://rank.im/2014/03/10/hexo-for-blog/
