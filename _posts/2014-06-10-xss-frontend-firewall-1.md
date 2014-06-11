@@ -54,7 +54,7 @@ author: zjcqoo
 
 扯到模型上面，一切即将迎刃而解。模型是解决问题的最靠谱的办法，尤其是像 [DOM-3-Event](http://www.w3.org/TR/DOM-Level-3-Events/) 这种早已制定的模型，其稳定性毋庸置疑。
 
-即便没仔细阅读官方文档，但凡做过网页的都知道，有个 addEventListener 的接口，并取代了曾经一个古老的叫 attachEvent 的东西。尽管只是新增了一个参数而已，但正是这个差别成了人们津津乐道的话题。每当面试谈到和事件相关的话题时，总少不了考察下这个新参数的用途。尽管在日常开发中很少用到它。
+即便没仔细阅读官方文档，但凡做过网页的都知道，有个 addEventListener 的接口，并取代了曾经一个古老的叫 attachEvent 的东西。尽管只是新增了一个参数而已，但正是这个差别成了人们津津乐道的话题。每当面试谈到事件时，总少不了考察下这个新参数的用途。尽管在日常开发中很少用到它。
 
 <div class="post-img"><img src="http://www.blueidea.com/articleimg/2007/11/5079/01.png" style="max-width:840px;" /></div>
 
@@ -73,7 +73,7 @@ author: zjcqoo
 	}, true);
 </script>
 {% endhighlight %}
-[Demo](http://jsfiddle.net/zjcqoo/v9wm5/)
+[Run](http://jsfiddle.net/zjcqoo/v9wm5/)
 
 
 尽管按钮上直接绑了一个内联的事件，但事件模型并不买账，仍然得按标准的流程走一遍。capture，target，bubble，模型就是那样固执。
@@ -102,7 +102,7 @@ author: zjcqoo
 	}, true);
 </script>
 {% endhighlight %}
-[Demo](http://jsfiddle.net/zjcqoo/r93Sv/)
+[Run](http://jsfiddle.net/zjcqoo/r93Sv/)
 
 
 我们先在捕获阶段扫描内联事件字符，若是出现了『xss』这个关键字，后续的事件就被拦截了；换成其他字符，仍然继续执行。同理，我们还可以判断字符长度是否过多，以及更详细的黑白名单正则。
@@ -142,7 +142,7 @@ author: zjcqoo
 	console.timeEnd('耗时');
 </script>
 {% endhighlight %}
-[Demo](http://jsfiddle.net/zjcqoo/yNH7V/)
+[Run](http://jsfiddle.net/zjcqoo/yNH7V/)
 
 
 现在，无论页面中哪个元素触发哪个内联事件，都能预先被我们捕获，并根据策略可进可退了。
@@ -188,7 +188,7 @@ author: zjcqoo
 	}
 </script>
 {% endhighlight %}
-[Demo](http://jsfiddle.net/zjcqoo/9chsb/)
+[Run](http://jsfiddle.net/zjcqoo/9chsb/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
