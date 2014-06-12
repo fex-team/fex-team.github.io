@@ -118,7 +118,7 @@ author: zjcqoo
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-2/firefox.png" style="max-width:840px;" /></div>
 
-不过对于预警系统来说，能够发现问题也足够了，如果能拦截那就再好不过。
+不过对于预警系统来说，能够发现问题也足够了，可以拦截风险那就再好不过。
 
 
 ### 动态脚本拦截
@@ -143,7 +143,7 @@ author: zjcqoo
 <script>
 	btn.onclick = function() {
 		var el = document.createElement('script');
-		el.src = 'http://www.etherdream.com/x\s\s/out.js?dynamic';
+		el.src = 'http://www.etherdream.com/xss/out.js?dynamic';
 		document.body.appendChild(el);
 	};
 </script>
@@ -163,7 +163,7 @@ author: zjcqoo
 
 ```js
 var el = document.createElement('script');
-el.src = 'http://www.etherdream.com/x\s\s/out.js?dynamic';
+el.src = 'http://www.etherdream.com/xss/out.js?dynamic';
 document.body.appendChild(el);
 ```
 
