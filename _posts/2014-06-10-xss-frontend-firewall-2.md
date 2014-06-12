@@ -274,7 +274,7 @@ document.body.appendChild(el);
 			console.log('设置路径:', url);
 		});
 
-		el.src = 'http://www.etherdream.com/x\s\s/out.js?dynamic';
+		el.src = 'http://www.etherdream.com/xss/out.js?dynamic';
 		document.body.appendChild(el);
 	};
 </script>
