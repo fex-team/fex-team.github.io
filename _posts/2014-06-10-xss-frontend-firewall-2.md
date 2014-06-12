@@ -277,7 +277,7 @@ document.body.appendChild(el);
 	};
 </script>
 ```
-[run](http://www.etherdream.com/blogs/xss-fw/accessor_instance.html)
+[run](http://www.etherdream.com/blogs/xss-fw/instance_hook.html)
 
 这一回，Chrome 终于可以了。
 
