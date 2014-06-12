@@ -8,7 +8,7 @@ title: 技术文章
         <ul class="post-list">
             {% for post in paginator.posts %}
             <li>
-                <a href="{{ post.url }}">
+                <a href="{{ post.url }}/">
                     {% assign paths = post.id | split: '/' %}
                     <img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"
                          style="width:280px; height:150px;"/>
