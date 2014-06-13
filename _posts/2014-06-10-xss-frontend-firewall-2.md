@@ -239,7 +239,7 @@ document.body.appendChild(el);
 
 	HTMLScriptElement.prototype.__defineSetter__('src', function(url) {
 		if (/xss/.test(url)) {
-			if (confirm('试图加载可以模块：\n\n' + url + '\n\n是否拦截？')) {
+			if (confirm('试图加载可疑模块：\n\n' + url + '\n\n是否拦截？')) {
 				return;
 			}				
 		}
