@@ -1,11 +1,14 @@
-{% for project in site.data.projects %}
-    {% if project.banner and project.recommend == true %}
-    <div class="banner" style="background:#{{project.banner}} url(/public/images/banner/{{project.github}}.png) no-repeat center center;height:320px;">
-        {% if project.url%}
-            <a href="{{project.url}}" target="_blank"></a>
-        {% else %}
-            <a href="http://github.com/fex-team/{{project.github}}/" target="_blank"></a>
-        {% endif %} 
-    </div>
-    {% endif %}
-{% endfor %}
+
+<script>
+(function () {
+    var projects = {{ site.data.projects | jsonify }};
+    var randomIndex = parseInt(Math.random() * (projects.length - 1));
+    var project = projects[randomIndex];
+    var url = 'http://github.com/fex-team/' + project.github;
+    if ('url' in project) {
+        url = project.url;
+    }
+    document.write('<div class="banner" style="background:#' + project.banner + ' url(/public/images/banner/' + project.github + '.png) no-repeat center center;height:320px;"><a href="' + url + '" target="_blank"></a></div>');
+})();
+</script>
+
