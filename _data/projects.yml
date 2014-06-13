@@ -1,6 +1,6 @@
 - name: FIS
   desc: 前端集成解决方案
-  github: fis-plus
+  github: fis
   recommend: true
   banner: 3d7823
 
