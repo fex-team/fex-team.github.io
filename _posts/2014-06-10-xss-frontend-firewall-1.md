@@ -217,4 +217,4 @@ author: zjcqoo
 <img src="*" onerror="$['get'+'Script'](...)">
 {% endhighlight %}
 
-明天将继续讨论，如何拦截可疑的外部模块。
+明天将继续讨论，如何[拦截可疑的外部模块](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)。
