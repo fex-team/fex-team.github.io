@@ -328,4 +328,4 @@ document.body.appendChild(el);
 
 事实上，除了重写 property 访问器，我们还得考虑调用 setAttribute 赋值的情况。因此需整理出一套完善的浏览器钩子程序。
 
-重写原生 API 看似很简单，但如何才能打造出一个无懈可击的钩子系统呢？明天继续讲解。
+重写原生 API 看似很简单，但如何才能打造出一个无懈可击的钩子系统呢？明天[继续讲解](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-3/)。
