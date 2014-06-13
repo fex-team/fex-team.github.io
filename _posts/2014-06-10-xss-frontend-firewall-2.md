@@ -289,8 +289,43 @@ document.body.appendChild(el);
 
 然而，这仅仅是测试。现实中哪有这样的机会，供我们装上访问器呢。
 
-因此，我们只能把主动防御的时机再往前推，在元素创建时就调用我们的防御代码。我们得重写 createElement 这些能创建元素 API，只有这样，才能第一时间里，给实例装上我们的钩子程序，为 Chrome 实现动态模块的防御。
+因此，我们只能把主动防御的时机再往前推，在元素创建时就调用我们的防御代码。我们得重写 createElement 这些能创建元素 API，只有这样，才能第一时间里，给实例装上我们的钩子程序，为 Chrome 实现动态模块的防御：
 
-事实上，除了重写原生的访问器，我们还得考虑使用 setAttribute 赋值的情况。因此需整理出一套完善的浏览器钩子程序。
+```html
+<script>
+	// for chrome
+	var raw_fn = Document.prototype.createElement;
+
+	Document.prototype.createElement = function() {
+
+		// 调用原生函数
+		var element = raw_fn.apply(this, arguments);
+
+		// 为脚本元素安装属性钩子
+		if (element.tagName == 'SCRIPT') {
+			element.__defineSetter__('src', function(url) {
+				console.log('设置路径:', url);
+			});
+		}
+
+		// 返回元素实例
+		return element;
+	};
+</script>
+
+<button id="btn">创建脚本</button>
+<script>
+	btn.onclick = function() {
+		var el = document.createElement('script');
+		el.src = 'http://www.etherdream.com/xss/out.js?dynamic';
+		document.body.appendChild(el);
+	};
+</script>
+```
+[Run](http://www.etherdream.com/blogs/xss-fw/create_hook.html)
+
+这样，当元素创建时，就带有我们的属性扫描程序了。
+
+事实上，除了重写 property 访问器，我们还得考虑调用 setAttribute 赋值的情况。因此需整理出一套完善的浏览器钩子程序。
 
 重写原生 API 看似很简单，但如何才能打造出一个无懈可击的钩子系统呢？明天继续讲解。
