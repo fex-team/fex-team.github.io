@@ -239,8 +239,9 @@ document.body.appendChild(el);
 
 	HTMLScriptElement.prototype.__defineSetter__('src', function(url) {
 		if (/xss/.test(url)) {
-			console.log('拦截可疑模块:', url);
-			return;
+			if (confirm('试图加载可以模块：\n\n' + url + '\n\n是否拦截？')) {
+				return;
+			}				
 		}
 		raw_setter.call(this, url);
 	});
