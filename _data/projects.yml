@@ -15,9 +15,9 @@
   banner: 384042
   url: http://naotu.baidu.com/
 
-- name: UFinder
-  desc: 文件管理工具
-  github: ufinder
+# - name: UFinder
+#   desc: 文件管理工具
+#   github: ufinder
 
 - name: UEditor
   desc: 富文本编辑器
