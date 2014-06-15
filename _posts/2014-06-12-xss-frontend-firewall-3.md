@@ -432,7 +432,7 @@ document.body.appendChild(el);
 现在，我们对框架页的监控已是天衣无缝了。
 
 
-## 新页面执行
+## 新页面逆向控制
 
 不过，世上没有绝对的事。
 
@@ -448,7 +448,7 @@ document.body.appendChild(frm);
 // 静态呈现
 frm.contentDocument.write('<\script src=http://www.etherdream.com/xss/alert.js><\/script>');
 ```
-[Run](http://jsfiddle.net/zjcqoo/FbZdv/)
+[Run](http://jsfiddle.net/zjcqoo/3bRkL/)
 
 
 这只是随便列举了一种。事实上，HTML5 还新增一个可以直接控制框架页内容的属性：srcdoc。
@@ -461,9 +461,9 @@ frm.contentDocument.write('<\script src=http://www.etherdream.com/xss/alert.js><
 并且还是在同源环境中执行的：
 
 ```html
-<iframe srcdoc="<script src=http://www.etherdream.com/xss/alert.js></script>"></iframe>
+<iframe srcdoc="<script>parent.alert('call from frame')</script>"></iframe>
 ```
-[Run](http://jsfiddle.net/zjcqoo/a25fx/)
+[Run](http://jsfiddle.net/zjcqoo/jXEgL/)
 
 
 搞了半天结果还是能被绕过。
