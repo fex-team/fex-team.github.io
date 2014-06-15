@@ -40,7 +40,7 @@ eval 不就是个函数，为什么不可以重写？
 var raw_fn = window.eval;
 
 window.eval = function(exp) {
-	alert('eval: ' + exp);
+    alert('执行eval: ' + exp);
 	return raw_fn.apply(this, arguments);
 };
 
@@ -54,8 +54,9 @@ console.log(eval('1+1'));
 	eval('var a=1');
 })();
 
-alert(typeof a)
+alert(typeof a);
 ```
+[Run](http://jsfiddle.net/zjcqoo/ESPar/)
 
 按理说应该 undefined 才对，结果却是 number。局部变量都跑到全局上来了。这是什么情况？事实上，eval 并不是真正意义的函数，而是一个关键字！想了解详情[请戳这里](http://www.cnblogs.com/index-html/archive/2011/11/08/ecma262_eval.html)。
 
