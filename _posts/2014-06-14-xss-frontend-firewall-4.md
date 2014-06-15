@@ -50,10 +50,9 @@ console.log(eval('1+1'));
 完全没问题啊。那是因为代码太简单了，下面这个 Demo 就可以看出山寨版 eval 的缺陷：
 
 ```js
-function A() {
+(function() {
 	eval('var a=1');
-}
-A();
+})();
 
 alert(typeof a)
 ```
@@ -92,11 +91,11 @@ console.log( add(1, 2) );
 
 就算不用这类函数，仍有相当多的办法执行字符串，例如：
 
-* 创建脚本，代码 => innerHTML
+* 创建脚本，innerHTML = 代码
 
-* 创建脚本，路径 => data:代码
+* 创建脚本，路径 = data:代码
 
-* 创建框架，路径 => javascript:代码
+* 创建框架，路径 = javascript:代码
 
 * ......
 
@@ -110,28 +109,31 @@ console.log( add(1, 2) );
 
 我们列举下，能执行远程模块的元素：
 
-### 脚本
+* 脚本
 
-* ``<script src="...">``
+```html
+<script src="...">
+```
 
-### 框架
+* 框架
 
-* ``<iframe src="...">``
+```html
+<iframe src="...">
+<frame src="...">
+```
 
-* ``<frame src="...">``
+* 插件（Flash）
 
-### 插件（Flash）
+```html
+<embed src="...">
+<object data="...">
+<object><param name="moive|src" value="...">
+```
 
-* ``<embed src="...">``
-
-* ``<object data="...">``
-
-* ``<object><param name="moive|src" value="...">``
-
-### 插件（其他）
-
-* ``<applet codebase="">``
-
+* 插件（其他）
+```html
+<applet codebase="">
+```
 
 这些元素的路径属性，都应该作为排查的对象。不过，有这么个元素的存在，可能导致我们的路径检测失效，它就是：
 
