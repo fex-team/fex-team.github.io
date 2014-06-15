@@ -232,7 +232,7 @@ HTML5 新增了一个叫 EventSource 的接口。不过其用法与 WebSocket �
 
 ### 创建元素的方法
 
-** 这一节是针对 Chrome 的，因为它不支持原生访问器。 **
+这一节是针对 Chrome 的，因为它不支持原生访问器。
 
 * createElement / createElementNS 无中生有
 
@@ -257,7 +257,7 @@ HTML5 新增了一个叫 EventSource 的接口。不过其用法与 WebSocket �
 
 通过原型链的访问器钩子，可以直接监控特定元素的特定 property，完全不影响他人，所以效率非常高。刚才列举了可以执行远程模块的元素，这些元素的路径属性，都得进行重写访问器。
 
-** 当然 Chrome 可以忽略这节。**
+当然 Chrome 可以忽略这节。
 
 
 ### 修改属性的方法
