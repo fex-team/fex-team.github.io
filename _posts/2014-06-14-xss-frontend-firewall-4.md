@@ -6,13 +6,13 @@ author: zjcqoo
 
 [上一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1)讲解了钩子程序的攻防实战，并实现了一套对框架页的监控方案，将防护作用到所有子页面。
 
-到目前为止，我们防护的深度已经够了，但广度有所欠缺。
+到目前为止，我们防护的深度已经差不多，但广度还有所欠缺。
 
-例如，我们的属性钩子只考虑了 setAttribute，却忽视还有类似的 setAttributeNode。尽管从来不用这方法，但并不意味不能使用。
+例如，我们的属性钩子只考虑了 setAttribute，却忽视还有类似的 setAttributeNode。尽管从来不用这方法，但并不意味人家不能使用。
 
 例如，创建元素通常都是 createElement，事实上 createElementNS 同样也可以。甚至还可以利用现成的元素 cloneNode，也能达到目的。因此，这些都是边缘方法都是值得考虑的。
 
-下面我们对之前讨论过的监控点，进行逐一排查。
+下面我们对之前讨论过的监控点，进行逐一审核。
 
 
 ## 内联事件执行 eval
@@ -112,25 +112,25 @@ console.log( add(1, 2) );
 
 ### 脚本
 
-* <script src="...">
+* ``<script src="...">``
 
 ### 框架
 
-* <iframe src="...">
+* ``<iframe src="...">``
 
-* <frame src="...">
+* ``<frame src="...">``
 
 ### 插件（Flash）
 
-* <embed src="...">
+* ``<embed src="...">``
 
-* <object data="...">
+* ``<object data="...">``
 
-* <object><param name="moive|src" value="...">
+* ``<object><param name="moive|src" value="...">``
 
 ### 插件（其他）
 
-* <applet codebase="">
+* ``<applet codebase="">``
 
 
 这些元素的路径属性，都应该作为排查的对象。不过，有这么个元素的存在，可能导致我们的路径检测失效，它就是：
