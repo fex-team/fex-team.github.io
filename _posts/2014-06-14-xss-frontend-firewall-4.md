@@ -232,6 +232,8 @@ HTML5 新增了一个叫 EventSource 的接口。不过其用法与 WebSocket �
 
 ### 创建元素的方法
 
+** 这一节是针对 Chrome 的，因为它不支持原生访问器。 **
+
 * createElement / createElementNS 无中生有
 
 * cloneNode 克隆现有
@@ -249,6 +251,21 @@ HTML5 新增了一个叫 EventSource 的接口。不过其用法与 WebSocket �
 你可能会有疑问，既然用节点挂载事件都能搞定，为什么还要前面的钩子？其实，在[第二篇文章](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2) 里已经详细讨论了，动态创建的脚本没法被事件拦截，所以才用钩子。
 
 而通过 innerHTML 产生的脚本，是不会执行的！这个大家都听说过吧。
+
+
+### 修改属性的访问器
+
+通过原型链的访问器钩子，可以直接监控特定元素的特定 property，完全不影响他人，所以效率非常高。刚才列举了可以执行远程模块的元素，这些元素的路径属性，都得进行重写访问器。
+
+** 当然 Chrome 可以忽略这节。**
+
+
+### 修改属性的方法
+
+开头也提到了，除了 setAttribute 外，使用 setAttributeNode 也能设置属性，甚至还有 setAttributeNS 版本的。
+
+由于 setAttribute 是个经常调用的方法，因此钩子程序必须做足够的优化，将额外的检测消耗降到最低。
+
 
 
 ## 新页面环境
