@@ -21,9 +21,9 @@
   banner: 5e9e3b
 
 - name: UFinder
-  desc: Web文件管理工具
+  desc: 文件管理工具
   github: ufinder
-  banner: 37abe3
+#  banner: 37abe3
   url: http://fex.baidu.com/ufinder
 
 - name: WebUploader
