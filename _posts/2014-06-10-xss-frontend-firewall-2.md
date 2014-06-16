@@ -226,7 +226,7 @@ document.body.appendChild(el);
 	};
 </script>
 ```
-[run](http://www.etherdream.com/blogs/xss-fw/accessor_overwrite.html)
+[Run](http://www.etherdream.com/blogs/xss-fw/accessor_overwrite.html)
 
 
 如果这套方案可行的话，一切都将迎刃而解。而且我们只监听脚本元素的 src 赋值，其他元素和属性则完全不受影响，因此性能得到极大提升。
@@ -256,7 +256,7 @@ document.body.appendChild(el);
 	};
 </script>
 ```
-[run](http://www.etherdream.com/blogs/xss-fw/accessor_hook.html)
+[Run](http://www.etherdream.com/blogs/xss-fw/accessor_hook.html)
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-2/access_hook.png" style="max-width:840px;" /></div>
 

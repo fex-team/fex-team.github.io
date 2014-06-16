@@ -4,7 +4,7 @@ title: XSS 前端防火墙 —— 天衣无缝的防护
 author: zjcqoo
 ---
 
-[上一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1)讲解了钩子程序的攻防实战，并实现了一套对框架页的监控方案，将防护作用到所有子页面。
+[上一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-3)讲解了钩子程序的攻防实战，并实现了一套对框架页的监控方案，将防护作用到所有子页面。
 
 到目前为止，我们防护的深度已经差不多，但广度还有所欠缺。
 

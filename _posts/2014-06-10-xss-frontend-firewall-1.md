@@ -8,6 +8,7 @@ author: zjcqoo
 
 几乎每篇谈论 XSS 的文章，结尾多少都会提到如何防止，然而大多万变不离其宗。要转义什么，要过滤什么，不要忘了什么之类的。尽管都是众所周知的道理，但 XSS 漏洞十几年来几乎从未中断过，不乏一些大网站也时常爆出，小网站更是家常便饭。
 
+
 ## 预警系统
 
 事实上，至今仍未有一劳永逸的解决方案，要避免它依旧使用最古老的土办法，逐个的过滤。然而人总有疏忽的时候，每当产品迭代更新时，难免会遗漏一些新字段，导致漏洞被引入。
@@ -23,15 +24,16 @@ author: zjcqoo
 
 先来假设一个有 BUG 的后台，没有很好处理用户输入的数据，导致 XSS 能被注入到页面：
 
-{% highlight html %}
+```html
 <img src="{路径}" />
 
 <img src="{路径" onload="alert(/xss/)}" />
-{% endhighlight %}
+```
 
 只转义尖括号，却忘了引号，是 XSS 里最为常见的。攻击者们可以提前关闭属性，并添加一个极易触发的内联事件，跨站脚本就这样被轻易执行了。
 
 那么，我们能否使用前端脚本来捕获，甚至拦截呢？
+
 
 ## 被动扫描
 
@@ -60,7 +62,7 @@ author: zjcqoo
 
 关于事件捕获和冒泡的细节，就不多讨论了。下面的这段代码，或许能激发你对『主动防御』的遐想。
 
-{% highlight html %}
+```html
 <button onclick="console.log('target')">CLICK ME</button>
 <script>
 	document.addEventListener('click', function(e) {
@@ -72,7 +74,7 @@ author: zjcqoo
 		//e.stopImmediatePropagation();
 	}, true);
 </script>
-{% endhighlight %}
+```
 [Run](http://jsfiddle.net/zjcqoo/v9wm5/)
 
 
@@ -84,7 +86,7 @@ author: zjcqoo
 
 上面的 Demo 只是不假思索拦截了所有的事件。如果我们再加一些策略判断，或许就更明朗了：
 
-{% highlight html %}
+```html
 <button onclick="console.log('xss')">CLICK ME</button>
 <script>
 	document.addEventListener('click', function(e) {
@@ -101,7 +103,7 @@ author: zjcqoo
 		}
 	}, true);
 </script>
-{% endhighlight %}
+```
 [Run](http://jsfiddle.net/zjcqoo/r93Sv/)
 
 
@@ -115,7 +117,7 @@ author: zjcqoo
 
 因为我们监听的是 document 对象，浏览器所有内联事件都对应着 document.onxxx 的属性，因此只需运行时遍历一下 document 对象，即可获得所有的事件名。
 
-{% highlight html %}
+```html
 <img src="*" onerror="console.log('xss')" />
 <script>
 	function hookEvent(onevent) {
@@ -141,7 +143,7 @@ author: zjcqoo
 	}
 	console.timeEnd('耗时');
 </script>
-{% endhighlight %}
+```
 [Run](http://jsfiddle.net/zjcqoo/yNH7V/)
 
 
@@ -156,7 +158,7 @@ author: zjcqoo
 
 显然，内联事件代码在运行过程中几乎不可能发生变化。使用内联事件大多为了简单，如果还要在运行时 setAttribute 去改变内联代码，完全就是不可理喻的。因此，我们只需对某个元素的特定事件，扫描一次就可以了。之后根据标志，即可直接跳过。
 
-{% highlight html %}
+```html
 <div style="width:100%; height:100%; position:absolute" onmouseover="console.log('xss')"></div>
 <script>
 	function hookEvent(onevent) {
@@ -190,7 +192,7 @@ author: zjcqoo
 		}
 	}
 </script>
-{% endhighlight %}
+```
 [Run](http://jsfiddle.net/zjcqoo/9chsb/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
@@ -201,20 +203,21 @@ author: zjcqoo
 
 如果复现，说明已有人发现 XSS 并成功注入了，但还没大规模开始利用。程序猿们赶紧第一时间修 BUG 吧，让黑客忙活一阵子后发现漏洞已经修复了：）
 
+
 ## 字符策略的缺陷
 
 但是，光靠代码字符串来判断，还是会有疏漏的。尤其是黑客们知道有这么个玩意存在，会更加小心了。把代码转义用以躲避关键字，并将字符存储在其他地方，以躲过长度检测，即可完全绕过我们的监控了：
 
-{% highlight html %}
+```html
 <img src="*" onerror="window['ev'+'al'](this.align)" align="alert('a mass of code...')">
-{% endhighlight %}
+```
 
 因此，我们不仅需要分析关键字。在回调执行时，还需监控 eval、setTimeout('...') 等这类能解析代码的函数被调用。
 
 不过，通常不会注入太多的代码，而是直接引入一个外部脚本，既简单又靠谱，并且能实时修改攻击内容：
 
-{% highlight html %}
+```html
 <img src="*" onerror="$['get'+'Script'](...)">
-{% endhighlight %}
+```
 
-明天将继续讨论，如何[拦截可疑的外部模块](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)。
+下一篇将讨论，如何[拦截可疑的外部模块](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)。
