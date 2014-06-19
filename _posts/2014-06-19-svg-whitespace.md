@@ -30,6 +30,7 @@ author: zswang
 需要显示的文本如：`'teamㄩㄩㄩmember'` // 为让空格可见，使用了 `ㄩ` 代替。
 
 HTML 会这样写：
+
 ```html
 <svg id="teest" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <text x="10" y="100">team   name</text>
@@ -43,12 +44,15 @@ HTML 会这样写：
 ```html
 <text x="10" y="100">team&nbsp;&nbsp;&nbsp;member</text>
 ```
+
 可以兼容所有浏览器，轻松搞定。
 
 需求是需要动态显示，所以就尝试这样写：
+
 ```javascript
 document.querySelector('svg text').innerHTML = 'team&nbsp;&nbsp;&nbsp;member';
 ```
+
 在 `Chrome`、`Safari` 里都是妥妥的，在 `IE9+` 发现没有效果！
 
 问题来了：<span style="color: red;">怎么在各种高级浏览器中，让 `SVG` 动态正常显示含多个连续空格的文本？</span>
@@ -60,9 +64,11 @@ document.querySelector('svg text').innerHTML = 'team&nbsp;&nbsp;&nbsp;member';
 解决问题当然先看标准，不要知其然而不知其所以然。。。
 
 在标准中找到关于空白字符处理的章节：[White space handling](http://www.w3.org/TR/SVG11/text.html#WhiteSpace)，发现有属性可以原样保留空白字符：`xml:space="preserve"` 尝试写一个静态的看看效果：
+
 ```html
 <text x="10" y="080" xml:space="preserve">FEX   Zswang</text>
 ```
+
 在 Chrome、Safari 正常，`IE9 / 10` 又不支持。
 静态不支持，动态就更不用说了。
 
@@ -71,11 +77,13 @@ document.querySelector('svg text').innerHTML = 'team&nbsp;&nbsp;&nbsp;member';
 搜一下关键词 “SVG text space” 找到一些资料说：在 `Firefox` 和 `IE`  环境 `SVG` 的元素不支持 `innerHTML` 属性。虽然可以通过 `textContent` 属性动态控制文本，但它不能处理 `HTML` 字符转义。
 
 以史为鉴，看看成熟的 `SVG` 图像库有没有处理这类问题，拿 [Raphael](http://raphaeljs.com/) 试试：
+
 ```javascript
 var r = Raphael("holder", 200, 300);
 var t = r.text(10, 80, "FEX   zswang");
 ```
 空白字符还是被合并显示
+
 ```javascript
 var r = Raphael("holder", 200, 300);
 var t = r.text(10, 80, "FEX&nbsp;&nbsp;&nbsp;zswang");
@@ -88,6 +96,7 @@ var t = r.text(10, 80, "FEX&nbsp;&nbsp;&nbsp;zswang");
 `SVG` 静态写法是可以支持 `&nbsp;`，那就利用其他元素的 `innerHTML` 能力，处理 `HTML` 转义，将目标元素替换成新元素。
 
 测试代码如下：
+
 ```javascript
 void function() {
   var html = 'FEX&nbsp;&nbsp;&nbsp;zswang'; // 要替换的文本
@@ -100,6 +109,7 @@ void function() {
   textOld.parentNode.replaceChild(textNew, textOld);
 }();
 ```
+
 经过测试可以正常显示，问题得到解决。实战中可以优雅地封装一下，这里就不详细罗列了。
 
 本文分享的只是项目中一个小插曲，近期我们将有更多 `SVG` 实战技术会拿出来，期待和大家做更多的交流。
