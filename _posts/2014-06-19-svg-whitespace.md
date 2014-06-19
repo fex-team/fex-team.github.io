@@ -33,7 +33,7 @@ HTML 会这样写：
 
 ```html
 <svg id="teest" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <text x="10" y="100">team   name</text>
+    <text x="10" y="100">team   member</text>
 </svg>
 ```
 
@@ -66,7 +66,7 @@ document.querySelector('svg text').innerHTML = 'team&nbsp;&nbsp;&nbsp;member';
 在标准中找到关于空白字符处理的章节：[White space handling](http://www.w3.org/TR/SVG11/text.html#WhiteSpace)，发现有属性可以原样保留空白字符：`xml:space="preserve"` 尝试写一个静态的看看效果：
 
 ```html
-<text x="10" y="080" xml:space="preserve">FEX   Zswang</text>
+<text x="10" y="080" xml:space="preserve">FEX   zswang</text>
 ```
 
 在 Chrome、Safari 正常，`IE9 / 10` 又不支持。
