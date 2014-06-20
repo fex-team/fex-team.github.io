@@ -20,12 +20,6 @@
   github: ueditor
   banner: 5e9e3b
 
-- name: UFinder
-  desc: 文件管理工具
-  github: ufinder
-#  banner: 37abe3
-  url: http://fex.baidu.com/ufinder
-
 - name: WebUploader
   desc: 文件上传组件
   github: webuploader
@@ -37,3 +31,10 @@
   github: gmu
   url: http://gmu.baidu.com
   banner: 658861
+
+- name: UFinder
+  desc: 文件管理工具
+  github: ufinder
+  banner: 37abe3
+  url: http://fex.baidu.com/ufinder
+  
