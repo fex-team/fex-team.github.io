@@ -46,11 +46,11 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 作为测试，我们还是考虑最严密的情况。根据前几篇文章探讨的结果，我们做一个[原型演示](http://www.etherdream.com/FunnyScript/csp/battle/)。
 
-为了能在线下模拟在线产品，同时做了一个 Chrome 插件，将脚本注入到在线页面里：
+为了能线下模拟在线产品，同时做了一个 Chrome 插件，将脚本注入到在线页面里：
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/demo1.jpg" style="max-width:840px;" /></div>
 
-页面中使用到的可执行模块，都在控制台里列出。
+页面中使用到的脚本、插件、网络通信等，都在控制台里监控到，并且根据策略匹配显示不同的颜色。
 
 再来看性能影响。尽管我们开启了所有的监控，但初始化消耗的时间，仍可接受。（测试环境 i3 2.3G 的笔记本 Win7 64位）
 
