@@ -114,6 +114,46 @@ void function() {
 
 本文分享的只是项目中一个小插曲，近期我们将有更多 `SVG` 实战技术会拿出来，期待和大家做更多的交流。
 
+### 其他方案
+
+利用 `dx` 属性，SVG `<text>` 的 `dx` 属性可以是一个数组，可以控制每个字的偏移。标准摘要：
+
+```
+dx = "<list-of-lengths>"
+Shifts in the current text position along the x-axis for the characters within this element or any of its descendants.
+Refer to the description of the ‘dx’ attribute on the ‘tspan’ element.
+```
+
+[来源](http://www.w3.org/TR/SVG11/text.html#TextElementDXAttribute)
+
+```javascript
+function fixTextSpace(elem, spaceWidth) {
+  var content = elem.textContent;
+  var dx = [];
+  var i = -1;
+  var counter = 0;
+  spaceWidth = spaceWidth || 0.5;
+  while(++i < content.length) {
+    if (content[i] == ' ') {
+      // 空格判断
+      counter++;
+    } else {
+      dx.push(counter * 0.5 + 'em');
+      counter = 0;
+    }
+  }
+  elem.textContent = content.replace(' ', ''); // 空格字符排除掉
+  elem.setAttribute('dx', dx.join(','));
+}
+
+fixTextSpace(fex);
+```
+
+[Demo 地址](http://jsbin.com/waheq/1/edit)
+
+>本段由 [techird](http://weibo.com/techird) 补充。
+
 ## 参考资料
 
 * [innerHTML not writing into an svg group Firefox and IE](http://stackoverflow.com/questions/23275112/innerhtml-not-writing-into-an-svg-group-firefox-and-ie/)
+* [SVG 1.1 (Second Edition) Text](http://www.w3.org/TR/SVG11/text.html)
