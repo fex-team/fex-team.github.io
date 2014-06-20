@@ -44,7 +44,7 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 之前考虑了各种情况，需安装各种事件和钩子，感觉很是累赘。不过，那只是理论上防御最严密的情况，现实中基本只作预警，并不需监控全开。
 
-作为测试，我们还是考虑最严密的情况。根据前几篇文章探讨的结果，我们做一个[原型演示](http://www.etherdream.com/FunnyScript/csp.js/battle/)。
+作为测试，我们还是考虑最严密的情况。根据前几篇文章探讨的结果，我们做一个[原型演示](http://www.etherdream.com/FunnyScript/csp/battle/)。
 
 为了能在线下模拟在线产品，同时做了一个 Chrome 插件，将脚本注入到在线页面里：
 
