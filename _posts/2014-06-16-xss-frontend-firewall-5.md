@@ -18,7 +18,7 @@ author: zjcqoo
 
 CSP 目前主流浏览器大多已支持，[IE10、11 支持部分功能](http://caniuse.com/#feat=contentsecuritypolicy)。对于 IE10 之前的，当然就束手无策了。如果使用前端脚本实现，可根据浏览器的实际能力进退。
 
-对于第一篇介绍的 DOM-XSS，只要支持标准事件模型即可开启，因此兼容 IE9 完全可行。
+对于[第一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1/)介绍的 DOM-XSS，只要支持标准事件模型即可开启，因此兼容 IE9 完全可行。
 
 事实上，IE8 就已开放了浏览器 API 接口，并支持原生访问器的操作。所以，IE8 是支持钩子程序，并能拦截可疑元素。
 
@@ -52,7 +52,7 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 页面中使用到的可执行模块，都在控制台里列出。
 
-再来看性能影响。尽管我们开启了所有的监控，但在初始化上消耗的时间，仍然可以接受。（测试环境 i3 2.3G 的笔记本）
+再来看性能影响。尽管我们开启了所有的监控，但初始化消耗的时间，仍可接受。（测试环境 i3 2.3G 的笔记本 Win7 64位）
 
 毕竟，JavaScript 的钩子仅仅是修改变量的字段而已，并非像传统语言那样得修改内存权限等等。
 
@@ -64,7 +64,7 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/demo3.jpg" style="max-width:840px;" /></div>
 
-由于嵌套了框架页，在讨论钩子的时候我们提到，新的页面环境也需防御，因此触发了多次『主动防御』的初始化。
+由于嵌套了框架页，在讨论[钩子](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-3/)的时候我们提到，新的页面环境也需防御，因此触发了多次『主动防御』的初始化。
 
 『静态扫描』的内容，正是被 MutationObserver 捕获的元素。由于页面内容非常多，静态元素也是随着 HTML 文档边下载边展现的。尽管扫描累计时间并不少，但相对整个页面加载的数秒时间，也基本忽略不计了。
 
@@ -79,25 +79,25 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 使用脚本最大的优势就在于，其策略可以灵活配置。规则可以动态产生，匹配也不限模式，通配符或是正则都可以。本来一切都是脚本实现的，何去何从完全也可由脚本决定。
 
-当然，为了更高的适应 CSP 标准，我们尽可能的将策略描述与标准靠近，以便相互使用。
+当然，为了更好的适应 CSP 标准，我们尽可能的将策略规范与标准靠近，以便相互兼容。
 
 因为脚本的灵活性，我们不仅支持通配符来匹配站点名，正则表达式也是完全支持。同时为了方便测试，调试控制台里可以动态修改策略。
 
-我们找个存在 XSS 的页面，立即来试验下：
+下面，我们找个存在 XSS 的页面，立即来试验下：
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/xss1.jpg" style="max-width:840px;" /></div>
 
-刷新，果然执行：
+刷新，XSS 执行了：
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/xss2.jpg" style="max-width:840px;" /></div>
 
-虽然是非同源执行的，但好歹也算个 XSS。
+虽然是非同源执行的，但好歹也算个 XSS。我们就那它来测试。
 
 接着开启我们的防火墙，为可执行模块配上白名单策略。只允许当前站点的资源，其他的则拦截，并且发送报警日志：
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/config.png" style="max-width:840px;" /></div>
 
-刷新验证下：
+出现奇迹的时刻到来了。。。
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/result.png" style="max-width:840px;" /></div>
 
@@ -119,4 +119,4 @@ XSS —— Cross Site Script，只要是页面里的站外的脚本，都可以�
 
 ## 后记
 
-事实上，最终的方案已上线一周。尽管只抽样了极少量的用户，但仍传回上百万的预警日志。
+事实上，最终的方案已上线。尽管只抽样了极少量的用户，但仍传回上百万的预警日志。几乎所有都是广告劫持和浏览器插件，即使存在漏洞暂时也无法得知，我们不可能一个个去分析复现。因此，我们还需一套高效的复现系统，来帮助我们实现自动化的复现工作。
