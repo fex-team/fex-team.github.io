@@ -6,7 +6,7 @@
 
 - name: KityFormula
   desc: 公式展现和编辑
-  github: kityformula
+  github: kityformula-editor
   banner: 3b2953
 
 - name: KityMinder
