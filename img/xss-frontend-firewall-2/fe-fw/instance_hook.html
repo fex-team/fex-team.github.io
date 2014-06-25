@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<button id="btn">创建脚本</button>
+	<script>
+		btn.onclick = function() {
+			var el = document.createElement('script');
+
+			el.__defineSetter__('src', function(url) {
+				console.log('设置路径:', url);
+			});
+
+			el.src = 'http://www.etherdream.com/xss/out.js?dynamic';
+			document.body.appendChild(el);
+		};
+	</script>
+</body>
+</html>

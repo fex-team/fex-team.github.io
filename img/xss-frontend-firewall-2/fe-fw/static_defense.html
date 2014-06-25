@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<script>
+		var observer = new MutationObserver(function(mutations) {
+			mutations.forEach(function(mutation) {
+
+				var nodes = mutation.addedNodes;
+				for (var i = 0; i < nodes.length; i++) {
+					var node = nodes[i];
+
+					if (/xss/.test(node.src) || /xss/.test(node.innerHTML)) {
+						node.parentNode.removeChild(node);
+						console.log('拦截可疑模块:', node);
+					}
+				}
+			});
+		});
+
+		observer.observe(document, {
+			subtree: true,
+			childList: true
+		});
+	</script>
+
+	<script>console.warn('site-in xss 1');</script>
+	<script src="http://www.etherdream.com/xss/out.js"></script>
+	<script>console.warn('site-in xss 2');</script>
+
+	<button id="btn">创建脚本</button>
+	<script>
+		btn.onclick = function() {
+			var el = document.createElement('script');
+			el.src = 'http://www.etherdream.com/x\ss/out.js?dynamic';
+			document.body.appendChild(el);
+		};
+	</script>
+</body>
+</html>
