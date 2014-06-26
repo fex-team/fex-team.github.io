@@ -91,7 +91,7 @@ CSP 是通过 HTTP 头部实现的，策略配置储存在 Content-Security-Poli
 
 <div class="post-img"><img src="/img/xss-frontend-firewall-5/xss2.jpg" style="max-width:840px;" /></div>
 
-虽然是非同源执行的，但好歹也算个 XSS。我们就那它来测试。
+虽然是非同源执行的，但好歹也算个 XSS。我们就拿它来测试。
 
 接着开启我们的防火墙，为可执行模块配上白名单策略。只允许当前站点的资源，其他的则拦截，并且发送报警日志：
 
