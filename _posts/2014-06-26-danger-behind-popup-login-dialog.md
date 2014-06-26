@@ -7,21 +7,23 @@ author: zjcqoo
 
 ## 传统的登录框
 
-在之前的文章[流量劫持危害性](http://fex.baidu.com/blog/2014/04/traffic-hijack-2/)详细讲解了 HTTP 的高危性，以至于重要的页面都使用 HTTPS 协议，来保障流量在途中的安全。
+在之前的文章[流量劫持危害](http://fex.baidu.com/blog/2014/04/traffic-hijack-2/)详细讲解了 HTTP 的高危性，以至于重要的操作都使用 HTTPS 协议，来保障流量在途中的安全。
 
 <div class="post-img"><img src="/img/danger-behind-popup-login-dialog/traditional-login.png" style="max-width:840px;" /></div>
 
-这是最经典的登录模式。尽管主页面并没有部署 HTTPS，但登录时跳转到一个安全页面来完成，所以整个过程仍是比较安全的 —— 至少在账号登录这个页面是安全的。
+这是最经典的登录模式。尽管主页面并没有开启 HTTPS，但登录时会跳转到一个安全页面来进行，所以整个过程仍是比较安全的 —— 至少在登录页面是安全的。
 
-对于这种安全页面的登录模式，黑客硬要下手仍是有办法的。在之前的文章里也列举了两种最常用的方法：拦截 HTTPS 向下转型、伪造证书、跳转钓鱼网站。
+对于这种安全页面的登录模式，黑客硬要下手仍是有办法的。在之前的文章里也列举了几种最常用的方法：拦截 HTTPS 向下转型、伪造证书、跳转钓鱼网站。
 
 <div class="post-img"><img src="/img/danger-behind-popup-login-dialog/traditional-danger.png" style="max-width:840px;" /></div>
 
-其中转型 HTTPS 的手段最为先进，甚至对于安全意识较强的用户也时有疏忽。
+其中转型 HTTPS 的手段最为先进，甚至一些安全意识较强的用户也时有疏忽。
 
 然而，用户的意识和知识总是在不断提升的。尤其在如今各种网上交易的时代，安全常识广泛普及，用户在账号登录时会格外留心，就像过马路时那样变得小心翼翼。
 
 久而久之，用户的火眼金睛一扫地址栏即可识别破绽。
+
+<div class="post-img"><img src="/img/danger-behind-popup-login-dialog/hehe.png" style="max-width:840px;" /></div>
 
 因此，这种传统的登录模式，仍具备一定的安全性，至少能给用户提供识别真假的机会。
 
