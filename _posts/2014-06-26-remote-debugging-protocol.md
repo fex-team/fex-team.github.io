@@ -1,12 +1,12 @@
 ---
 layout: post
-title: chrome远程调试协议分析与实战
+title: Chrome 远程调试协议分析与实战
 author: the1sky
 ---
 
 ## 背景
 
-某一天，A君想获取 Chrome 页面中的性能数据，诸如时间、白屏和首屏等，因为需要和竞品进行对比分析，无法注入代码，该怎么办？
+某一天，A 君想获取 Chrome 页面中的性能数据，诸如时间、白屏和首屏等，因为需要和竞品进行对比分析，无法注入代码，该怎么办？
 
 此时，你也许能想到*开发者工具(DevTools)*，也许知道*Timeline(包含浏览器完整的行为数据)*，该怎么自动获取到 Timeline 数据呢？
 
@@ -40,7 +40,7 @@ else if ("page" in WebInspector.queryParamsObject) {
 
 每个 command 包含 request 和 response 两部分，request 部分指定所要进行的操作以及操作说要的参数，response 部分表明操作状态，成功或失败。
 
-command 和 event 中可能涉及到非基本数据类型，在 domain 中被归为Type，比如：'frameId': `<FrameId>`，其中 FrameId 为非基本数据类型
+command 和 event 中可能涉及到非基本数据类型，在 domain 中被归为 Type，比如：'frameId': `<FrameId>`，其中 FrameId 为非基本数据类型
 
 至此，不难理解：
 
@@ -50,13 +50,13 @@ domain = command + event + type
 
 ## 远程调试协议应用场景
 
-* 针对移动端的远程调试，因为移动平台一般都不会提供足够大的区域来显示DevTools，必须要在手机浏览器之外进行远程调试,具体配置请参看[这篇文章](https://developer.chrome.com/devtools/docs/remote-debugging#remote)
+* 针对移动端的远程调试，因为移动平台一般都不会提供足够大的区域来显示 DevTools，必须要在手机浏览器之外进行远程调试,具体配置请参看[这篇文章](https://developer.chrome.com/devtools/docs/remote-debugging#remote)
 
-* 获取js的[Runtime](https://developer.chrome.com/devtools/docs/protocol/tot/runtime)数据，常用的如[window.performance](http://www.w3.org/TR/navigation-timing/)和window.chrome.loadTimes()等
+* 获取 JS 的[Runtime](https://developer.chrome.com/devtools/docs/protocol/tot/runtime)数据，常用的如[window.performance](http://www.w3.org/TR/navigation-timing/)和 `window.chrome.loadTimes()` 等
 
 * 获取[Network](https://developer.chrome.com/devtools/docs/protocol/tot/network)及[Timeline](https://developer.chrome.com/devtools/docs/protocol/tot/timeline)数据，进行自动性能分析
 
-* 与强大的[phantomjs](http://phantomjs.org/)合体，phantomjs暂时只支持基于remote debugging protocol的调试，希望能支持Network及Timeline数据的获取，phantomjs的最新技术请[点击进入](https://groups.google.com/forum/#!forum/phantomjs)
+* 与强大的[phantomjs](http://phantomjs.org/)合体，phantomjs 暂时只支持基于 remote debugging protocol 的调试，希望能支持 Network 及 Timeline 数据的获取，phantomjs 的最新技术请[点击进入](https://groups.google.com/forum/#!forum/phantomjs)
 
 ## 远程调试协议结构
 
@@ -123,7 +123,7 @@ Frame type 为包含 id，loaderId，mimeType，name，parentId，securityOrigin
 
 此协议用于 server 端和 client 端的通讯，所以需要先建立 server 端，然后 client 端通过协议连接到 server 端
 
-### 开启server服务
+### 开启 server 服务
 
 打开浏览器的远程调试支持，并指定端口号：
 
@@ -167,7 +167,7 @@ http://localhost:9222/json
 }
 ```
 
-websocket server端地址：
+websocket server 端地址：
 
 ```
 webSocketDebuggerUrl: "ws://localhost:9222/devtools/page/A12A4B08-E5AF-4A84-A86A-A1C86E731D7F"
@@ -189,7 +189,7 @@ var ws = new WebSocket('ws://localhost:9222/devtools/page/A12A4B08-E5AF-4A84-A86
 
 >注意：每次只能进行一次 WebSocket 连接，之后的连接都会失败
 
-### 调用Command
+### 调用 Command
 
 WebSocket 通道建立完成之后，通过如下方式进行调用：
 
@@ -212,9 +212,9 @@ ws.send('{"id": 1, "method": "Page.navigate", "params": {"url": "http://www.baid
 
 #### nodejs ws
 
-非常轻量级的 WebSocket库，支持 client 端和 server 端，使用方式基本同 HTML5 的标准 WebSocket 库
+非常轻量级的 WebSocket 库，支持 client 端和 server 端，使用方式基本同 HTML5 的标准 WebSocket 库
 
-client示例：
+client 示例：
 
 ```javascript
 var WebSocket = require('ws');
@@ -229,7 +229,7 @@ ws.on('message', function(data, flags) {
 ```
 
 
-server示例：
+server 示例：
 
 ```javascript
 var WebSocketServer = require('ws').Server
@@ -242,11 +242,11 @@ var WebSocketServer = require('ws').Server
     });
 ```
 
-请移步：[官方ws库](https://github.com/einaros/ws)
+请移步：[官方 ws 库](https://github.com/einaros/ws)
 
 #### nodejs chrome-remote-interface
 
-一个实现了remote debugging protocol的nodejs库，其中 WebSocket使用的是 ws 库，使用方便，推荐使用
+一个实现了 remote debugging protocol 的 nodejs 库，其中 WebSocket 使用的是 ws 库，使用方便，推荐使用
 
 示例代码：
 
@@ -265,12 +265,12 @@ Chrome(function (chrome) {
 });
 ```
 
-请移步：[官方chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface)
+请移步：[官方 chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface)
 
 
 #### nodejs socket.io
 
-功能强大，支持集成 WebSocket 服务器端和 Express3 框架与一身，使用简单，有兴趣者请移步：[官方socket.io](http://socket.io/)
+功能强大，支持集成 WebSocket 服务器端和 Express3 框架与一身，使用简单，有兴趣者请移步：[官方 socket.io](http://socket.io/)
 
 ## WebSocket
 
@@ -283,7 +283,7 @@ Chrome(function (chrome) {
     1、交互时的 header 只有约 2Bytes
     2、服务端可以主动推送数据给客户端
 
-header格式（握手时）：
+header 格式（握手时）：
 
 request:
 
@@ -308,7 +308,7 @@ Sec-WebSocket-Accept:HyjfMUpyYgWgkYLn/vDDf6rZLuk=
 Upgrade:WebSocket
 ```
 
-header格式（交互时）：
+header 格式（交互时）：
 
 request:
 
@@ -327,7 +327,7 @@ Date: Fri, 25 Jan 2013 16:49:29 GMT
 Content-Length: 51
 ```
 
-### 查看websocket连接
+### 查看 WebSocket 连接
 
 #### DevTools
 
@@ -346,7 +346,6 @@ Content-Length: 51
 
 ### 更多参考
 
-* WebSocket的原理及使用方法可参考阮一峰的新作：[《JavaScript 标准参考教程（alpha）》](http://javascript.ruanyifeng.com/bom/websocket.html)
+* WebSocket 的原理及使用方法可参考阮一峰的新作：[《JavaScript 标准参考教程（alpha）》](http://javascript.ruanyifeng.com/bom/websocket.html)
 * 数据格式相关内容可参考：[Real-time data exchange in HTML5 with WebSockets](http://www.adobe.com/devnet/html5/articles/real-time-data-exchange-in-html5-with-websockets.html)
 * 具体的协议格式参考：[官方](http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76)
-
