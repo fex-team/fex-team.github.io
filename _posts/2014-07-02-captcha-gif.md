@@ -6,9 +6,9 @@ author: zswang
 
 ## 示例
 
-![Alt text](http://divio.qiniudn.com/FpH0UaanwAuSxhEJtv4kdN4_xHdl)
+![示例1](/img/captcha-gif/201407-captcha.gif)
 
-![Alt text](http://divio.qiniudn.com/FgIs5mVCCvo6Kry4DboWTm2RlJn4)
+![示例2](/img/captcha-gif/zswang-captcha.gif)
 
 ## 背景
 
@@ -48,7 +48,7 @@ void function() {
 ```
 
 运行效果不够理想，以文字的左下角为圆心旋转，不符合预期
-![Alt text](http://divio.qiniudn.com/FoyOL5PLBIqjuLklvNp2d-bt6G7C)
+![示例1](/img/captcha-gif/demo1.jpg)
 
 本打算做一下偏移的计算，一想到要计算文本中心位置貌似还挺复杂。
 还是看看其他人怎么做的，通过关键词 `canvas rotate text center` 找到一点线索。
@@ -78,7 +78,8 @@ void function() {
   // ...
 }()
 ```
-![Alt text](http://divio.qiniudn.com/FkZ9CXyMQWqXK0vZuV2tbwPOlGU3)
+
+![示例2](/img/captcha-gif/demo2.jpg)
 
 按我的习惯就这种“常用”功能就封装成函数
 
