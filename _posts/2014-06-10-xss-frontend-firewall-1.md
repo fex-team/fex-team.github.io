@@ -162,34 +162,43 @@ author: zjcqoo
 <div style="width:100%; height:100%; position:absolute" onmouseover="console.log('xss')"></div>
 <script>
 	function hookEvent(onevent) {
-		document.addEventListener(onevent.substr(2), function(e) {
-			var element = e.target;
-
-			// 跳过已扫描的事件
-			var flags = element['_flag'];
-			if (!flags) {
-				flags = element['_flag'] = {};
-			}
-			if (typeof flags[onevent] != 'undefined') {
-				return;
-			}
-			flags[onevent] = true;
-
-			if (element.nodeType != Node.ELEMENT_NODE) {
-				return;
-			}
-			var code = element.getAttribute(onevent);
-			if (code && /xss/.test(code)) {
-				element[onevent] = null;
-				console.log('拦截可疑代码:', code);
-			}
-		}, true);
+	    
+	    function scanElement(element) {
+	        
+	        // 跳过已扫描的事件
+	        var flags = element['_flag'];
+	        if (!flags) {
+	            flags = element['_flag'] = {};
+	        }
+	        if (typeof flags[onevent] != 'undefined') {
+	            return;
+	        }
+	        flags[onevent] = true;
+	        
+	        if (element.nodeType != Node.ELEMENT_NODE) {
+	            return;
+	        }
+	        
+	        var code = element.getAttribute(onevent);
+	        if (code && /xss/.test(code)) {
+	            element[onevent] = null;
+	            console.log('拦截可疑代码:', code);
+	        }
+	        
+	        // 扫描上级元素
+	        scanElement(element.parentNode);
+	    }
+	    
+	    
+	    document.addEventListener(onevent.substr(2), function(e) {
+	        scanElement(e.target);
+	    }, true);
 	}
 
 	for (var k in document) {
-		if (/^on/.test(k)) {
-			hookEvent(k);
-		}
+	    if (/^on/.test(k)) {
+	        hookEvent(k);
+	    }
 	}
 </script>
 ```
