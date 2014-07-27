@@ -3,7 +3,6 @@ layout: post
 title: XSS 前端防火墙 —— 无懈可击的钩子
 author: zjcqoo
 ---
-
 昨天尝试了一系列的[可疑模块拦截](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)试验，尽管最终的方案还存在着一些兼容性问题，但大体思路已经明确了：
 
 * 静态模块：使用 MutationObserver 扫描。
@@ -20,7 +19,7 @@ author: zjcqoo
 
 ## JavaScript 钩子小试
 
-要实现一个最基本的钩子程序非常简单，昨天已演示过了。现在我们再来给 setAttribute 接口实现一个钩子：
+要实现一个最基本的钩子程序非常简单，之前已演示过了。现在我们再来给 setAttribute 接口实现一个钩子：
 
 ```js
 // 保存上级接口
@@ -99,7 +98,7 @@ document.body.setAttribute('a', 1);
 ```
 [Run](http://jsfiddle.net/zjcqoo/P55dj/)
 
-<div class="post-img"><img src="/img/xss-frontend-firewall-3/func_leak.png" style="max-width:840px;" /></div>
+![](http://fex.baidu.com/img/xss-frontend-firewall-3/func_leak.png)
 
 这也太贱了吧，不带这样玩的。可人家就能用这招绕过你，又怎样。
 
@@ -171,7 +170,7 @@ for(var k in Element.prototype) {
 ```
 [Run](http://jsfiddle.net/zjcqoo/Vc8pn/)
 
-<div class="post-img"><img src="/img/xss-frontend-firewall-3/find_raw.png" style="max-width:840px;" /></div>
+![](http://fex.baidu.com/img/xss-frontend-firewall-3/img/xss-frontend-firewall-3/find_raw.png)
 
 取了个这么拉风的名字，就象是黑暗中的萤火虫，瞬间给揪出来了。你会说，为什么不取个再隐蔽点的名字，甚至还可以冒充良民，把从来不用的方法给替换了。
 
@@ -388,7 +387,7 @@ document.body.appendChild(el);
 ```
 [Run](http://jsfiddle.net/zjcqoo/MGBVP/)
 
-<div class="post-img"><img src="/img/xss-frontend-firewall-3/frame_nest.png" style="max-width:840px;" /></div>
+![](http://fex.baidu.com/img/xss-frontend-firewall-3/img/xss-frontend-firewall-3/frame_nest.png)
 
 前面说了，每个页面环境是独立的，主页面是捕捉不到子页面里的事件的。所以，框架页里创建元素，我们完全不知道。
 
@@ -483,6 +482,4 @@ frm.contentDocument.write('<\script src=http://www.etherdream.com/xss/alert.js><
 
 而且，API 防护钩子并不全面，只是例举了几个常用的。
 
-[下一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-4)，我们将详细的整理需要防护的监控点，实现全方位的防护。
-
-
+[下一篇](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-4/)，我们将详细的整理需要防护的监控点，实现全方位的防护。

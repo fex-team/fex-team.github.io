@@ -4,9 +4,12 @@ title: XSS 前端防火墙 —— 内联事件拦截
 author: zjcqoo
 ---
 
-关于 XSS 怎样形成、如何注入、能做什么、如何防范，前人已有无数的探讨，这里就不再累述了。本文介绍的则是另一种预防思路。
+
+关于 XSS 怎样形成、如何注入、能做什么、如何防范，前人已有无数的探讨，这里就不再累述了。
 
 几乎每篇谈论 XSS 的文章，结尾多少都会提到如何防止，然而大多万变不离其宗。要转义什么，要过滤什么，不要忘了什么之类的。尽管都是众所周知的道理，但 XSS 漏洞十几年来几乎从未中断过，不乏一些大网站也时常爆出，小网站更是家常便饭。
+
+而本文介绍的则是另一种预防思路——通过前端监控脚本，让每一个用户都参与漏洞的上报。
 
 
 ## 预警系统
@@ -20,7 +23,7 @@ author: zjcqoo
 不过，和传统的系统漏洞不同，XSS 最终是在用户页面中触发的。因此，我们不妨尝试使用前端的思路，进行在线防御。
 
 
-## DOM 储存型 XSS
+## XSS 内联事件
 
 先来假设一个有 BUG 的后台，没有很好处理用户输入的数据，导致 XSS 能被注入到页面：
 
@@ -58,7 +61,7 @@ author: zjcqoo
 
 即便没仔细阅读官方文档，但凡做过网页的都知道，有个 addEventListener 的接口，并取代了曾经一个古老的叫 attachEvent 的东西。尽管只是新增了一个参数而已，但正是这个差别成了人们津津乐道的话题。每当面试谈到事件时，总少不了考察下这个新参数的用途。尽管在日常开发中很少用到它。
 
-<div class="post-img"><img src="http://www.blueidea.com/articleimg/2007/11/5079/01.png" style="max-width:840px;" /></div>
+![](http://www.blueidea.com/articleimg/2007/11/5079/01.png)
 
 关于事件捕获和冒泡的细节，就不多讨论了。下面的这段代码，或许能激发你对『主动防御』的遐想。
 
@@ -75,7 +78,7 @@ author: zjcqoo
 	}, true);
 </script>
 ```
-[Run](http://jsfiddle.net/zjcqoo/v9wm5/)
+[Run](http://jsfiddle.net/FsJgb/)
 
 
 尽管按钮上直接绑了一个内联的事件，但事件模型并不买账，仍然得按标准的流程走一遍。capture，target，bubble，模型就是那样固执。
@@ -104,7 +107,7 @@ author: zjcqoo
 	}, true);
 </script>
 ```
-[Run](http://jsfiddle.net/zjcqoo/r93Sv/)
+[Run](http://jsfiddle.net/7HLhG/)
 
 
 我们先在捕获阶段扫描内联事件字符，若是出现了『xss』这个关键字，后续的事件就被拦截了；换成其他字符，仍然继续执行。同理，我们还可以判断字符长度是否过多，以及更详细的黑白名单正则。
@@ -118,7 +121,7 @@ author: zjcqoo
 因为我们监听的是 document 对象，浏览器所有内联事件都对应着 document.onxxx 的属性，因此只需运行时遍历一下 document 对象，即可获得所有的事件名。
 
 ```html
-<img src="*" onerror="console.log('xss')" />
+<img src="*" onerror="alert('xss')" />
 <script>
 	function hookEvent(onevent) {
 		document.addEventListener(onevent.substr(2), function(e) {
@@ -129,7 +132,7 @@ author: zjcqoo
 			var code = element.getAttribute(onevent);
 			if (code && /xss/.test(code)) {
 				element[onevent] = null;
-				console.log('拦截可疑事件:', code);
+				alert('拦截可疑事件:', code);
 			}
 		}, true);
 	}
@@ -144,7 +147,7 @@ author: zjcqoo
 	console.timeEnd('耗时');
 </script>
 ```
-[Run](http://jsfiddle.net/zjcqoo/yNH7V/)
+[Run](http://jsfiddle.net/XZGC4/)
 
 
 现在，无论页面中哪个元素触发哪个内联事件，都能预先被我们捕获，并根据策略可进可退了。
@@ -158,10 +161,12 @@ author: zjcqoo
 
 显然，内联事件代码在运行过程中几乎不可能发生变化。使用内联事件大多为了简单，如果还要在运行时 setAttribute 去改变内联代码，完全就是不可理喻的。因此，我们只需对某个元素的特定事件，扫描一次就可以了。之后根据标志，即可直接跳过。
 
+事实上，标志位也没必要使用事件名，用一个不重复的序列号即可。
+
 ```html
-<div style="width:100%; height:100%; position:absolute" onmouseover="console.log('xss')"></div>
+<div style="width:100%; height:100%; position:absolute; background: red" onmousemove="alert('xss')"></div>
 <script>
-	function hookEvent(onevent) {
+	function hookEvent(onevent, eventHash) {
 	    
 	    function scanElement(element) {
 	        
@@ -170,10 +175,10 @@ author: zjcqoo
 	        if (!flags) {
 	            flags = element['_flag'] = {};
 	        }
-	        if (typeof flags[onevent] != 'undefined') {
+	        if (typeof flags[eventHash] != 'undefined') {
 	            return;
 	        }
-	        flags[onevent] = true;
+	        flags[eventHash] = true;
 	        
 	        if (element.nodeType != Node.ELEMENT_NODE) {
 	            return;
@@ -182,7 +187,7 @@ author: zjcqoo
 	        var code = element.getAttribute(onevent);
 	        if (code && /xss/.test(code)) {
 	            element[onevent] = null;
-	            console.log('拦截可疑代码:', code);
+	            alert('拦截可疑代码:', code);
 	        }
 	        
 	        // 扫描上级元素
@@ -195,14 +200,15 @@ author: zjcqoo
 	    }, true);
 	}
 
+	var i = 0;
 	for (var k in document) {
 	    if (/^on/.test(k)) {
-	        hookEvent(k);
+	        hookEvent(k, i++);
 	    }
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/zjcqoo/PHL4j/)
+[Run](http://jsfiddle.net/geLC2/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
@@ -229,4 +235,4 @@ author: zjcqoo
 <img src="*" onerror="$['get'+'Script'](...)">
 ```
 
-下一篇将讨论，如何[拦截可疑的外部模块](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)。
+下一篇将讨论，如何[拦截可疑的外部模块](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2)。
