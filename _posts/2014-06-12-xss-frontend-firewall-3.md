@@ -31,7 +31,7 @@ Element.prototype.setAttribute = function(name, value) {
 	// 额外细节实现
 	if (this.tagName == 'SCRIPT' && /^src$/i.test(name)) {
 		if (/xss/.test(value)) {
-			if (confirm('试图加载可疑模块：\n\n' + url + '\n\n是否拦截？')) {
+			if (confirm('试图加载可疑模块：\n\n' + value + '\n\n是否拦截？')) {
 				return;
 			}
 		}
