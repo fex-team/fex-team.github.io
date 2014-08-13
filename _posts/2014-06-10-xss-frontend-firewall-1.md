@@ -161,50 +161,57 @@ author: zjcqoo
 
 显然，内联事件代码在运行过程中几乎不可能发生变化。使用内联事件大多为了简单，如果还要在运行时 setAttribute 去改变内联代码，完全就是不可理喻的。因此，我们只需对某个元素的特定事件，扫描一次就可以了。之后根据标志，即可直接跳过。
 
-事实上，标志位也没必要使用事件名，用一个不重复的序列号即可。
+事实上，标志位也没必要使用事件名，使用 <元素ID，事件ID> 计算出一个唯一 Hash 值即可。
 
 ```html
 <div style="width:100%; height:100%; position:absolute; background: red" onmousemove="alert('xss')"></div>
 <script>
-	function hookEvent(onevent, eventHash) {
-	    
-	    function scanElement(element) {
-	        
-	        // 跳过已扫描的事件
-	        var flags = element['_flag'];
-	        if (!flags) {
-	            flags = element['_flag'] = {};
-	        }
-	        if (typeof flags[eventHash] != 'undefined') {
-	            return;
-	        }
-	        flags[eventHash] = true;
-	        
-	        if (element.nodeType != Node.ELEMENT_NODE) {
-	            return;
-	        }
-	        
-	        var code = element.getAttribute(onevent);
-	        if (code && /xss/.test(code)) {
-	            element[onevent] = null;
-	            alert('拦截可疑代码:', code);
-	        }
-	        
-	        // 扫描上级元素
-	        scanElement(element.parentNode);
-	    }
-	    
-	    
-	    document.addEventListener(onevent.substr(2), function(e) {
-	        scanElement(e.target);
-	    }, true);
+	/**
+	 * update: 2014/08/13
+	 */
+	var mCheckMap = {};
+	var mCheckID = 0;
+
+	function hookEvent(eventName, eventID) {
+
+		function scanElement(el) {
+
+			// 跳过已扫描的事件
+			var flag = el['_s_'];
+			if (!flag) {
+				flag = el['_s_'] = ++mCheckID;
+			}
+
+			var hash = flag << 7 + eventID;
+			if (mCheckMap[hash]) {
+				return;
+			}
+			mCheckMap[hash] = true;
+
+			if (el.nodeType != Node.ELEMENT_NODE) {
+				return;
+			}
+
+			var code = el.getAttribute(eventName);
+			if (code && /xss/.test(code)) {
+				el[eventName] = null;
+				alert('拦截可疑代码:', code);
+			}
+
+			// 扫描上级元素
+			scanElement(el.parentNode);
+		}
+
+		document.addEventListener(eventName.substr(2), function(e) {
+			scanElement(e.target);
+		}, true);
 	}
 
 	var i = 0;
 	for (var k in document) {
-	    if (/^on/.test(k)) {
-	        hookEvent(k, i++);
-	    }
+		if (/^on/.test(k)) {
+			hookEvent(k, i++);
+		}
 	}
 </script>
 ```
