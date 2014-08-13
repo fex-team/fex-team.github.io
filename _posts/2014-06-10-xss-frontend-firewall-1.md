@@ -176,6 +176,7 @@ author: zjcqoo
 
 对于这类情况，我们就得单独对待，做其特殊处理：
 
+```html
 <a href="javascript:alert(/xss/)">Click Me</a>
 <script>
 	var R_SCHEME = /^\s*javascript:(.*)/i;
@@ -209,7 +210,7 @@ author: zjcqoo
 	    }
 	}
 </script>
-
+```
 [Run](http://jsfiddle.net/m3m139ck/)
 
 
