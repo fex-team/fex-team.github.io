@@ -207,9 +207,12 @@ author: zjcqoo
 		}, true);
 	}
 
+	//
+	// OSX 10.9+ 无法枚举出 onxxx 事件名
+	//
 	var i = 0;
 	for (var k in document) {
-		if (/^on/.test(k)) {
+		if (/^on./.test(k)) {
 			hookEvent(k, i++);
 		}
 	}
