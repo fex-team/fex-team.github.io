@@ -215,7 +215,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/geLC2/)
+[Run](http://jsfiddle.net/hzovrc3c/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
