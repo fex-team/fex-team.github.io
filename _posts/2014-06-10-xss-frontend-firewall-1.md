@@ -123,15 +123,15 @@ author: zjcqoo
 ```html
 <img src="*" onerror="alert('xss')" />
 <script>
-	function hookEvent(onevent) {
-		document.addEventListener(onevent.substr(2), function(e) {
+	function hookEvent(eventName) {
+		document.addEventListener(eventName.substr(2), function(e) {
 			var element = e.target;
 			if (element.nodeType != Node.ELEMENT_NODE) {
 				return;
 			}
-			var code = element.getAttribute(onevent);
+			var code = element.getAttribute(eventName);
 			if (code && /xss/.test(code)) {
-				element[onevent] = null;
+				element[eventName] = null;
 				alert('拦截可疑事件:', code);
 			}
 		}, true);
@@ -139,7 +139,7 @@ author: zjcqoo
 
 	console.time('耗时');
 	for (var k in document) {
-		if (/^on/.test(k)) {
+		if (/^on./.test(k)) {
 			//console.log('监控:', k);
 			hookEvent(k);
 		}
@@ -153,6 +153,66 @@ author: zjcqoo
 现在，无论页面中哪个元素触发哪个内联事件，都能预先被我们捕获，并根据策略可进可退了。
 
 
+## 其他内联形式
+
+现实中，除了以 on 开头这种内联外，还存在一些特殊形式。最常见的就是 javascript: 的属性，在一些历史遗留的非标准浏览器中，饱受诟病。
+
+例如曾经的 IE 浏览器就支持这样的 URL：
+
+```html
+<img src="javascript:alert('hello')">
+<img src='vbscript:msgbox "hello"'>
+```
+
+这种画蛇添足的设计，曾导致过去无数的论坛深受其害。
+
+如今这种毫无意义的过度设计，早已被标准抛弃。除了某些小众浏览器或许仍有遗留，可以[参考这里](http://heideri.ch/jso/)。
+
+不过，有一个使用特别广泛，以至如今标准仍有保留，那就是：
+
+```html
+<a href="javascript:">
+```
+
+对于这类情况，我们就得单独对待，做其特殊处理：
+
+<a href="javascript:alert(/xss/)">Click Me</a>
+<script>
+	var R_SCHEME = /^\s*javascript:(.*)/i;
+
+	function hookEvent(eventName) {
+	    var isClick = (eventName == 'onclick');
+
+	    document.addEventListener(eventName.substr(2), function(e) {
+	        var el = e.target;
+	        if (el.nodeType != Node.ELEMENT_NODE) {
+	            return;
+	        }
+
+	        // ...
+
+	        // 扫描 <a href="javascript:"> 的脚本
+	        if (isClick && el.tagName == 'A') {
+	            var m = el.href.match(R_SCHEME);
+	            var code = m && m[1];
+	            if (code && /xss/.test(code)) {
+	                el.href = 'javascript:void(0)';
+	                alert('拦截可疑事件:', code);
+	            }
+	        }
+	    }, true);
+	}
+
+	for (var k in document) {
+	    if (/^on./.test(k)) {
+	        hookEvent(k);
+	    }
+	}
+</script>
+
+[Run](http://jsfiddle.net/m3m139ck/)
+
+
 ## 性能优化
 
 或许有些事件没有必要捕获，例如视频播放、音量调节等，但就算全都捕捉也耗不了多少时间，基本都在 1ms 左右。
@@ -163,23 +223,27 @@ author: zjcqoo
 
 事实上，标志位也没必要使用事件名，使用 <元素ID，事件ID> 计算出一个唯一 Hash 值即可。
 
+
 ```html
-<div style="width:100%; height:100%; position:absolute; background: red" onmousemove="alert('xss')"></div>
+<div style="width:100%; height:100%; position:absolute; background: red" onmousemove="alert('xss')">
+	<a href="javascript:alert(/xss/)">Click Me</a>
+</div>
 <script>
-	/**
-	 * update: 2014/08/13
-	 */
+	var R_SCHEME = /^\s*javascript:(.*)/i;
 	var mCheckMap = {};
 	var mCheckID = 0;
 
+
 	function hookEvent(eventName, eventID) {
+
+    	var isClick = (eventName == 'onclick');
 
 		function scanElement(el) {
 
 			// 跳过已扫描的事件
-			var flag = el['_s_'];
+			var flag = el['_k'];
 			if (!flag) {
-				flag = el['_s_'] = ++mCheckID;
+				flag = el['_k'] = ++mCheckID;
 			}
 
 			var hash = (flag << 7) + eventID;
@@ -195,8 +259,18 @@ author: zjcqoo
 			var code = el.getAttribute(eventName);
 			if (code && /xss/.test(code)) {
 				el[eventName] = null;
-				alert('拦截可疑代码:', code);
+				alert('拦截可疑事件:', code);
 			}
+
+	        // 扫描 <a href="javascript:"> 的脚本
+	        if (isClick && el.tagName == 'A') {
+	            var m = el.href.match(R_SCHEME);
+	            var code = m && m[1];
+	            if (code && /xss/.test(code)) {
+	                el.href = 'javascript:void(0)';
+	                alert('拦截可疑事件:', code);
+	            }
+	        }
 
 			// 扫描上级元素
 			scanElement(el.parentNode);
@@ -218,9 +292,11 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/0y25z1my/)
+[Run](http://jsfiddle.net/ptwd6f78/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
+
+与之前不同的是，这里我们增加了一个叫 scanElement 的函数，并递归扫描上级元素。之所以这么做，还是因为和冒泡有关。即使当前元素不存在内联事件，但并不代表上级容器也没有。因此，我们将元素自身及所有上级 DOM 都扫描一遍，以防万一。由于扫描过的会有标记，所以只有第一次触发时才会进行。
 
 到此，在 XSS 内联事件这块，我们已实现主动防御。
 
