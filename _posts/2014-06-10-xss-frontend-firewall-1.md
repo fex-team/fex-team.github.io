@@ -247,7 +247,7 @@ author: zjcqoo
 				flag = el['_k'] = ++mCheckID;
 			}
 
-			var hash = (flag << 7) + eventID;
+			var hash = (flag << 8) | eventID;
 			if (mCheckMap[hash]) {
 				return;
 			}
@@ -290,7 +290,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/wfjeg50c/)
+[Run](http://jsfiddle.net/bkqLc8zb/)
 
 这样，之后的扫描仅仅是检测一下哈希表中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
