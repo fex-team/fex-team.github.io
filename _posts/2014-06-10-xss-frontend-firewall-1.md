@@ -9,7 +9,7 @@ author: zjcqoo
 
 几乎每篇谈论 XSS 的文章，结尾多少都会提到如何防止，然而大多万变不离其宗。要转义什么，要过滤什么，不要忘了什么之类的。尽管都是众所周知的道理，但 XSS 漏洞十几年来几乎从未中断过，不乏一些大网站也时常爆出，小网站更是家常便饭。
 
-而本文介绍的则是另一种预防思路——通过前端监控脚本，让每一个用户都参与漏洞的上报。
+而本文介绍的则是另一种预防思路 —— 通过前端监控脚本，让每一个用户都参与漏洞的监控和上报。
 
 
 ## 预警系统
@@ -179,7 +179,7 @@ author: zjcqoo
 ```html
 <a href="javascript:alert(/xss/)">Click Me</a>
 <script>
-	var R_SCHEME = /^\s*javascript:(.*)/i;
+	var R_SCHEME = /^javascript:(.*)/;
 
 	function hookEvent(eventName) {
 	    var isClick = (eventName == 'onclick');
@@ -230,7 +230,7 @@ author: zjcqoo
 	<a href="javascript:alert(/xss/)">Click Me</a>
 </div>
 <script>
-	var R_SCHEME = /^\s*javascript:(.*)/i;
+	var R_SCHEME = /^javascript:(.*)/;
 	var mCheckMap = {};
 	var mCheckID = 0;
 
