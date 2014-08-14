@@ -102,12 +102,12 @@ author: zjcqoo
 
 		if (/xss/.test(code)) {
 			e.stopImmediatePropagation();
-			alert('拦截可疑事件:', code);
+			alert('拦截可疑事件: ' + code);
 		}
 	}, true);
 </script>
 ```
-[Run](http://jsfiddle.net/ukytgqzq/)
+[Run](http://jsfiddle.net/v8osb9pk/)
 
 
 我们先在捕获阶段扫描内联事件字符，若是出现了『xss』这个关键字，后续的事件就被拦截了；换成其他字符，仍然继续执行。同理，我们还可以判断字符长度是否过多，以及更详细的黑白名单正则。
