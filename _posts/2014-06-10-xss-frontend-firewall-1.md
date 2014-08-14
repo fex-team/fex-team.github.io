@@ -182,36 +182,36 @@ author: zjcqoo
 	var R_SCHEME = /^javascript:(.*)/;
 
 	function hookEvent(eventName) {
-	    var isClick = (eventName == 'onclick');
+		var isClick = (eventName == 'onclick');
 
-	    document.addEventListener(eventName.substr(2), function(e) {
-	        var el = e.target;
-	        if (el.nodeType != Node.ELEMENT_NODE) {
-	            return;
-	        }
+		document.addEventListener(eventName.substr(2), function(e) {
+			var el = e.target;
+			if (el.nodeType != Node.ELEMENT_NODE) {
+				return;
+			}
 
-	        // ...
+			// ...
 
-	        // 扫描 <a href="javascript:"> 的脚本
-	        if (isClick && el.tagName == 'A') {
-	            var m = el.href.match(R_SCHEME);
-	            var code = m && m[1];
-	            if (code && /xss/.test(code)) {
-	                el.href = 'javascript:void(0)';
-	                alert('拦截可疑事件:', code);
-	            }
-	        }
-	    }, true);
+			// 扫描 <a href="javascript:"> 的脚本
+			if (isClick && el.tagName == 'A') {
+				var m = el.href.match(R_SCHEME);
+				var code = m && m[1];
+				if (code && /xss/.test(code)) {
+					el.href = 'javascript:void(0)';
+					alert('拦截可疑事件:', code);
+				}
+			}
+		}, true);
 	}
 
 	for (var k in document) {
-	    if (/^on./.test(k)) {
-	        hookEvent(k);
-	    }
+		if (/^on./.test(k)) {
+			hookEvent(k);
+		}
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/m3m139ck/)
+[Run](http://jsfiddle.net/spx4Lxdk/)
 
 
 ## 性能优化
@@ -237,7 +237,7 @@ author: zjcqoo
 
 	function hookEvent(eventName, eventID) {
 
-    	var isClick = (eventName == 'onclick');
+		var isClick = (eventName == 'onclick');
 
 		function scanElement(el) {
 
@@ -263,15 +263,15 @@ author: zjcqoo
 				alert('拦截可疑事件:', code);
 			}
 
-	        // 扫描 <a href="javascript:"> 的脚本
-	        if (isClick && el.tagName == 'A') {
-	            var m = el.href.match(R_SCHEME);
-	            var code = m && m[1];
-	            if (code && /xss/.test(code)) {
-	                el.href = 'javascript:void(0)';
-	                alert('拦截可疑事件:', code);
-	            }
-	        }
+			// 扫描 <a href="javascript:"> 的脚本
+			if (isClick && el.tagName == 'A') {
+				var m = el.href.match(R_SCHEME);
+				var code = m && m[1];
+				if (code && /xss/.test(code)) {
+					el.href = 'javascript:void(0)';
+					alert('拦截可疑事件:', code);
+				}
+			}
 
 			// 扫描上级元素
 			scanElement(el.parentNode);
@@ -293,7 +293,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/ptwd6f78/)
+[Run](http://jsfiddle.net/wfjeg50c/)
 
 这样，之后的扫描仅仅是判断一下目标对象中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
