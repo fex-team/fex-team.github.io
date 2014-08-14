@@ -118,7 +118,7 @@ author: zjcqoo
 
 当然，目前这只能防护 onclick，而现实中有太多的内联事件。鼠标、键盘、触屏、网络状态等等，不同浏览器支持的事件也不一样，甚至还有私有事件，难道都要事先逐一列出并且都捕获吗？是的，可以都捕获，但不必事先都列出来。
 
-因为我们监听的是 document 对象，浏览器所有内联事件都对应着 document.onxxx 的属性，因此只需运行时遍历一下 document 对象，即可获得所有的事件名。
+因为我们监听的是 document 对象，浏览器所有内联事件都对应着 document.on*** 这类属性，因此只需运行时遍历一下 document 对象，即可获得所有的事件名。
 
 ```html
 <img src="*" onerror="alert('xss')" />
@@ -150,7 +150,7 @@ author: zjcqoo
 [Run](http://jsfiddle.net/XZGC4/)
 
 
-现在，无论页面中哪个元素触发哪个内联事件，都能预先被我们捕获，并根据策略可进可退了。
+现在，无论页面中哪个元素触发哪个内联事件，都能预先被我们捕获，并根据策略可进可退了。（不过在 OSX 10.9+ 的 Safari 浏览器无法枚举出 on 开头的属性，可能是个 BUG 吧~）
 
 
 ## 其他内联形式
@@ -282,9 +282,6 @@ author: zjcqoo
 		}, true);
 	}
 
-	//
-	// OSX 10.9+ 无法枚举出 onxxx 事件名
-	//
 	var i = 0;
 	for (var k in document) {
 		if (/^on./.test(k)) {
