@@ -222,8 +222,6 @@ author: zjcqoo
 
 显然，内联事件代码在运行过程中几乎不可能发生变化。使用内联事件大多为了简单，如果还要在运行时 setAttribute 去改变内联代码，完全就是不可理喻的。因此，我们只需对某个元素的特定事件，扫描一次就可以了。之后根据标志，即可直接跳过。
 
-事实上，标志位也没必要使用事件名，使用 <元素ID，事件ID> 计算出一个唯一 Hash 值即可。
-
 
 ```html
 <div style="width:100%; height:100%; position:absolute; background: red" onmousemove="alert('xss')">
@@ -231,8 +229,6 @@ author: zjcqoo
 </div>
 <script>
 	var R_SCHEME = /^javascript:(.*)/;
-	var mCheckMap = {};
-	var mCheckID = 0;
 
 
 	function hookEvent(eventName, eventID) {
@@ -242,31 +238,31 @@ author: zjcqoo
 		function scanElement(el) {
 
 			// 跳过已扫描的事件
-			var flag = el['_k'];
-			if (!flag) {
-				flag = el['_k'] = ++mCheckID;
-			}
-
-			var hash = (flag << 8) | eventID;
-			if (mCheckMap[hash]) {
+			var flag = el[eventID];
+			if (flag) {
 				return;
 			}
-			mCheckMap[hash] = true;
+			el[eventID] = true;
 
+			// 非元素节点
 			if (el.nodeType != Node.ELEMENT_NODE) {
 				return;
 			}
 
-			var code = el.getAttribute(eventName);
-			if (code && /xss/.test(code)) {
-				el[eventName] = null;
-				alert('拦截可疑事件:', code);
+			// 扫描内联代码
+			var code;
+			if (el[eventName]) {
+				code = el.getAttribute(eventName);
+				if (code && /xss/.test(code)) {
+					el[eventName] = null;
+					alert('拦截可疑事件:', code);
+				}
 			}
 
 			// 扫描 <a href="javascript:"> 的脚本
 			if (isClick && el.tagName == 'A') {
 				var m = el.href.match(R_SCHEME);
-				var code = m && m[1];
+				code = m && m[1];
 				if (code && /xss/.test(code)) {
 					el.href = 'javascript:void(0)';
 					alert('拦截可疑事件:', code);
@@ -290,9 +286,9 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/bkqLc8zb/)
+[Run](http://jsfiddle.net/o6d95a9s/)
 
-这样，之后的扫描仅仅是检测一下哈希表中的标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
+这样，之后的扫描仅仅是检测一下，目标对象是否存在标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
 与之前不同的是，这里我们增加了一个叫 scanElement 的函数，并递归扫描上级元素。之所以这么做，还是因为和冒泡有关。即使当前元素不存在内联事件，但并不代表上级容器也没有。因此，我们将元素自身及所有上级 DOM 都扫描一遍，以防万一。由于扫描过的会有标记，所以并不会增加性能消耗。
 
