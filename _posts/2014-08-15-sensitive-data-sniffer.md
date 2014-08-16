@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HttpOnly 泄露嗅探器
+title: HttpOnly 隐私嗅探器
 author: zjcqoo
 ---
 
@@ -12,16 +12,16 @@ author: zjcqoo
 
 前者很好解决，把在线的服务器都扫描一遍，修复一个就少一个。而后者就不那么容易了，产品经常更新迭代，谁也不能保证每次升级之后是否出现新的隐患。
 
-既然找不到一劳永逸的方案，不如就用最简单最原始的土办法 —— 暴力穷举：把网页一个个抓回来，看看里面是否出现隐私数据了。当然你会说这也太挫太低效了，不过事实上这种方案还是有意义的，至少能很快的找出一些明显的问题。而且在此基础上，我们再做优化和改进，让它变得更完善。
+既然找不到一劳永逸的方案，不如就用最简单最原始的土办法 —— 暴力穷举：把网页一个个抓回来，看看里面是否出现隐私数据了。当然你会说这也太挫太低效了，不过事实上这种方案还是有意义的，至少能很快的找出一些明显的问题。而且在此基础上，我们还可以再做优化和改进，让它变得更完善。
 
-说到抓网页，大家总是先想到蜘蛛。虽然全自动化的流程是我们的终究目标，但就目前遐想阶段，开始搞这么复杂的一套系统，还是不合适。而且如今遍地都是 AJAX 的交互网页，蜘蛛也很难爬到一些动态数据。
+说到抓网页，大家总是先想到蜘蛛。虽然全自动化的流程是我们的终究目标，但在目前遐想阶段，就开始搞这么复杂的一套系统，还是不合适。而且如今遍地都是 AJAX 的交互网页，蜘蛛也很难爬到一些动态数据。
 
 所以，不如先从最简单的开始：Chrome 插件。在我们平时看网页的时候，同时对页面进行分析。这样既节省了蜘蛛服务，而且还充分利用了真实的用户行为，覆盖到更多的动态交互内容。
 
 
 ## 0x01 获取隐私数据
 
-使用 Chrome 插件实现基本功能，是非常简单的。只要对每个页面的 HTML 字符检测下，是否存在带 HttpOnly 的 cookie 值就行了。
+使用 Chrome 插件来实现这个基本功能，是非常简单的。只要得到了带 HttpOnly 的 cookie 值，在浏览页面时扫描下 HTML 字符就可以了。
 
 首先得获取浏览器的 cookie 数据库，得到我们想要的。例如，我们获取所有百度域下的 cookie：
 
@@ -31,13 +31,13 @@ chrome.cookies.getAll({domain: 'baidu.com'}, function(cookies) {
 });
 ```
 
-稍加过滤即可获得 HttpOnly 的数据。
-
 ![](/img/sensitive-data-sniffer/chrome_cookie.png)
+
+稍加过滤即可获得 HttpOnly 的数据。
 
 详细 API 可以[参考这里](https://developer.chrome.com/extensions/cookies)。关于 Chrome 插件开发这里就不详细介绍了。
 
-值得注意的是，有些网站的 HttpOnly 值很简单，例如 1、true、ok 之类的；或者很常见，例如用户名、日期数字等，这些都得排除掉，否则会有太多的匹配。
+值得注意的是，有些 cookie 值很简单，例如 1、true、ok 之类的；或者很常见，例如用户名、日期数字等，这些都得排除掉，否则会有太多的匹配。
 
 
 ## 0x02 扫描页面内容
@@ -75,7 +75,7 @@ chrome.extension.onRequest.addListener(function(message, sender, sendResponse) {
 
 ![](/img/sensitive-data-sniffer/demo.png)
 
-打开源文件一搜，果然看见了传说中带 HttpOnly 的 BDUSDD：
+打开源文件一搜，果然看见了传说中带 HttpOnly 的 BDUSS：
 
 ![](/img/sensitive-data-sniffer/demo_src_1.png)
 
@@ -89,10 +89,10 @@ chrome.extension.onRequest.addListener(function(message, sender, sendResponse) {
 
 。。。
 
-不过十分钟后，发现的越来越少了。我们是不是漏了些什么东西？
+不过十分钟后，出现的越来越少了。我们是不是漏了些什么东西？
 
 
-## 0x03 扩展扫描范围
+## 0x03 扩大扫描范围
 
 显然，如果只扫描 HTML 内容，这和爬虫有什么区别？
 
