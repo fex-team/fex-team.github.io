@@ -98,7 +98,9 @@ chrome.extension.onRequest.addListener(function(message, sender, sendResponse) {
 
 我们之所以做成浏览器插件，就是为了能得到真实的用户行为操作。要是放弃了那些通过交互产生的动态数据，意义就大幅下降了。
 
-对于 AJAX 这类请求，我们有很简单的解决方案：钩子程序。
+遗憾的是，Chrome API 里并没有获得网络数据的接口。即使是 HTML，我们也是通过 `<html>` 元素的 outerHTML 勉强得到的。
+
+不过对于 AJAX 这类请求，我们有很简单的解决方案：钩子程序。
 
 我们向页面中里注入一段脚本，覆盖原生 XMLHttpRequest 的方法，即可监控动态的数据了：
 
@@ -161,6 +163,8 @@ function scanAddress() {
 ![](/img/sensitive-data-sniffer/demo2_src.png)
 
 多的不计其数。。。
+
+由于 Chrome 插件以及 DOM 规范的限制，另一种常见的内容仍无法轻易获取，那就是 JSONP 脚本。外链脚本的 text 内容是无法获得的，而且使用 JSONP 大多是为了跨域，因此通过 xhr 去代理自然不可行。如果使用纯前端解决这个问题的话，可以尝试分析 JSONP 的回调接口，并勾住它。
 
 
 ## 0x04 更智能的分析
