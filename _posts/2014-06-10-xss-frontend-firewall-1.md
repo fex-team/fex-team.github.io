@@ -225,18 +225,26 @@ author: zjcqoo
 	<a href="javascript:alert(/xss/)">Click Me</a>
 </div>
 <script>
-	function hookEvent(eventName, eventID) {
+	var mCheckMap = {};
+	var mCheckID = 0;
 
+	function hookEvent(eventName, eventID) {
 		var isClick = (eventName == 'onclick');
 
 		function scanElement(el) {
-
+			//
 			// 跳过已扫描的事件
-			var flag = el[eventID];
-			if (flag) {
+			//
+			var flag = el['_k'];
+			if (!flag) {
+				flag = el['_k'] = ++mCheckID;
+			}
+
+			var hash = (flag << 8) | eventID;
+			if (hash in mCheckMap) {
 				return;
 			}
-			el[eventID] = true;
+			mCheckMap[hash] = true;
 
 			// 非元素节点
 			if (el.nodeType != Node.ELEMENT_NODE) {
@@ -279,7 +287,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/vjs5w88h/)
+[Run](http://jsfiddle.net/k3btyy2s/)
 
 这样，之后的扫描仅仅是检测一下，目标对象是否存在标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
