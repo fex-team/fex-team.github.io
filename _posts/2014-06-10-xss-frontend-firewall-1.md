@@ -179,8 +179,6 @@ author: zjcqoo
 ```html
 <a href="javascript:alert(/xss/)">Click Me</a>
 <script>
-	var R_SCHEME = /^javascript:(.*)/;
-
 	function hookEvent(eventName) {
 		var isClick = (eventName == 'onclick');
 
@@ -193,10 +191,9 @@ author: zjcqoo
 			// ...
 
 			// 扫描 <a href="javascript:"> 的脚本
-			if (isClick && el.tagName == 'A') {
-				var m = el.href.match(R_SCHEME);
-				var code = m && m[1];
-				if (code && /xss/.test(code)) {
+			if (isClick && el.tagName == 'A' && el.protocol == 'javascript:') {
+				var code = el.href.substr(11);
+				if (/xss/.test(code)) {
 					el.href = 'javascript:void(0)';
 					alert('拦截可疑事件:', code);
 				}
@@ -211,7 +208,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/spx4Lxdk/)
+[Run](http://jsfiddle.net/amxzozvs/)
 
 
 ## 性能优化
@@ -228,9 +225,6 @@ author: zjcqoo
 	<a href="javascript:alert(/xss/)">Click Me</a>
 </div>
 <script>
-	var R_SCHEME = /^javascript:(.*)/;
-
-
 	function hookEvent(eventName, eventID) {
 
 		var isClick = (eventName == 'onclick');
@@ -255,17 +249,16 @@ author: zjcqoo
 				code = el.getAttribute(eventName);
 				if (code && /xss/.test(code)) {
 					el[eventName] = null;
-					alert('拦截可疑事件:', code);
+					alert('拦截可疑事件:' + code);
 				}
 			}
 
 			// 扫描 <a href="javascript:"> 的脚本
-			if (isClick && el.tagName == 'A') {
-				var m = el.href.match(R_SCHEME);
-				code = m && m[1];
-				if (code && /xss/.test(code)) {
+			if (isClick && el.tagName == 'A' && el.protocol == 'javascript:') {
+				var code = el.href.substr(11);
+				if (/xss/.test(code)) {
 					el.href = 'javascript:void(0)';
-					alert('拦截可疑事件:', code);
+					alert('拦截可疑事件:' + code);
 				}
 			}
 
@@ -286,7 +279,7 @@ author: zjcqoo
 	}
 </script>
 ```
-[Run](http://jsfiddle.net/o6d95a9s/)
+[Run](http://jsfiddle.net/vjs5w88h/)
 
 这样，之后的扫描仅仅是检测一下，目标对象是否存在标记而已。即使疯狂晃动鼠标，CPU 使用率也都忽略不计了。
 
