@@ -145,6 +145,13 @@ content 参数：
 
 相关链接：[非响应式设计的viewport](http://www.qianduan.net/non-responsive-design-viewport.html)
 
+适配iPhone 6 和iPhone 6plus 则需要写：
+
+    <meta name="viewport" content="width=375">
+    <meta name="viewport" content="width=414">
+
+大部分4.7~5寸的安卓设备的viewport宽设为360px，iPhone 6上却是375px，大部分5.5寸安卓机器（比如说三星Note）的viewport宽为400，iPhone 6 plus 上是414px。
+
 ### ios 设备
 添加到主屏后的标题（iOS 6 新增）
 
@@ -194,6 +201,11 @@ Retina iPad，144x144 像素，可以没有，但推荐有
 
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png" /> <!-- Retina iPad，144x144 像素，可以没有，但推荐有 -->
 
+IOS 图标大小在iPhone 6 plus上是180×180，iPhone 6 是120x120。
+适配iPhone 6 plus，则需要在<head>中加上这段
+
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="retinahd_icon.png">
+
 
 ###iOS 启动画面
 
@@ -236,6 +248,11 @@ iPhone 5/iPod Touch 5 竖屏 640x1136 (Retina)
 
     <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL"> <!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
 
+iPhone 6对应的图片大小是750×1294，iPhone 6 Plus 对应的是1242×2148 。
+
+    <link rel="apple-touch-startup-image" href="launch6.png" media="(device-width: 375px)">
+
+    <link rel="apple-touch-startup-image" href="launch6plus.png" media="(device-width: 414px)">
 
 ### Windows 8
 Windows 8 磁贴颜色
@@ -307,9 +324,10 @@ Windows 8 磁贴图标
 
 参考文章：
 
-- <https://github.com/yisibl/blog/issues/1>
-- <https://gist.github.com/paddingme/6182708733917ae36331>
-- <http://amazeui.org/css/>
-- <http://www.douban.com/note/170560091/>
+- [常用的 HTML 头部标签](https://github.com/yisibl/blog/issues/1)
+- [html5_header](https://gist.github.com/paddingme/6182708733917ae36331)
+- [amazeui css](http://amazeui.org/css/)
+- [DOCTYPE](http://www.douban.com/note/170560091/)
+- [WEB工程师和设计师必学的10个IOS 8新鲜改变](http://www.uisdc.com/ios8-ten-new-feature)
 
 
