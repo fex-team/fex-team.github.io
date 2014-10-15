@@ -47,13 +47,13 @@ document.write('<a href="' + protocol + '://www.alipay.com/">Login</a>');
 
 分块传输的道理大家都明白。对于较大的数据，一口气是无法传完的。客户端依次收到各个数据块，最终才能合并成一个完整的网页。
 
-![](http://images.cnitblog.com/blog/273626/201410/141701402944539.png)
+![](/img/ssl-frontend-hijack/data_chunk.png)
 
 由于每次收到的都是残缺的碎片，这给链接替换带来很大的麻烦。加上不少页面并非标准的 UTF-8 编码，因此更是难上加难。
 
 为了能顺利进行，中间人通常先收集数据，等到页面接收完整，才开始替换。
 
-![](http://images.cnitblog.com/blog/273626/201410/141702016231956.png)
+![](/img/ssl-frontend-hijack/wait_full_data.png)
 
 如果把数据比作水流，这个代理就像大坝一样，拦截了源源不断往下流的水，直到蓄满了才开始释放。因此，下游的人们需忍受很久的干旱，才能等到水源。
 
@@ -75,7 +75,7 @@ document.write('<a href="' + protocol + '://www.alipay.com/">Login</a>');
 
 首先，要派一名间谍到页面里。这是非常容易办到的：
 
-![](http://images.cnitblog.com/blog/273626/201410/141702116546920.png)
+![](/img/ssl-frontend-hijack/inject_xss.png)
 
 不像超链接遍布在页面各处，脚本插入到头部即可运行了。所以我们根本不用整个页面的数据，只需改造下第一个 chunk 就可以，后续的数据仍然交给系统转发。
 
@@ -121,7 +121,7 @@ DOM-3-Event 是个非常有意义的事件模型。之前用它来实现『[内�
 
 因此，我们只需捕获点击事件，修改超链接地址就可以了。至于是跳转、弹窗、还是被屏蔽，根本不用我们关心。
 
-![](http://images.cnitblog.com/blog/273626/201410/141702370912824.png)
+![](/img/ssl-frontend-hijack/https_link_hook.png)
 
 就那么简单。因为我们是在用户点下去之后才修改，所以浏览器状态栏里，显示的仍是原先 https ！
 
@@ -182,7 +182,7 @@ window.open = function(url) {
 
 解决了框架页的问题，我们就能成功劫持支付宝登录页的账号框 IFrame 了！
 
-![](http://images.cnitblog.com/blog/273626/201410/141659126548101.jpg)
+![](/img/ssl-frontend-hijack/alipay_login_hijack.jpg)
 
 ----
 
@@ -203,7 +203,7 @@ window.open = function(url) {
 
 当代理发现请求的 URL 里有这个记号，它自然就懂了，直接走 https！
 
-![](http://images.cnitblog.com/blog/273626/201410/141703356549382.png)
+![](/img/ssl-frontend-hijack/downgrade_url_symbol.png)
 
 由于把页面从 https 降级到了 http，因此相关请求的``referer``也变成 http 版了。所以，中间人应尽量把 referer 也修正回来，避免被服务器察觉。
 
@@ -234,7 +234,7 @@ HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些�
 
 当我们的中间人一旦发现有重定向到 HTTPS 网站的，当然不希望用户走这条不受自己控制的路。于是拦下这个重定向，然后以 HTTPS 的方式，获取重定向后的内容，最后再以 HTTP 明文的方式，回复给用户。
 
-![](http://images.cnitblog.com/blog/273626/201410/142126157943861.png)
+![](/img/ssl-frontend-hijack/https_redir_hijack.png)
 
 因此在用户看来，始终处于 HTTP 网站上。
 
@@ -258,7 +258,7 @@ HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些�
 
 事实上，无论是前端劫持还是后端过滤，仍有不少的网站无法成功。例如京东的登录：
 
-![](http://images.cnitblog.com/blog/273626/201410/141704124668995.png)
+![](/img/ssl-frontend-hijack/jd_login.png)
 
 它是通过脚本跳转到 HTTPS 地址的。而浏览器的 ``location`` 是个及其特殊的属性，它[可以被屏蔽](http://stackoverflow.com/questions/22290948/stopping-script-from-changing-document-location-href)，但无法被重写。因此我们难以控制页面的跳转情况。
 
@@ -292,7 +292,7 @@ HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些�
 
 想测试其实非常简单，只需配置浏览器代理，即可模拟 HTTP 的劫持：
 
-![](http://images.cnitblog.com/blog/273626/201410/141704504829010.png)
+![](/img/ssl-frontend-hijack/hijack_test.png)
 
 不嫌麻烦的话，也可以在 Linux 内核的系统上测试，转发 80 到本机即可。原理都是一样的。
 
@@ -300,17 +300,17 @@ HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些�
 
 得益于前端脚本的优势，我们把鼠标放到登录超链接上，状态栏显示的仍是原始 URL：
 
-![](http://images.cnitblog.com/blog/273626/201410/141705022945318.jpg)
+![](/img/ssl-frontend-hijack/demo1.jpg)
 
 在我们点击的瞬间，暗藏页面中的 XSS 钩子触发了，成功把我们带到中间人虚拟的 HTTP 登录页面里。
 
 当然，由于 URL 参数很多，地址栏里的那个记号看不到了。
 
-![](http://images.cnitblog.com/blog/273626/201410/141705117632412.jpg)
+![](/img/ssl-frontend-hijack/demo2.jpg)
 
 庆幸的是，淘宝的登录页面未进行地址判断，被降低后的页面仍然能登录成功！
 
-![](http://images.cnitblog.com/blog/273626/201410/141705197012303.jpg)
+![](/img/ssl-frontend-hijack/demo3.jpg)
 
 
 当然之前也说了，并非所有的页面都能劫持成功。
