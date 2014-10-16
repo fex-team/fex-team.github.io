@@ -101,7 +101,7 @@ document.write('<a href="' + protocol + '://www.alipay.com/">Login</a>');
 
 ```js
 document.addEventListener('click', function(e) {
-	// ...
+    // ...
 }, true);
 ```
 
@@ -131,7 +131,7 @@ DOM-3-Event 是个非常有意义的事件模型。之前用它来实现『[内�
 
 ```js
 var url = link.href;                                // 保存原始地址
-link.href = url.replace('https://', 'http://');	    // 暂时换成 http 的
+link.href = url.replace('https://', 'http://');     // 暂时换成 http 的
 setTimeout(function() {
     link.href = url;                                // 新页面打开后，还原回来
 }, 0);
@@ -162,9 +162,9 @@ setTimeout(function() {
 ```js
 var raw_open = window.open;
 window.open = function(url) {
-	// FIX: null, case insensitive
-	arguments[0] = url.replace('https://', 'http://');
-	raw_open.apply(this, arguments);
+    // FIX: null, case insensitive
+    arguments[0] = url.replace('https://', 'http://');
+    raw_open.apply(this, arguments);
 }
 ```
 
@@ -218,11 +218,10 @@ window.open = function(url) {
 
 ```
 if url has symbol
-	history.replaceState(..., clear_symbol(url) )
+    history.replaceState(..., clear_symbol(url) )
 ```
 
 HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些强悍的功能，如今都可以在前端利用起来了。
-
 
 ### 重定向劫持
 
