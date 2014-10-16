@@ -305,9 +305,9 @@ iPhone 5/iPod Touch 5 竖屏 640x1136 (Retina)
 iPhone 6对应的图片大小是750×1294，iPhone 6 Plus 对应的是1242×2148 。
 
 ```html
-    <link rel="apple-touch-startup-image" href="launch6.png" media="(device-width: 375px)">
+<link rel="apple-touch-startup-image" href="launch6.png" media="(device-width: 375px)">
 
-    <link rel="apple-touch-startup-image" href="launch6plus.png" media="(device-width: 414px)">
+<link rel="apple-touch-startup-image" href="launch6plus.png" media="(device-width: 414px)">
 ```
 
 ### Windows 8
