@@ -143,7 +143,7 @@ setTimeout(function() {
 
 ## 更多拦截
 
-除了通过超链接，还有其实方式访问页面，我们应尽可能多的进行监控。例如：
+除了通过超链接，还有其他方式访问页面，我们应尽可能多的进行监控。例如：
 
 * 表单提交
 * window.open 弹窗
@@ -176,9 +176,17 @@ window.open = function(url) {
 
 但框架和之前的那些不同，因为它是自动加载的，而且也没有一个即将加载的事件。如果等到框架加载完了再去处理，说不定已经开始报跨域错误了。而且还会白白的浪费一次加载流量。
 
-因此，我们必须让框架一出现，还没来让它得及加载，就立即替换掉地址。
+因此，我们必须让框架一出现，就立即替换掉地址。
 
 这在过去是个很棘手的问题，然而 HTML5 时代给我们带来了新希望 —— ``MutationEvent``。用它即可实时监控页面元素，之前也[尝试过一些试验](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)。
+
+当然，即使 MutationEvent，偶尔也会有延时遗漏。为了能彻底避免出现 https 框架页，我们继续使用 HTML5 带来的一项新技术 —— [Content Security Policy](http://www.w3.org/TR/CSP/)，由于它是浏览器原生支持的，因此实施的非常彻底。
+
+在我们的代理返回头中，加上如下 HTTP 头部，即可完美拦截 https 框架页了：
+
+```
+Content-Security-Policy: default-src * data 'unsafe-inline' 'unsafe-eval'; frame-src http://*
+```
 
 解决了框架页的问题，我们就能成功劫持支付宝登录页的账号框 IFrame 了！
 
@@ -307,7 +315,7 @@ HTML5 为我们提供了修改地址栏的能力，并且无需刷新。这些�
 
 ![](/img/ssl-frontend-hijack/demo2.jpg)
 
-庆幸的是，淘宝的登录页面未进行地址判断，被降低后的页面仍然能登录成功！
+庆幸的是，淘宝的登录页面未进行地址判断，被降级后的页面仍然能登录成功！
 
 ![](/img/ssl-frontend-hijack/demo3.jpg)
 
