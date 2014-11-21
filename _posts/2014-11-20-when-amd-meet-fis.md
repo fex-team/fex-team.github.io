@@ -9,7 +9,7 @@ shortname: when-amd-meet-fis
 
 也许说 [AMD](https://github.com/amdjs/amdjs-api) 不知道这是啥，但说 [requirejs](http://requirejs.org/) 就都懂了。没错 [AMD](https://github.com/amdjs/amdjs-api) 就是一种模块定义的接口（API），用来定义模块间依赖以及自身暴露什么内容的一种规范。而 [requirejs](http://requirejs.org/) 就是一种实现了这些接口的 AMD Loader。
 
-说到 [requirejs](http://requirejs.org/) 相信不少人都已经对它爱不释手了，它真是给我们的开发带来了不少遍历性。只要我们每个模块都简单的遵守这个规则
+说到 [requirejs](http://requirejs.org/) 相信不少人都已经对它爱不释手了，它真是给我们的开发带来了不少便利性。只要我们每个模块都简单的遵守这个规则
 
 ```javascript
 // app.js
