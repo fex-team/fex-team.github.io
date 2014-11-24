@@ -266,7 +266,7 @@ fis.config.set('pack', {
 
 原来 mod.js 方案是读取 `map.json` 生成一个异步所需的 resoucemap 表，通过 require.resourceMap({xxx}) 设置给 mod.js，这样在异步加载模块的时候，可以对应找到实际的存放地址。
 
-amd 方案里面也是采用同样的方式，只是利用的是 amd 规范中的 [paths](https://github.com/amdjs/amdjs-api/blob/master/CommonConfig.md#paths-) 设置，根据 map.json 自动生成程序中所需要的异步依赖的路径转换规则，这样的话，fis 不是一定只能用 mod.js 才能做模块化开发，以后换成其他所有的 amd loader，比如还有 ecom 出的 [esl.js](https://github.com/ecomfe/esl);
+amd 方案里面也是采用同样的方式，只是利用的是 amd 规范中的 [paths](https://github.com/amdjs/amdjs-api/blob/master/CommonConfig.md#paths-) 设置，根据 map.json 自动生成程序中所需要的异步依赖的路径转换规则，这样的话，fis 不是一定只能用 mod.js 才能做模块化开发，只要满足 amd 规范的所有 loader 都能支持，比如 ecom 出的 [esl.js](https://github.com/ecomfe/esl);
 
 ```javascript
 require.config({"paths":{
@@ -301,7 +301,7 @@ require.config({"paths":{
     ...
 });
 ```
-另外，[amd 依赖解析插件](https://github.com/fex-team/fis-postprocessor-amd) 除了解析依赖，实际还会做一个小优化，就是会把 factory  中的各种依赖，提前放置在 define 的第二个参数里面。这样的好处是， amd loader 再也不要用正则查找 factory 函数体的 require 了，直接读第二个参数就能把所有依赖拿到。
+另外，[amd 依赖解析插件](https://github.com/fex-team/fis-postprocessor-amd) 除了解析依赖，实际还会做一个小优化，就是会把 factory  中的各种依赖，提前放置在 define 的第二个参数里面。这样的好处是， amd loader 再也不需要用正则查找 factory 函数体的 require 了，直接读第二个参数就能把所有依赖拿到。
 
 
 ## 总结
