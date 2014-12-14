@@ -59,7 +59,7 @@
     var a_list= document.getElementsByTagName("a"); 
     for(var i=0;i<a_list.length;i++){  
         var href = a_list[i].href;
-        if( href && String(href).indexOf("fex.baidu.com") < 0 ){  
+        if( href && String(href).indexOf(window.location.host) < 0 ){  
             a_list[i].target = "_blank";
         }  
     } 
