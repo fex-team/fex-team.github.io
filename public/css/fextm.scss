@@ -400,8 +400,20 @@ article {
     html {
         overflow-x: hidden;
     }
-    .page-header, .page-footer, .container, .articles, article {
+    .page-header, .page-footer, .container, .articles, article, .post-lists {
         width: 100%;
+    }
+    .page-nav li:nth-child(2) {
+        display: none;
+    }
+    .page-nav li:nth-child(5) {
+        display: none;
+    }
+    .page-nav li:nth-child(6) {
+        display: none;
+    }
+    .page-nav li:nth-child(7) {
+        display: none;
     }
     .page-header {
         height: 60px;
@@ -426,8 +438,7 @@ article {
         }
     }
     .banner {
-        background-size: contain !important;
-        height: 200px !important;
+        display: none;
     }
     .container {
         padding: 10px 0;
