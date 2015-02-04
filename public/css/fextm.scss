@@ -408,7 +408,7 @@ article {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     .container {
         padding: 10px 3%;
         .post-list {
@@ -427,7 +427,7 @@ article {
         }
     }
 }
-@media (min-width: 320px and max-width: 640px) {
+@media (min-width: 480px) and (max-width: 640px) {
     .container {
         padding: 10px 0;
         .post-list {
