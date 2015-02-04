@@ -321,6 +321,11 @@ article {
             color: #5a5a5a;
             margin: 5px 0;
             padding: 0 10px;
+            // prevent overflow related bugs
+            text-overflow: ellipsis;
+            width: 80%;
+            white-space: nowrap;
+            overflow: hidden;
         }
         .date {
             font-size: 10px;
