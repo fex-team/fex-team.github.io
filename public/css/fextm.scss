@@ -408,6 +408,25 @@ article {
     }
 }
 
+@media (max-width: 480px) {
+    .container {
+        padding: 10px 0;
+        .post-list {
+            float: none;
+            width: 100%;
+            li {
+                box-sizing: border-box;
+                // specified height removed no need for clear float
+                // float: none;
+                // switch width from 'auto' to '96%' which won't make too much shitty feeling
+                // width: auto;
+                width: 96%;
+                display: block;
+                margin: 0 14px 20px;
+            }
+        }
+    }
+}
 @media (max-width: 640px) {
     html {
         overflow-x: hidden;
@@ -463,7 +482,7 @@ article {
                 // float: none;
                 // switch width from 'auto' to '96%' which won't make too much shitty feeling
                 // width: auto;
-                width: 96%;
+                width: 46%;
                 display: block;
                 margin: 0 14px 20px;
             }
