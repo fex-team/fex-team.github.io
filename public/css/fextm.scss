@@ -309,8 +309,11 @@ article {
         list-style: none;
         float: left;
         margin: -3px 0 40px 14px;
+        // add padding
+        padding-bottom: 19px;
         width: 280px;
-        height: 230px;
+        // remove designated height
+        // height: 230px;
         border: 3px solid #f8f8f8;
         background: #ffffff;
         p {
@@ -447,10 +450,16 @@ article {
             width: 100%;
             li {
                 box-sizing: border-box;
-                float: none;
-                width: auto;
+                // specified height removed no need for clear float
+                // float: none;
+                // switch width from 'auto' to '96%' which won't make too much shitty feeling
+                // width: auto;
+                width: 96%;
                 display: block;
                 margin: 0 14px 20px;
+                // force set img style to overwrite the style inside the markup lable
+                img {
+                    height: auto!important;
             }
         }
         .page-sidebar {
