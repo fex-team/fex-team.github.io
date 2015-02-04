@@ -408,9 +408,9 @@ article {
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
     .container {
-        padding: 10px 3%;
+        padding: 10px 0;
         .post-list {
             float: none;
             width: 100%;
@@ -420,9 +420,9 @@ article {
                 // float: none;
                 // switch width from 'auto' to '96%' which won't make too much shitty feeling
                 // width: auto;
-                width: 100%;
+                width: 92%;
                 display: block;
-                margin: 0 0 20px;
+                margin: 0 4% 20px;
             }
         }
     }
@@ -439,9 +439,9 @@ article {
                 // float: none;
                 // switch width from 'auto' to '96%' which won't make too much shitty feeling
                 // width: auto;
-                width: 42%;
+                width: 44%;
                 display: block;
-                margin: 0 4% 20px;
+                margin: 0 3% 20px;
             }
         }
     }
