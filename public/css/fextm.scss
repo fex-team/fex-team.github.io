@@ -317,7 +317,8 @@ article {
         border: 3px solid #f8f8f8;
         background: #ffffff;
         img {
-            width: 100%!important;
+            width: 100%;
+            height: auto;
         }
         p {
             line-height: 30px;
@@ -465,10 +466,6 @@ article {
                 width: 96%;
                 display: block;
                 margin: 0 14px 20px;
-                // force set img style to overwrite the style inside the markup lable
-                img {
-                    height: auto!important;
-                }
             }
         }
         .page-sidebar {
