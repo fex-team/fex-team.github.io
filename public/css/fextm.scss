@@ -410,6 +410,25 @@ article {
 
 @media (max-width: 480px) {
     .container {
+        padding: 10px 3%;
+        .post-list {
+            float: none;
+            width: 100%;
+            li {
+                box-sizing: border-box;
+                // specified height removed no need for clear float
+                // float: none;
+                // switch width from 'auto' to '96%' which won't make too much shitty feeling
+                // width: auto;
+                width: 100%;
+                display: block;
+                margin: 0 0 20px;
+            }
+        }
+    }
+}
+@media (min-width: 320px and max-width: 640px) {
+    .container {
         padding: 10px 0;
         .post-list {
             float: none;
@@ -420,9 +439,9 @@ article {
                 // float: none;
                 // switch width from 'auto' to '96%' which won't make too much shitty feeling
                 // width: auto;
-                width: 96%;
+                width: 46%;
                 display: block;
-                margin: 0 14px 20px;
+                margin: 0 2% 20px;
             }
         }
     }
@@ -473,20 +492,20 @@ article {
     }
     .container {
         padding: 10px 0;
-        .post-list {
-            float: none;
-            width: 100%;
-            li {
-                box-sizing: border-box;
-                // specified height removed no need for clear float
-                // float: none;
-                // switch width from 'auto' to '96%' which won't make too much shitty feeling
-                // width: auto;
-                width: 46%;
-                display: block;
-                margin: 0 2% 20px;
-            }
-        }
+        // .post-list {
+        //     float: none;
+        //     width: 100%;
+        //     li {
+        //         box-sizing: border-box;
+        //         // specified height removed no need for clear float
+        //         // float: none;
+        //         // switch width from 'auto' to '96%' which won't make too much shitty feeling
+        //         // width: auto;
+        //         width: 46%;
+        //         display: block;
+        //         margin: 0 2% 20px;
+        //     }
+        // }
         .page-sidebar {
             display: none;
         }
