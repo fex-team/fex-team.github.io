@@ -12,7 +12,7 @@ title: 技术文章
                     {% assign paths = post.id | split: '/' %}
                     <!-- remove style -->
                     <!--<img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:280px; height:150px;"/>-->
-                    <div class="banner"><img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/></div>
+                    <div class="bannerblock"><img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/></div>
 
                     <p>{{ post.title }}</p>
                     <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
