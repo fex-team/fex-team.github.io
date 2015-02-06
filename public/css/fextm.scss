@@ -316,9 +316,14 @@ article {
         // height: 230px;
         border: 3px solid #f8f8f8;
         background: #ffffff;
-        img {
+        .banner {
             width: 100%;
-            height: auto;
+            height: 15px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
         p {
             line-height: 30px;
