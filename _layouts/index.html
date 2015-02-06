@@ -16,7 +16,9 @@ title:
       {% assign paths = post.id | split: '/' %}
       <!--<img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:100%; height:150px;" />-->
       <img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" />
-      <p>{{ post.title | strip_html | truncate: 22 }}</p>
+      <!-- test delete -->
+      <!--<p>{{ post.title | strip_html | truncate: 22 }}</p>-->
+      <p>{{ post.title }}</p>
       <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
       </a>
     </li>
