@@ -46,7 +46,7 @@ FEX 是百度「Web 前端研发部」的内部名称，其中 FE 是 Front End 
 
 ## 如何应聘？
 
-我们的**办公地点在北京**，目前比较缺 **实习生** ，希望加入的话请先看看 [我们的面试题](https://github.com/fex-team/interview-questions) ，提前做好准备，然后通过以下三种方式联系我们：
+我们的**办公地点在北京**，希望加入的话请先看看 [我们的面试题](https://github.com/fex-team/interview-questions) ，提前做好准备，然后通过以下三种方式联系我们：
 
 * 参加 [百度2015校园招聘](http://talent.baidu.com/component1000/corp/baidu/html/intro.html)  
 * 将简历发往FEX官方招聘邮箱 fex-hr@baidu.com  
@@ -60,7 +60,7 @@ FEX 是百度「Web 前端研发部」的内部名称，其中 FE 是 Front End 
 **注**：
 
 - FEX 团队没有以任何「个人名义或邮箱」进行招聘，所有简历都以投递到 fex-hr@baidu.com 为准，其它渠道的招聘信息均为假冒，请大家提高警惕。
-- 若 FEX 的招聘名额有所限制，我们会将简历转至相关团队。
+- 若 FEX 的招聘名额有所限制，我们会将简历转至百度其它前端团队。
 
 ***
 
