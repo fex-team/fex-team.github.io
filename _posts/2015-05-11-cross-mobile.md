@@ -49,7 +49,9 @@ Web 流最常被吐槽的就是性能慢（这里指内嵌 HTML 的性能，不�
 
 > 硬件加速不等同于「快」，如果你以为硬件加速一定比软件快，那你该抽空学学计算机体系结构了
 
-其实除了性能问题，我认为在 Web 流更严重的问题是功能缺失，比如 iOS 8 就新增 4000+ API，而 Web 标准需要漫长的编写和评审过程，根本赶不上，即便是 Cordova 这样自己封装也忙不过来，所以为了更好地使用系统新功能，写 Native 代码是必须的。
+其实除了性能问题，我认为在 Web 流更严重的问题是功能缺失，比如 iOS 8 就新增 4000+ API，而 Web 标准需要漫长的编写和评审过程，增加 4000 API 我这辈子是等不到了，即便是 Cordova 这样自己封装也忙不过来，所以为了更好地使用系统新功能，写 Native 代码是必须的。
+
+P.S. 虽然前面提到 HTML/CSS 过于复杂导致性能问题，但其实这正是 Web 最大的优势所在，因为 Web 最初的目的就是显示文档，如果你想显示丰富的图文排版，虽然 iOS/Android 都有富文本组件，但比起 CSS 差太远了，所以在很多 Native 应用中是不可避免要嵌 Web 的。
 
 ## 代码转换流
 
@@ -212,7 +214,7 @@ frameworks/base/graphics/java/android/graphics/ | 18197
 
 ### Objective-C 编译为 Windows Phone
 
-微软知道自己的 Windows Phone 太非主流，所以很懂事地推出了将 [Objective-C 项目编译到 Windows Phone](https://dev.windows.com/en-US/uwp-bridges/project-islandwood) 上运行的工具，目前这个工具的相关资料很少，鉴于 Visual Studio 支持 Clang，所以极有可能是使用 Clang 的前端来编译，因此我归到编译流。
+微软知道自己的 Windows Phone 太非主流，所以很懂事地推出了将 [Objective-C 项目编译到 Windows Phone](https://dev.windows.com/en-US/uwp-bridges/project-islandwood) 上运行的工具，目前这个工具的相关资料很少，鉴于 Visual Studio 支持 Clang，所以极有可能是使用 Clang 的前端来编译，这样最大的好处是以后支持 Swift 会很方便，因此我归到编译流。
 
 而对于 Android 的支持，微软应该使用了虚拟机的方式，所以放到下个章节介绍。
 
@@ -460,6 +462,8 @@ Facebook Groups 的 iOS 版本很大一部分基于 React Native 开发，其中
 
 React Native 的官方视频中说它能做到 App 内实时更新，其实这是 Apple 明文禁止的（[App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) 中的 2.7），要做得低调。
 
+> 评论中有人[提到 Apple 居然在 iOS 8.2 中改条款了](http://www.quora.com/What-does-Apple-think-of-React-Native)，可以下载执行 JavaScript，而且 UIKit 的作者都觉得 React Native 很赞
+
 我比较喜欢的是 React Native 中用到了 [Flow](http://flowtype.org/)，它支持定义函数参数的类型，极大提升了代码可读性，另外还能使用 ES6 的语法，比如 class 关键字等。
 
 React Native 比传统 Objective-C 和 UIView 的学习成本低多了，熟悉 JavaScript 的开发者应该半天内就能写个使用标准 UI 的界面，而且用 XML+CSS 画界面也远比 UIView 中用 Frame 进行手工布局更易读（我没用过 Storyboards，它虽然看起来直观，但多人编辑很容易冲突），感兴趣可以抽空看看这个[详细的入门教程](http://www.raywenderlich.com/99473/introducing-react-native-building-apps-javascript)，亲自动手试试就能体会到了，Command + R 更新代码感觉很神奇。
@@ -499,7 +503,9 @@ NativeScript 和 React Native 在侧重点上有很大的不同，使得这两�
 
 ### Adobe AIR
 
-尽管 Flash 放弃了移动端下的浏览器插件版本，但 [Adobe AIR](http://www.adobe.com/products/air.html) 还没挂，对于熟悉 ActionScript 的团队来说，这是一种挺好的跨平台游戏开发解决方案，国内游戏公司之前有用，现在还有没人用我就不知道了。
+从我周边了解到的情况看，几乎所有人都以为 Flash 彻底放弃移动端了，不得不说 Adobe 的宣传真是失策，明明只是放弃移动浏览器端插件，Flash 还是可以在 iOS 下运行的好不好，那就是 [Adobe AIR](http://www.adobe.com/products/air.html)，对于熟悉 ActionScript 的团队来说，这是一种挺好的跨平台游戏开发解决方案，国内游戏公司之前有用，现在还有没人用我就不知道了，不过考虑到很多不明真相的小朋友都以为 Flash 在移动端挂了，所以后备力量肯定严重不足，连人都招不到，其它就别想了。
+
+> 评论中有人指出在 iOS 下是通过编译实现的，看来和 Xamarin RoboVM 很类似。
 
 但开发 APP 方面，它同样缺乏好的 UI 库，[Flex](http://www.adobe.com/products/flex.html) 使用体验很差，目前基本上算挂了，目前只有 [Feathers](http://feathersui.com/) 还算能看，不过主要是给游戏中的 UI 设计的，并不适合用来开发 APP。
 
@@ -527,9 +533,9 @@ Sky 的架构如下图所示，它参考了 Chrome，依靠一个消息系统来
    12508 text files.
    11973 unique files.
     2299 files ignored.
------------------------------------------------------
+-----------------------------------------------------------
 Language              files     blank   comment      code
------------------------------------------------------
+-----------------------------------------------------------
 C++                    3485    129830    107745    689089
 C/C++ Header           3569     92435    125742    417655
 C                       266     37462     63659    269220
@@ -544,11 +550,11 @@ C++ 不包含注释的代码部分就有近 70w 行啊，而且一看目录结�
 
 综合来看，目前 Dart 的这两个方案都非常不成熟，Sky 虽然在技术上看很强大，但 Dart 语言目前接受度非常低，比起它所带来的跨平台优点，它的缺点更大，比如无法使用第三方 Native UI 库，也无法使用第三方 Web UI 库，这导致它的社区会非常难发展，命中注定非主流，真可惜了这帮技术大牛，但方向比努力更重要，希望他们能尽早醒悟，让 Sky 也支持 JavaScript。
 
-## 结论及参考
+## 我的结论
 
 看到这里估计不少读者晕了，有那么多种方案，最后到底哪个最适合自己？该学哪个？这里简单说说我的看法。
 
-如果你只会 JavaScript，那目前最好的方案是 React Native，有了它你即使不了解 Native 开发也能写出很多中小应用，等万一火了再学 Native 开发也不迟啊。
+如果你只会 JavaScript，那目前最好的方案是 React Native，有了它你即使不了解 Native 开发也能写出很多中小应用，反正多半不会火，花太多精力也没意义，等万一火了再学 Native 开发也不迟啊。
 
 如果你只会 Java，那可以尝试 RoboVM 或 j2objc，j2objc 虽然目前更稳定靠谱，但它不能像 RoboVM 那样完全用 Java 开发，所以你还得学 Objective-C 来写界面，而 RoboVM 的缺点就是貌似还不太稳定，而且似乎除了游戏以外还没见到比较知名的应用使用，而它这种方案注定会比 j2objc 更容易出问题，所以你得做好踩坑的心理准备。
 
@@ -562,4 +568,10 @@ C++ 不包含注释的代码部分就有近 70w 行啊，而且一看目录结�
 
 如果你会 Rust，说明你很喜欢折腾，多半也会前面所有语言，自己做决定吧。。。
 
+当然，上面都是针对个人的，对于团队来说，那不用想了，肯定用 Native，然后混用内嵌的方案，比如 Lua、React Native，前面那些排它的方案（比如 Titanium）千万别选，会死很惨。
+
 本文涉及到的技术点很多，有什么不准确的地方欢迎提出，另外可以关注我的微博 [weibo.com/nwind](http://weibo.com/nwind/) 进行交流。
+
+P.S. 本文说的是移动端，很多人觉得跨平台从来都不靠谱，但其实是有的，那就是 Web，这个历史上最成功的例子，太成功以致于大家都习以为常了，大树之下，寸草不生，它挤掉了其它方案的生存空间，十几年前还有 B/S 和 C/S 之争呢。
+
+
