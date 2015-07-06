@@ -146,7 +146,7 @@ casper.test.begin('测试发帖功能', function suite(test) {
 });
 ```
 
-通过前端最熟悉的语言，短短几十行代码便可轻松失效自动发帖的功能，还可以在其中添加一些测试逻辑来完善case。
+通过前端最熟悉的语言，短短几十行代码便可轻松实现自动发帖的功能，还可以在其中添加一些测试逻辑来完善case。
 
 相对于单测来说，casperjs能用简单的API、从真实用户操作的角度来快速测试网站的功能是否正常，并且可以保留每一步测试的截图最终实现操作流可视化。例如下面这个[GitHub项目](https://github.com/magento-hackathon/hackathon-casperjs)便使用Casperjs测试一个电子商务网站的登录、下单等重要流程是否正常。case完善之后一条命令便可测试整个网站。
 
