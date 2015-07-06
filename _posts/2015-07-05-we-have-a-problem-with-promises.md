@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [翻译] We have a problem with promises
+title: '[翻译] We have a problem with promises'
 author: fangshi
 ---
 
@@ -149,13 +149,13 @@ somePromise().then(function () {
 }).catch(console.log.bind(console)); // <-- this is badass
 ```
 
-即时你坚持不会出现异常，添加一个 catch() 总归是更加谨慎的。如果你的假设最终被发现是错误的，他会让你的生活更加美好。
+即使你坚信不会出现异常，添加一个 catch() 总归是更加谨慎的。如果你的假设最终被发现是错误的，它会让你的生活更加美好。
 
 ### 新手错误 #4：使用 "deferred"
 
-这是一个我[经常可以看到的错误](http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-your-ionic-app/)，以至于我甚至并愿意在这里重复它，就像惧怕 Beetlejuice 一样，仅仅是提到它的名字，就会召唤更多它的到来。
+这是一个我[经常可以看到的错误](http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-your-ionic-app/)，以至于我甚至不愿意在这里重复它，就像惧怕 Beetlejuice 一样，仅仅是提到它的名字，就会召唤出来更多。
 
-简单的说，promises 拥有一个漫长并且戏剧化的历史，Javascript 社区花费了大量的时间让其最终正确有效。在早期，deferred 在 Q，When，RSVP，Bluebird，Lie等等的 “优秀” 类库中被引入， jQuery 与 Angular 在使用 ES6 Promise 规范之前，都是使用这种模式编写代码。
+简单的说，promises 拥有一个漫长并且戏剧化的历史，Javascript 社区花费了大量的时间让其走上正轨。在早期，deferred 在 Q，When，RSVP，Bluebird，Lie等等的 “优秀” 类库中被引入， jQuery 与 Angular 在使用 ES6 Promise 规范之前，都是使用这种模式编写代码。
 
 因此如果你在你的代码中使用了这个词 (我不会把这个词重复第三遍！)，你就做错了。下面是说明一下如何避免它。
 
@@ -195,7 +195,7 @@ somePromise().then(function () {
 });
 ```
 
-好了，现在是一个合适的时机去讨论关于 promises 你所需要知道的一切内容。
+好了，现在是时候讨论一下关于 promises 你所需要知道的一切。
 
 认真的说，这是一个一旦你理解了它，就会避免所有我提及的错误的古怪的技巧。你准备好了么？
 
@@ -215,7 +215,7 @@ somePromise().then(function () {
 2. `return` 一个同步的值 (或者 `undefined`)
 3. `throw` 一个同步异常
 
-就是这样。一旦你理解了这个技巧，你就理解了 promises。因此让我们一次性逐个了解下。
+就是这样。一旦你理解了这个技巧，你就理解了 promises。因此让我们逐个了解下。
 
 1. 返回另一个 promise
 
@@ -233,7 +233,7 @@ somePromise().then(function () {
 
 2. 返回一个同步值 (或者 undefined)
 
-    返回 `undefined` 通常是错误的，但是返回一个同步值实际上是一个非常赞的方式去将同步代码包裹为 promise 风格代码。举例来说，我们对 users 信息有一个内存缓存。我们可以这样做：
+    返回 `undefined` 通常是错误的，但是返回一个同步值实际上是将同步代码包裹为 promise 风格代码的一种非常赞的手段。举例来说，我们对 users 信息有一个内存缓存。我们可以这样做：
     
     ```javascript
     getUserByName('nolan').then(function (user) {
@@ -246,7 +246,7 @@ somePromise().then(function () {
     });
     ```
     
-    是不是很赞？第二个函数不需要关心 `userAccount` 是从同步方法还是异步方法中获取的，并且第一个函数可以非常的自由的返回一个同步或者异步值。
+    是不是很赞？第二个函数不需要关心 `userAccount` 是从同步方法还是异步方法中获取的，并且第一个函数可以非常自由的返回一个同步或者异步值。
     
     不幸的是，有一个不便的现实是在 JavaScript 中无返回值函数在技术上是返回 `undefined`，这就意味着当你本意是返回某些值时，你很容易会不经意间引入副作用。
     
@@ -444,7 +444,7 @@ getUserByName('nolan').then(function (result) {
 });
 ```
 
-这样是没问题的，但是我个人认为这样做有些杂牌。我推荐的策略是：抛弃成见，拥抱金字塔：
+这样是没问题的，但是我个人认为这样做有些杂牌。我推荐的策略是抛弃成见，拥抱金字塔：
 
 ```javascript
 getUserByName('nolan').then(function (user) {
@@ -454,7 +454,7 @@ getUserByName('nolan').then(function (user) {
 });
 ```
 
-...至少暂时这样是没问题的。如果缩进开始成为问题，你可以如 Javascript 开发者从远古时期就开始使用的技巧，将函数抽离到一个命名函数中：
+...至少暂时这样是没问题的。一旦缩进开始成为问题，你可以通过 Javascript 开发者从远古时期就开始使用的技巧，将函数抽离到一个命名函数中：
 
 ```javascript
 function onGetUserAndUserAccount(user, userAccount) {
@@ -614,11 +614,11 @@ doSomething
 
 Promises 是非常赞的。如果你还在使用回调模式，我强烈建议你切换到 promises。你的代码会变的更少，更优雅，并且更加容易理解。
 
-如果你不相信我，这里是证明：[a refactor of PouchDB's map/reduce module](https://t.co/hRyc6ENYGC) 使用 promises 替换回调。结果是：新增 290 行，删除 555 行。
+如果你不相信我，这里是证明：[a refactor of PouchDB's map/reduce module](https://t.co/hRyc6ENYGC)，使用 promises 替换回调。结果是：新增 290 行，删除 555 行。
 
 顺带一提，写出那令人讨厌的回调代码的人。。是我！因此这是我第一次领会到 promises 的力量，同时我感谢其他 PouchDB 的贡献者们教导我这样做。
 
-当然了，promises 并非完美。虽然它的确比回调模式要好，但是这样说就好比说给你肚子来一拳会比在你牙齿上踹一脚好。承认，它是会略有优势，但是如果你有选择，你会两者都尽力避免。
+当然了，promises 并非完美。虽然它的确比回调模式要好，但是这样说就好比说给你肚子来一拳会比在你牙齿上踹一脚好。的确，它是会略有优势，但是如果你有选择，你会两者都尽力避免。
 
 作为回调模式的升级版，promises 依然难以理解并且容易误用，证明之一就是我不得不写下这篇博文。初学者与专家都很容易经常将它用错，并且真要说的话，并非是他们的问题。问题在于 promises 的使用模式与我们写同步代码非常类似，但是又不尽然。
 
