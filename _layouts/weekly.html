@@ -1,0 +1,34 @@
+---
+title: 技术周刊
+---
+{% include head.html %}
+
+<div class="container">
+    <div class="articles">
+        <ul class="post-list">
+            {% for post in site.posts %}
+                {% if post.tag == "weekly" %}
+                <li>
+                    <a target="_blank" href="{{ post.url }}/">
+                        {% assign paths = post.id | split: '/' %}
+                        <!-- remove style -->
+                        <!--<img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:280px; height:150px;"/>-->
+                        <div class="bnwrap"><img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/></div>
+
+                        <p>{{ post.title }}</p>
+                        <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
+                    </a>
+                </li>
+                {% endif %}  
+            {% endfor %}
+        </ul>
+
+        <a style="margin-left:20px;color:orange;" target="_blank" href="https://github.com/zenany/weekly/tree/master/software/2015">2015年7月份之前周刊在此</a>
+    </div>
+
+
+    {% include sidebar.html %}
+</div>
+
+
+{% include foot.html %}

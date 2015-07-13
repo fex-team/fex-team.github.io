@@ -1,7 +1,8 @@
 ---
 layout: post
-title: 'FEX 技术周刊'
+title: 'FEX 技术周刊-2017/07/13'
 author: zhangtao
+tag: weekly
 ---
 
 ## 业界会议
