@@ -124,6 +124,7 @@ article {
         &:link, &:visited, &:link:hover, &:visited:hover {
             color: #ea3e0a;
             margin: 0 2px;
+            overflow-wrap: break-word;
         }
         &:hover {
             color: #ea3e0a;
