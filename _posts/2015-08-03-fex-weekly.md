@@ -214,4 +214,4 @@ http://www.infoq.com/cn/articles/mobile-testing-future<br>
 
 **喵星人玩毛线**<br>
 http://codepen.io/Yakudoo/full/oXJYxy<br>
-一个短小有趣的代码示例，基于 three.js 实现并渲染一个只可以互动的 3D 猫咪。
+一个短小有趣的代码示例，基于 three.js 实现并渲染一只可以互动的 3D 猫咪。
