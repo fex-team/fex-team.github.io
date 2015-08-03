@@ -3,7 +3,6 @@ layout: post
 title: 'FEX 技术周刊 - 2015/08/03'
 author: zswang
 tag: weekly
-cover: /img/fex-weekly/cover.jpg
 ---
 
 ## 业界会议

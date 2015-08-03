@@ -3,7 +3,6 @@ layout: post
 title: 'FEX 技术周刊-2015/07/20'
 author: fangshi
 tag: weekly
-cover: /img/fex-weekly/cover.jpg
 ---
 
 ## 业界会议
