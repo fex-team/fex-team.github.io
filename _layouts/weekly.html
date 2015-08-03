@@ -11,9 +11,7 @@ title: 技术周刊
                 <li>
                     <a target="_blank" href="{{ post.url }}/">
                         {% assign paths = post.id | split: '/' %}
-                        <!-- remove style -->
-                        <!--<img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:280px; height:150px;"/>-->
-                        <div class="bnwrap"><img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/></div>
+                        <div class="bnwrap"><img src="/img/fex-weekly-27/cover.jpg"/></div>
 
                         <p>{{ post.title }}</p>
                         <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>

@@ -20,7 +20,11 @@ title: 技术文章
                         <img src="/img/{{post.cover}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/>
                         }
                         {% else %}
-                        <img src="/img/{{ paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'"/>
+                            {% if post.tag == "weekly" %}
+                              <img src="/img/fex-weekly-27/cover.jpg" />
+                            {% else %}
+                              <img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" />
+                            {% endif %}
                         }
                         {% endif %}
                     </div>

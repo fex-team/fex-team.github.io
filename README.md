@@ -97,7 +97,7 @@ jekyll 官方对 winodws 的支持程度很低，推荐使用 [Building portable
 ## 其它问题
 
 * 如何添加周报
-    * 请在文件头中添加tag: weekly，使weekly目录下能显示此文章。另外文章命名规则`日期-fex-weekly.md`  
+    * 请在文件头中添加tag: weekly，使weekly目录下能显示此文章。另外文章命名规则`日期-fex-weekly-日期号.md`  
 * 为什么某篇文章没显示出来？
     * 你确定放到 `_posts` 下了是吧？
     * 有可能是用了 `{% xxx }%`，因为页面会当成 Liquid 模板进行解析，所以请使用 `{% raw  %}{% xxx %}{% endraw %}` 来包含起来

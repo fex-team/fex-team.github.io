@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 'FIS3正式发布啦！'
-shortname: fis3-release
 author: fansekey
 ---
 
