@@ -10,10 +10,12 @@ title: 首页
 
 <ul class="post-list">
   {% for post in site.posts %}
-    {% if forloop.index <=12 %}
+    {% assign count=1 | plus: 0 %}
     {% assign current_week = site.time | date: "%Y%W" | minus: 2 %}
     {% assign post_week = post.date | date: "%Y%W" | plus: 0 %}
     {% if post_week > current_week  or post.tag != "weekly" %}
+
+    {% if forloop.index <= 14 %}
     <li>
       <a href="{{ post.url }}/">
       {% assign paths = post.id | split: '/' %}

@@ -11,7 +11,9 @@ FIS3 发布了! 官网已更新：http://fis.baidu.com
 
 我们也于上周在度厂内部进行了简单的发布会，场面异常火爆，特别欣慰，FIS 有你们才更精彩！
 
-在此非常感谢滴滴打车、盈世科技、小牛电动、PP租车、白日梦旅行、电兔金服以及百度文库、百度直达号(排名不分先后)的FIS用户抽出宝贵的时间提供的FIS使用体验视频，大家可以点击[优酷链接](http://v.youku.com/v_show/id_XMTI5NzA4ODUzNg==.html?from=y1.7-1.2)查看( **有福利哦~** )。
+在此非常感谢滴滴打车、盈世科技、小牛电动、PP租车、白日梦旅行、电兔金服以及百度文库、百度直达号(排名不分先后)的FIS用户抽出宝贵的时间提供的FIS使用体验视频, **有福利哦~**。
+
+<iframe height=498 width=510 src="http://player.youku.com/embed/XMTI5NzA4ODUzNg==" frameborder=0 allowfullscreen></iframe>
 
 **度厂内部**的同学可以[在此](http://learn.baidu.com/courseInfo.html?courseId=5819&timestamp=v20150729001) 查看发布会视频，对应的PPT可以[在这里](http://agroup.baidu.com/fis/message)找到
 
