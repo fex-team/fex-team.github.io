@@ -19,7 +19,6 @@ title: 首页
     <li>
       <a href="{{ post.url }}/">
       {% assign paths = post.id | split: '/' %}
-      <!--<img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" style="width:100%; height:150px;" />-->
       <div class="bnwrap">
         {% if post.tag == "weekly" %}
           <img src="/img/fex-weekly-27/cover.jpg" />
