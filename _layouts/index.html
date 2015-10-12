@@ -9,29 +9,32 @@ title: 首页
   
 
 <ul class="post-list">
+  {% assign count=0%}
+  {% assign last_week_showed=0%}
   {% for post in site.posts %}
-    {% assign count=1 | plus: 0 %}
     {% assign current_week = site.time | date: "%Y%W" | minus: 2 %}
     {% assign post_week = post.date | date: "%Y%W" | plus: 0 %}
-    {% if post_week > current_week  or post.tag != "weekly" %}
-
-    {% if forloop.index <= 14 %}
-    <li>
-      <a href="{{ post.url }}/">
-      {% assign paths = post.id | split: '/' %}
-      <div class="bnwrap">
-        {% if post.tag == "weekly" %}
-          <img src="/img/fex-weekly-27/cover.jpg" />
-        {% else %}
-          <img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" />
-        {% endif %}
-
-      </div>
-      <p>{{ post.title | strip_html | truncate: 22 }}</p>
-      <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
-      </a>
-    </li>
-    {% endif %}
+    {% if last_week_showed == 0 or post.tag != "weekly" %}
+      {% if post.tag == "weekly" %}
+        {% assign last_week_showed=1%}
+      {% endif %}
+      {% assign count=count | plus:1 %}
+      {% if count <= 12 %}
+      <li>
+        <a href="{{ post.url }}/">
+        {% assign paths = post.id | split: '/' %}
+        <div class="bnwrap">
+          {% if post.tag == "weekly" %}
+            <img src="/img/fex-weekly-27/cover.jpg" />
+          {% else %}
+            <img src="/img/{{paths[4]}}/cover.jpg" onerror="this.src='/public/images/tmp/cover.png'" />
+          {% endif %}
+        </div>
+        <p>{{ post.title | strip_html | truncate: 22 }}</p>
+        <span class="date">{{ post.author }} 发布于 {{ post.date | date_to_string }}</span>
+        </a>
+      </li>
+      {% endif %}
     {% endif %}
   {% endfor %}
 </ul>
