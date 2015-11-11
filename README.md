@@ -10,11 +10,16 @@
 
 请使用如下命令（其中 gem 是 [Ruby](https://www.ruby-lang.org/)  的包管理工具）安装 jekyll（如果遇到权限问题请在前面加 sudo）：
 
-    gem install jekyll
+    gem install jekyll jekyll-paginate redcarpet
 
 如果在 Mac 下安装遇到编译报错，可以试试用 [Brew](http://brew.sh/) 安装新版 ruby
 
     brew install ruby
+
+如果 gem 安装不上，请试试国内镜像
+
+    gem sources --remove https://rubygems.org/
+    gem sources -a https://ruby.taobao.org/
 
 ### Windows 下
 
