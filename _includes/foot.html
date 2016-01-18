@@ -15,7 +15,7 @@
                 <li><a href="http://www.alloyteam.com/" target="_blank">腾讯 AlloyTeam</a></li>
                 <li><a href="http://isux.tencent.com/" target="_blank">腾讯 ISUX</a></li>
                 <li><a href="http://ued.ctrip.com/blog/?cat=11" target="_blank">携程 UED</a></li>
-            <ul>
+            </ul>
         </dd>
     </dl>
 
@@ -26,7 +26,7 @@
                 {% for project in site.data.projects %}
                     <li><a {% if project.url %}href="{{project.url}}"{% else %}href="http://github.com/fex-team/{{project.github}}/"{% endif %} target="_blank">{{project.name}}</a></li>
                 {% endfor %}
-            <ul>
+            </ul>
         </dd>
     </dl>
 
