@@ -5,7 +5,7 @@ destination: ./_site
 plugins:     ./_plugins
 lsi:      false
 safe:     false
-markdown: redcarpet
+#markdown: redcarpet
 permalink: /blog/:year/:month/:title
 paginate: 12
 paginate_path: "articles/page:num"
@@ -14,6 +14,6 @@ encoding: utf-8
 post_defaults:
   layout: post
 
-redcarpet:
-  extensions: ["tables", "autolink"]
+#redcarpet:
+#  extensions: ["tables", "autolink"]
 
