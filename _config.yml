@@ -5,7 +5,7 @@ destination: ./_site
 lsi:      false
 safe:     false
 markdown: kramdown
-permalink: /blog/:year/:month/:title
+permalink: /blog/:year/:month/:title/
 paginate: 12
 paginate_path: "articles/page:num"
 encoding: utf-8
