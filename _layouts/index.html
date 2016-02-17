@@ -20,7 +20,7 @@ title: 首页
       {% endif %}
       {% assign count=count | plus:1 %}
       {% if count <= 12 %}
-      <li>
+      <li title="{{ post.title | strip_html }}">
         <a href="{{ post.url }}">
         {% assign paths = post.id | split: '/' %}
         <div class="bnwrap">
