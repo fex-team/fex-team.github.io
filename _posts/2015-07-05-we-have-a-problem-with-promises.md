@@ -219,62 +219,62 @@ somePromise().then(function () {
 
 1. 返回另一个 promise
 
-    这是一个在 promise 文档中常见的使用模式，也就是我们在上文中提到的 "composing promises"：
-    
-    ```javascript
-    getUserByName('nolan').then(function (user) {
-      return getUserAccountById(user.id);
-    }).then(function (userAccount) {
-      // I got a user account!
-    });
-    ```
+这是一个在 promise 文档中常见的使用模式，也就是我们在上文中提到的 "composing promises"：
+
+```javascript
+getUserByName('nolan').then(function (user) {
+  return getUserAccountById(user.id);
+}).then(function (userAccount) {
+  // I got a user account!
+});
+```
     
     注意到我是 `return` 第二个 promise，这个 `return` 非常重要。如果我没有写 `return`，`getUserAccountById()` 就会成为一个副作用，并且下一个函数将会接收到 `undefined` 而非 `userAccount`。
 
 2. 返回一个同步值 (或者 undefined)
 
-    返回 `undefined` 通常是错误的，但是返回一个同步值实际上是将同步代码包裹为 promise 风格代码的一种非常赞的手段。举例来说，我们对 users 信息有一个内存缓存。我们可以这样做：
-    
-    ```javascript
-    getUserByName('nolan').then(function (user) {
-      if (inMemoryCache[user.id]) {
-        return inMemoryCache[user.id];    // returning a synchronous value!
-      }
-      return getUserAccountById(user.id); // returning a promise!
-    }).then(function (userAccount) {
-      // I got a user account!
-    });
-    ```
-    
-    是不是很赞？第二个函数不需要关心 `userAccount` 是从同步方法还是异步方法中获取的，并且第一个函数可以非常自由的返回一个同步或者异步值。
-    
-    不幸的是，有一个不便的现实是在 JavaScript 中无返回值函数在技术上是返回 `undefined`，这就意味着当你本意是返回某些值时，你很容易会不经意间引入副作用。
-    
-    出于这个原因，我个人养成了在 `then()` 函数内部 *永远返回或抛出* 的习惯。我建议你也这样做。
+返回 `undefined` 通常是错误的，但是返回一个同步值实际上是将同步代码包裹为 promise 风格代码的一种非常赞的手段。举例来说，我们对 users 信息有一个内存缓存。我们可以这样做：
+
+```javascript
+getUserByName('nolan').then(function (user) {
+  if (inMemoryCache[user.id]) {
+    return inMemoryCache[user.id];    // returning a synchronous value!
+  }
+  return getUserAccountById(user.id); // returning a promise!
+}).then(function (userAccount) {
+  // I got a user account!
+});
+```
+
+是不是很赞？第二个函数不需要关心 `userAccount` 是从同步方法还是异步方法中获取的，并且第一个函数可以非常自由的返回一个同步或者异步值。
+
+不幸的是，有一个不便的现实是在 JavaScript 中无返回值函数在技术上是返回 `undefined`，这就意味着当你本意是返回某些值时，你很容易会不经意间引入副作用。
+
+出于这个原因，我个人养成了在 `then()` 函数内部 *永远返回或抛出* 的习惯。我建议你也这样做。
 
 3. 抛出同步异常
 
-    谈到 `throw`，这是让 promises 更加赞的一点。比如我们希望在用户已经登出时，抛出一个同步异常。这会非常简单：
-    
-    ```javascript
-    getUserByName('nolan').then(function (user) {
-      if (user.isLoggedOut()) {
-        throw new Error('user logged out!'); // throwing a synchronous error!
-      }
-      if (inMemoryCache[user.id]) {
-        return inMemoryCache[user.id];       // returning a synchronous value!
-      }
-      return getUserAccountById(user.id);    // returning a promise!
-    }).then(function (userAccount) {
-      // I got a user account!
-    }).catch(function (err) {
-      // Boo, I got an error!
-    });
-    ```
-    
-    如果用户已经登出，我们的 `catch()` 会接收到一个同步异常，并且如果 *后续的 promise 中出现异步异常*，他也会接收到。再强调一次，这个函数并不需要关心这个异常是同步还是异步返回的。
-    
-    这种特性非常有用，因此它能够在开发过程中帮助定位代码问题。举例来说，如果在 `then()` 函数内部中的任何地方，我们执行 `JSON.parse()`，如果 JSON 格式是错误的，那么它就会抛出一个异常。如果是使用回调风格，这个错误很可能就会被吃掉，但是使用 promises，我们可以轻易的在 `catch()` 函数中处理它了。
+谈到 `throw`，这是让 promises 更加赞的一点。比如我们希望在用户已经登出时，抛出一个同步异常。这会非常简单：
+
+```javascript
+getUserByName('nolan').then(function (user) {
+  if (user.isLoggedOut()) {
+    throw new Error('user logged out!'); // throwing a synchronous error!
+  }
+  if (inMemoryCache[user.id]) {
+    return inMemoryCache[user.id];       // returning a synchronous value!
+  }
+  return getUserAccountById(user.id);    // returning a promise!
+}).then(function (userAccount) {
+  // I got a user account!
+}).catch(function (err) {
+  // Boo, I got an error!
+});
+```
+
+如果用户已经登出，我们的 `catch()` 会接收到一个同步异常，并且如果 *后续的 promise 中出现异步异常*，他也会接收到。再强调一次，这个函数并不需要关心这个异常是同步还是异步返回的。
+
+这种特性非常有用，因此它能够在开发过程中帮助定位代码问题。举例来说，如果在 `then()` 函数内部中的任何地方，我们执行 `JSON.parse()`，如果 JSON 格式是错误的，那么它就会抛出一个异常。如果是使用回调风格，这个错误很可能就会被吃掉，但是使用 promises，我们可以轻易的在 `catch()` 函数中处理它了。
 
 ## 进阶错误
 
