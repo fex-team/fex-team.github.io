@@ -217,7 +217,7 @@ somePromise().then(function () {
 
 就是这样。一旦你理解了这个技巧，你就理解了 promises。因此让我们逐个了解下。
 
-1. 返回另一个 promise
+#### 返回另一个 promise
 
 这是一个在 promise 文档中常见的使用模式，也就是我们在上文中提到的 "composing promises"：
 
@@ -231,7 +231,7 @@ getUserByName('nolan').then(function (user) {
     
     注意到我是 `return` 第二个 promise，这个 `return` 非常重要。如果我没有写 `return`，`getUserAccountById()` 就会成为一个副作用，并且下一个函数将会接收到 `undefined` 而非 `userAccount`。
 
-2. 返回一个同步值 (或者 undefined)
+#### 返回一个同步值 (或者 undefined)
 
 返回 `undefined` 通常是错误的，但是返回一个同步值实际上是将同步代码包裹为 promise 风格代码的一种非常赞的手段。举例来说，我们对 users 信息有一个内存缓存。我们可以这样做：
 
@@ -252,7 +252,7 @@ getUserByName('nolan').then(function (user) {
 
 出于这个原因，我个人养成了在 `then()` 函数内部 *永远返回或抛出* 的习惯。我建议你也这样做。
 
-3. 抛出同步异常
+#### 抛出同步异常
 
 谈到 `throw`，这是让 promises 更加赞的一点。比如我们希望在用户已经登出时，抛出一个同步异常。这会非常简单：
 
