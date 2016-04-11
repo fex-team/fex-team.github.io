@@ -314,7 +314,8 @@ fis.match('::packager', {
 
 ### 线上百万级PV案例：
 贴吧【吧友热议】http://tieba.baidu.com/mo/q/hotMessage?topic_id=5027
-开发流程：http://fit.baidu.com/components/tb (目前还只能百度内部才能访问)
+
+开发流程：http://fit.baidu.com/components/tb (目前还只能百度内部才能访问)  
 技术方案：React + Fis3 + [Fit](http://fit.baidu.com/)(FEX开发的React组件库, 目前还只能百度内部才能访问)
 
 ### 相关连接
