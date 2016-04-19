@@ -5,7 +5,7 @@ author: 2betop
 shortname: develop-react-with-fis3
 ---
 
-当下 [react](https://facebook.github.io/react/) + [redux](http://redux.js.org/) + es6 + node_modules 的技术选型非常流行，相信有不少同学都想去尝试，然后 webpack 并不是唯一的选择，用 fis 一样也能支持得很好，你依然可以继续使用 fis 的资源定位、cnd 部署、资源加 md5 戳和 css 雪碧图等其他实用的功能。为了节省大家的摸索成本，那么让我来详细的介绍下 fis 是如何去支持这些技术选型的。
+当下 [react](https://facebook.github.io/react/) + [redux](http://redux.js.org/) + es6 + node_modules 的技术选型非常流行，相信有不少同学都想去尝试，然后 webpack 并不是唯一的选择，用 fis 一样也能支持得很好，你依然可以继续使用 fis 的资源定位、cdn 部署、资源加 md5 戳和 css 雪碧图等其他实用的功能。为了节省大家的摸索成本，那么让我来详细的介绍下 fis 是如何去支持这些技术选型的。
 
 开始之前，可以先体验下这个 [DEMO](https://github.com/fis-scaffold/react-redux-todo-npm)。这是一个基于  [react](https://facebook.github.io/react/) 和 [redux](http://redux.js.org/) 采用 npm 作为组件生态，modules 模块目录全部采用 es6 + jsx 语法编写的 Todo App，是 React + redux 入门的绝佳例子。
 
