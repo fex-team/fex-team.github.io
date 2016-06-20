@@ -118,11 +118,6 @@ var app = module.exports = function(opt) {
 3.  下载  demo
 
     ```
-    npm install -g lights
-    lights install jello-demo
-
-    #  或者
-
     git clone https://github.com/2betop/jello-demo.git
 
     ```
@@ -130,6 +125,7 @@ var app = module.exports = function(opt) {
 
     ```
     jello release
+    
     jello server start
     ```
 4. 自动打开浏览器预览页面
