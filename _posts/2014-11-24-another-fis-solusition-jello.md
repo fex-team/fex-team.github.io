@@ -122,10 +122,7 @@ var app = module.exports = function(opt) {
 
     ```
 4. 进入当前目录后发布代码
-
-    ```
-    jello release
+    * `jello release`
+    * `jello server start`
     
-    jello server start
-    ```
 4. 自动打开浏览器预览页面
