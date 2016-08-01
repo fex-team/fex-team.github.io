@@ -1,22 +1,12 @@
 env:
   global:
   - GH_REF: git.duapp.com/appidenoe6p61ew/
-  - secure: CqugN6DKYvvQb0xdPoZEX5ZFoTYlGGjowDp51UnipyEUoIz2c7m9Gifwa2A8qEFbovq27CNWkLHNAUVKGRBqm2U7q0M9cFB3QsET9zMUIPgz73jOvOwLmZQxq8UaKDkoI8Xzl0z4hgBLMuHc5CXh3plRfXZ1y7fbVmaKxdPBV4o=
-  - secure: QgCmFrs+yiqHNDIN2MeUFd/3uIokkXwIIdixOeQdRwFgOl7rRYQuWgKgkxn3S6iWkXTTr7nlJv89D5ybnnNHG+tq/80sWCteW8uCVgCoT1ino4L3pHMHZh06rdnTWVwPbQHiWEsLZgDkQf++50+KOs2etNwnMPaXobnHbIDsOQU=
+  - secure: g92iYrAt+xs6NFRCjxAW1mTEilnvL9yls9AwmExdQJz/Hc1YUHL5THZVL7dyWqjtP18HtZPOLbdgLCS5+K76OPFthfbZQMGNPUzdzzQdI4P7+i3uKzU7Lm71Ul23fUs3txuvp9Fprv5+OtiMUFzRlhLIfrnX35uAJShn3auMpkE=
+  - secure: Q0czucyN1t6RQrKPWznTyOrMvFWNhiu5N8gwta0BAJJuQH2+1WUi4vgPqw1GZhOVCpIqg0PWogFiSoDHheIt+zMCsC9P0uVUf7k1jJI/O647PpP9sJ0TmhIQfMk9UhXT9NQF6QYUn94j2yOVz94MGVPogMeCE7EpC6lZnlZLyt8=
 language: ruby
 rvm:
 - 2.1.7
 script:
 - sh build.sh
 after_script:
-- git config http.postBuffer 524288000
-- git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" repo -q
-- mkdir -p ./repo/fexteam
-- cp -r ./_site/* ./repo/fexteam
-- git config --global user.name "fexteam"
-- git config --global user.email "fex@baidu.com"
-- git config --global push.default simple
-- cd ./repo
-- git add --all .
-- git commit -m "Update docs"
-- git push
+- sh pub.sh|grep -v "${GIT_TOKEN}"
