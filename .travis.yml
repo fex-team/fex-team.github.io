@@ -8,7 +8,7 @@ rvm:
 script:
 - sh build.sh
 after_script:
-- git clone "https://${GH_TOKEN}@${GH_REF}" repo
+- git clone "https://@${GH_REF}" repo
 - mkdir -p ./repo/_site
 - cp -rf ./_site/** ./repo/_site
 - git config user.name "fexteam"

@@ -4,6 +4,3 @@ set -e # halt script on error
 bundle install
 
 bundle exec jekyll build
-
-tree ./_site
-
