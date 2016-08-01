@@ -8,9 +8,10 @@ rvm:
 script:
 - sh build.sh
 after_script:
-- git clone "https://@${GH_REF}" repo
+- echo "${GH_TOKEN}"|wc -L
+- git clone "https://${GH_TOKEN}@${GH_REF}" repo
 - mkdir -p ./repo/_site
-- cp -rf ./_site/** ./repo/_site
+- cp -rf ./_site ./repo
 - git config user.name "fexteam"
 - git config user.email "fex@baidu.com"
 - git config --global push.default simple
