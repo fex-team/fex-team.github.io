@@ -1,22 +1,22 @@
 env:
   global:
-    - GH_REF: git.duapp.com/appidenoe6p61ew/
-    - secure: "JEm/8zUXAsv6b9BOPxym5VpE4TRS3L1cxEOEjnjvHi7Gg3JmE5AyhJKMRZAwVxx1+sCpp4I1dQHWr5dtgepE0XhlvaEW330mZlW3MNytqtA+xLF+FGYHezHcmbZ/CDaKds9iNvC2qOTq843jLJkNVZaoWBxuIrjVRLG6Pjnicdg="
-
+  - GH_REF: git.duapp.com/appidenoe6p61ew/
+  - secure: iPfRNQc2WPuHyT4+Uo+it2CpY88+Z9ep/JdXSyLqsYOkEwiFVQQbgMMNi2v6CjbxdKcRv+7iCjeCFnPxRV4RyFXMSTOLJ/Z9tugqLOlpDuoYnxpk/V2W+/AvQpiFqb6WPpWpfkQGNDk2HIt4DjAJu/P+vgrzCT6iPoNrlI5iKPs=
 language: ruby
 rvm:
-  - 2.1.7
-
+- 2.1.7
+cache: bundler
 script:
-  - sh build.sh
-
+- sh build.sh
 after_script:
-  - git clone "https://${GH_TOKEN}@${GH_REF}" repo
-  - cp -rf ./_site ./repo/
-  - git config user.name "fexteam"
-  - git config user.email "fex@baidu.com"
-  - git config --global push.default simple
-  - cd ./repo
-  - git add -A
-  - git commit -m "Update docs"
-  - git push
+- echo "${GH_TOKEN}${GH_REF}"
+- git clone "https://${GH_TOKEN}@${GH_REF}" repo
+- mkdir -p ./repo/_site
+- cp -rf ./_site/** ./repo/_site
+- git config user.name "fexteam"
+- git config user.email "fex@baidu.com"
+- git config --global push.default simple
+- cd ./repo
+- git add -A .
+- git commit -m "Update docs"
+- git push
