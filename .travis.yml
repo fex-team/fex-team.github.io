@@ -10,13 +10,12 @@ script:
 - sh build.sh
 after_script:
 - git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" repo -q
-- mkdir -p ./repo/_site
-- rm -rf ./repo/_site
-- mv ./_site ./repo
-- git config user.name "fexteam"
-- git config user.email "fex@baidu.com"
+- mkdir -p ./repo/fexteam
+- cp -r ./_site/* ./repo/fexteam
+- git config --global user.name "fexteam"
+- git config --global user.email "fex@baidu.com"
 - git config --global push.default simple
 - cd ./repo
-- git add -A .
+- git add --all .
 - git commit -m "Update docs"
 - git push
