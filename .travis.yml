@@ -9,6 +9,7 @@ rvm:
 script:
 - sh build.sh
 after_script:
+- git config http.postBuffer 524288000
 - git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" repo -q
 - mkdir -p ./repo/fexteam
 - cp -r ./_site/* ./repo/fexteam
