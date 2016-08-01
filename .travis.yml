@@ -1,15 +1,13 @@
 env:
   global:
   - GH_REF: git.duapp.com/appidenoe6p61ew/
-  - secure: iPfRNQc2WPuHyT4+Uo+it2CpY88+Z9ep/JdXSyLqsYOkEwiFVQQbgMMNi2v6CjbxdKcRv+7iCjeCFnPxRV4RyFXMSTOLJ/Z9tugqLOlpDuoYnxpk/V2W+/AvQpiFqb6WPpWpfkQGNDk2HIt4DjAJu/P+vgrzCT6iPoNrlI5iKPs=
+  - secure: VC8miMiWUgveMdXuqB02PRv+XkYcvBuZyX9o8rN6CDm29XdnGdO0SPUCLuYKQfRfCFCqew+sMILV27a+3jN/y+9sd4AOIh7rB2fM9WajDOJlBAWO3EoVDq80BKMfS+tfPxmDDnKuKtGNp0XfPpq1lm+nywVtMSgLjGodrFwOhl8=
 language: ruby
 rvm:
 - 2.1.7
-cache: bundler
 script:
 - sh build.sh
 after_script:
-- echo "${GH_TOKEN}${GH_REF}"
 - git clone "https://${GH_TOKEN}@${GH_REF}" repo
 - mkdir -p ./repo/_site
 - cp -rf ./_site/** ./repo/_site
