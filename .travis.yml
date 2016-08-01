@@ -1,0 +1,17 @@
+env:
+  global:
+    - GH_REF: git.duapp.com/appidenoe6p61ew/
+    - secure: "JEm/8zUXAsv6b9BOPxym5VpE4TRS3L1cxEOEjnjvHi7Gg3JmE5AyhJKMRZAwVxx1+sCpp4I1dQHWr5dtgepE0XhlvaEW330mZlW3MNytqtA+xLF+FGYHezHcmbZ/CDaKds9iNvC2qOTq843jLJkNVZaoWBxuIrjVRLG6Pjnicdg="
+
+script:
+  - sh build.sh
+
+after_script:
+  - git clone "https://${GH_TOKEN}@${GH_REF}" repo
+  - cp -rf ./_site ./repo/
+  - git config user.name "fexteam"
+  - git config user.email "fex@baidu.com"
+  - cd ./repo
+  - git add -A
+  - git commit -m "Update docs"
+  - git push
