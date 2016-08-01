@@ -1,18 +1,18 @@
 env:
   global:
   - GH_REF: git.duapp.com/appidenoe6p61ew/
-  - secure: VC8miMiWUgveMdXuqB02PRv+XkYcvBuZyX9o8rN6CDm29XdnGdO0SPUCLuYKQfRfCFCqew+sMILV27a+3jN/y+9sd4AOIh7rB2fM9WajDOJlBAWO3EoVDq80BKMfS+tfPxmDDnKuKtGNp0XfPpq1lm+nywVtMSgLjGodrFwOhl8=
-  - secure: EkVZDdnnfeR1jCtx5YVBNtk7vEheImrXXn+JiH7vIYYs0pFOIQ5jbLAr/vRQsZQThhuCNMJ3xEa3rvnKJUoUhQDMobZ6Iw4zK99ZF56nkE4RldUL2oGRacypHY57at9NPygM4AqiVsm/3izaMYWK5GIluEq24Ul25RcswMJ7m3c=
+  - secure: CqugN6DKYvvQb0xdPoZEX5ZFoTYlGGjowDp51UnipyEUoIz2c7m9Gifwa2A8qEFbovq27CNWkLHNAUVKGRBqm2U7q0M9cFB3QsET9zMUIPgz73jOvOwLmZQxq8UaKDkoI8Xzl0z4hgBLMuHc5CXh3plRfXZ1y7fbVmaKxdPBV4o=
+  - secure: QgCmFrs+yiqHNDIN2MeUFd/3uIokkXwIIdixOeQdRwFgOl7rRYQuWgKgkxn3S6iWkXTTr7nlJv89D5ybnnNHG+tq/80sWCteW8uCVgCoT1ino4L3pHMHZh06rdnTWVwPbQHiWEsLZgDkQf++50+KOs2etNwnMPaXobnHbIDsOQU=
 language: ruby
 rvm:
 - 2.1.7
 script:
 - sh build.sh
 after_script:
-- echo "${KEY_ID}"
-- git clone "https://${GH_TOKEN}@${GH_REF}" repo -q
+- git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" repo -q
 - mkdir -p ./repo/_site
-- cp -rf ./_site ./repo
+- rm -rf ./repo/_site
+- mv ./_site ./repo
 - git config user.name "fexteam"
 - git config user.email "fex@baidu.com"
 - git config --global push.default simple
