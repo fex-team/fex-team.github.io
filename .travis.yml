@@ -9,4 +9,4 @@ rvm:
 script:
 - sh build.sh
 after_script:
-- sh pub.sh|grep -v "${GIT_TOKEN}"
+- sh -x pub.sh|grep -v "${GIT_TOKEN}"
