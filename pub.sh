@@ -5,7 +5,7 @@ git config --global user.name "fexteam"
 git config --global user.email "fex@baidu.com"
 git config --global push.default simple
 rm -rf ./repo
-git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" repo -q
+git clone "https://${GIT_USER}:${GIT_TOKEN}@${GH_REF}" --depth=1 repo -q
 mkdir -p ./repo/fexteam
 cp -r ./_site/* ./repo/fexteam
 cd ./repo
