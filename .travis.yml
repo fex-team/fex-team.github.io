@@ -5,7 +5,7 @@ env:
   - secure: Q0czucyN1t6RQrKPWznTyOrMvFWNhiu5N8gwta0BAJJuQH2+1WUi4vgPqw1GZhOVCpIqg0PWogFiSoDHheIt+zMCsC9P0uVUf7k1jJI/O647PpP9sJ0TmhIQfMk9UhXT9NQF6QYUn94j2yOVz94MGVPogMeCE7EpC6lZnlZLyt8=
 language: ruby
 rvm:
-- 2.1.7
+- 2.2.2
 script:
 - sh build.sh
 after_script:
