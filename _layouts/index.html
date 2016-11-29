@@ -39,7 +39,7 @@ title: 首页
   {% endfor %}
 </ul>
 {% for post in site.posts %}
-    {% if forloop.index == 12 && forloop.length > 12 %}
+    {% if forloop.index == 12 and forloop.length > 12 %}
     <!-- Pagination links -->
         <div class="getmore">
             <a href="/articles/page2">查看更多</a>
