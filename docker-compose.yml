@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  ruby:
+    image: ruby
+  python:
+    image: python
+  jekyll:
+    image: jekyll/jekyll:3.5
+    command: sh ./build.sh
+    depends_on:
+      - python
+      - ruby
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/srv/jekyll
