@@ -2,6 +2,14 @@
     <!-- <div>
         <img src="/public/images/formula.png" />
     </div> -->
+    {% for product in site.data.products %}
+        <div style="position: relative; border: 1px solid #dddddd; margin-bottom: 5px;">
+            <a href="{{ product.url }}" target="_blank">
+                <span style="display: inline-block; height: 60px; width: 150px; margin-right:10px; background: white url({{ product.logo }}) center center no-repeat; background-size: contain;"></span>
+                <span style="position: absolute; top: 20px; left: 140px; color: #5a5a5a;">- {{ product.desc }}</span>
+            </a>
+        </div>
+    {% endfor %}
 
     <ul class="github-projects">
         {% for project in site.data.projects %}
