@@ -3,4 +3,4 @@ set -e # halt script on error
 
 bundle install
 
-bundle exec jekyll build
+bundle exec jekyll build --incremental
