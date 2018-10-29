@@ -1,0 +1,10 @@
+- name: Sugar
+  desc: 百度数据可视化
+  url: https://sugar.baidu.com
+  logo: /public/images/sugar.png
+
+- name: AIPage
+  desc: 百度智能建站
+  url: https://aipage.baidu.com
+  logo: /public/images/aipage.png
+
