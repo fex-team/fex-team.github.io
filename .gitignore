@@ -3,3 +3,4 @@ Gemfile.lock
 .idea/
 _site/
 _grunt/node_modules/
+.jekyll-metadata

@@ -6,6 +6,22 @@
 
 这个系统是基于 [jekyll](http://jekyllrb.com/) 搭建的，为了方便本地编辑和看效果，需要将本项目 clone 至本地环境，并在本机安装 jekyll 环境。
 
+### docker 版本
+
+由于 ruby 编译经常出问题，所以制作了个 docker 镜像，安装好 docker 后，首先运行如下命令
+
+    docker run -it -v `pwd`:/build fexpublic/jekyll:latest bash
+
+其中 pwd 是指当前目录，如果不是用 bash，可以直接写全路径
+
+进入 bash 之后，就能使用如下命令编译了
+
+    jekyll build --incremental
+
+然后在 `_site` 目录下是最终结果，可以通过 `python -m http.server` 这样的静态服务查看效果
+
+上传一般只需要上传 `index.html`、`feed.xml`、`sitemap.xml`、`weekly` 和 `blog`相应目录就好了，不要全部上传，会很大
+
 ### Mac/Linux 下
 
 请使用如下命令（其中 gem 是 [Ruby](https://www.ruby-lang.org/)  的包管理工具）安装 jekyll（如果遇到权限问题请在前面加 sudo）：
