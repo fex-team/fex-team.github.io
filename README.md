@@ -18,7 +18,7 @@
 
     jekyll build --incremental
 
-然后在 `_site` 目录下是最终结果，可以通过 `python -m http.server` 这样的静态服务查看效果
+然后在 `_site` 目录下是最终结果，可以通过 `python -m SimpleHTTPServer 8080` 这样的静态服务查看效果
 
 上传一般只需要上传 `index.html`、`feed.xml`、`sitemap.xml`、`weekly` 和 `blog`相应目录就好了，不要全部上传，会很大
 
