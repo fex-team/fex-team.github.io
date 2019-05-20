@@ -8,12 +8,14 @@ body {
 .page-header {
     width: 1200px;
     margin: 0 auto;
-    height: 90px;
+    height: 60px;
     position: relative;
     .logo {
-        background: url(/public/images/logo.png) no-repeat center center;
-        width: 236px;
-        height: 80px;
+        background: url(/public/images/logo.svg) no-repeat center center;
+        width: 125px;
+        height: 50px;
+        margin-top: 10px;
+        margin-left: 14px;
     }
     .rss {
         position: absolute;
@@ -26,7 +28,7 @@ body {
     .page-nav {
         position: absolute;
         left: 320px;
-        top: 20px;
+        top: 10px;
         margin: 0;
         padding: 0;
         li {

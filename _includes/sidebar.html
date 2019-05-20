@@ -13,7 +13,7 @@
 
     <ul class="github-projects">
         {% for project in site.data.projects %}
-            <li><a href="https://github.com/fex-team/{{ project.github }}" target="_blank">{{ project.name }} - {{ project.desc }}</a></li>
+            <li><a href="https://github.com/{{ project.github }}" target="_blank">{{ project.name }} - {{ project.desc }}</a></li>
         {% endfor %}
     </ul>
     

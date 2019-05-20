@@ -1,29 +1,12 @@
 - name: FIS
   desc: 前端集成解决方案
-  github: fis
+  github: fex-team/fis
   recommend: true
   banner: 3d7823
 
-- name: KityFormula
-  desc: 公式展现和编辑
-  github: kityformula-editor
+- name: amis
+  desc: 快速搭建后台前端页面
+  github: baidu/amis
+  recommend: true
   banner: 3b2953
 
-- name: KityMinder
-  desc: 思维导图编辑器
-  github: kityminder
-  banner: 384042
-  url: http://naotu.baidu.com/
-
-- name: UEditor
-  desc: 富文本编辑器
-  github: ueditor
-  banner: 5e9e3b
-
-- name: WebUploader
-  desc: 文件上传组件
-  github: webuploader
-  url: http://fex.baidu.com/webuploader
-  banner: e49d00
-
-  

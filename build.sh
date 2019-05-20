@@ -1,6 +1,2 @@
 #!/usr/bin/env bash
-set -e # halt script on error
-
-bundle install
-
-bundle exec jekyll build --incremental
+docker run -it -v `pwd`:/build fexpublic/jekyll:latest jekyll build
