@@ -52,7 +52,11 @@ body {
             }
         }
     }
-    .page-navi-index li:nth-child(1), .page-navi-articles li:nth-child(2), .page-navi-code li:nth-child(3), .page-navi-needyou li:nth-child(4) {
+    .page-navi-index li:nth-child(1),
+    .page-navi-articles li:nth-child(2),
+    .page-navi-code li:nth-child(3),
+    .page-navi-weekly li:nth-child(3),
+    .page-navi-needyou li:nth-child(4) {
         border-bottom: 1px solid #ff4200;
     }
 }
