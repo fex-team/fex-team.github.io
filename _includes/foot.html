@@ -25,7 +25,7 @@
         <dd>
             <ul>
                 {% for project in site.data.projects %}
-                    <li><a {% if project.url %}href="{{project.url}}"{% else %}href="http://github.com/fex-team/{{project.github}}/"{% endif %} target="_blank">{{project.name}}</a></li>
+                    <li><a {% if project.url %}href="{{project.url}}"{% else %}href="http://github.com/{{project.github}}/"{% endif %} target="_blank">{{project.name}}</a></li>
                 {% endfor %}
             </ul>
         </dd>
